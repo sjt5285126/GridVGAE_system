@@ -198,6 +198,7 @@ def metropolis(eqsteps, mcsteps, N):
 if __name__ == '__main__':
     L = 4
     T = 2.493
+    beta = 1 / T
     test_x = []
     test_y = []
     esteps = 500  # 选择平衡步数
@@ -207,7 +208,7 @@ if __name__ == '__main__':
     testdata = []
     testdata_x = []
     testdata_y = []
-    init_times = 5000  # 选择用来拟合的构型
+    init_times = 1000  # 选择用来拟合的构型
     for i in range(init_times):  # 先生成100个图片进行MC模拟
         config = Ising_Metropolis.init_state(L)
         # 进行热浴平衡
@@ -225,7 +226,12 @@ if __name__ == '__main__':
         test_y.append(y)
     # (2)使用得到的大量哈密顿量进行机器学习
     reg = linearRegression(test_x, test_y)
-    for i in range(100):  # 对模型进行误差分析
+
+
+    '''
+    对模型进行误差分析
+    '''
+    for i in range(100):
         config = Ising_Metropolis.init_state(L) #生成构型
         traningdata.append(config.copy())  #将构型的初始量存放在训练集中
         label_x.append(heff(config)[0]) #存放初始的近邻关系
@@ -250,3 +256,7 @@ if __name__ == '__main__':
     # metropolis(1000,1000,8) #计算斑点自旋后的local update算法
 
     # Ising_Metropolis.metropolis(1000,1000,8)
+    '''
+    using wollf iteration lineregression
+    '''
+

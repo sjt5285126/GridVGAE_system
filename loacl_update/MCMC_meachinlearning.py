@@ -99,7 +99,6 @@ def wolff_flip(grid, beta, reg, J=1, K=0.2):
 
 
 def wolff_1(grid,location:tuple, beta, reg):
-    p = []
     j_n = len(reg.coef_) # total numbers of j
     p = -1*reg.coef_
     p = 1 - np.exp(-2*beta*p)
@@ -113,6 +112,20 @@ def wolff_1(grid,location:tuple, beta, reg):
     while stack:
         # first 1nn
         temp = stack.pop()
+        #  依次连接最近邻格点,2近邻格点,3近邻格点
+        for i in range(j_n):
+            neigh = wolff.nn(grid,temp[1],i+1,len(grid))
+            for em in neigh:
+                if em[1] not in cluster and em[0] == s and rand() < p[i]:
+                    stack.append(em)
+                    cluster.append(em[1])
+    for i in cluster:
+        x = i[0]
+        y = i[1]
+        grid[x][y] = -1*grid[x][y]
+
+    return grid
+
 
 
 
@@ -148,12 +161,6 @@ def wollf(eqsteps,mcsteps,N,reg):
 
 '''
 
-
-# 仿制文献图3
-def wollf(eqsteps, mcsteps, N, reg, T):
-    n1 = 1 / (N * N * mcsteps)
-
-    return
 
 
 def metropolis(eqsteps, mcsteps, N):

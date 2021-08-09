@@ -78,30 +78,36 @@ def metropolis_flip(grid, beta, J=1, K=0.2):
             grid[a][b] = s
     return grid
 
-
+# 算法的应用
 def wolff_flip(grid, beta, reg, J=1, K=0.2):
-    x_a, E_a = heff(grid)
-    # print(x_a,E_a)
-    a = []
-    a.append(x_a)
-    # print(reg.coef_)
-    Eeff_a = reg.predict(a)
-    # 创建一个副本
-    temp = grid.copy()
-    Ising_Metropolis.flipping_wolff(temp, beta)
-    x_b, E_b = heff(temp)
-    b = []
-    b.append(x_b)
-    Eeff_b = reg.predict(b)
-    if rand() < np.exp(-1 * beta * ((E_b - Eeff_b) - (E_a - Eeff_a))):
-        grid = temp
-    return grid
+    # 在有效模型中,我们要对wolff的每一次翻转进行有效性判断
+    steps = 100
+    for i in range(steps):
+        Eeff = [] #存放通过有效模型计算的哈密顿量
+        temp = grid.copy() #保存未翻转的构型
+        nn_a,E_A = heff(temp) #计算构型的近邻关系以及哈密顿量
+        Eeff.append(nn_a) #存放近邻关系以便于 使用有效模型计算哈密顿量
+
+        # wollf算法
+        a = np.random.randint(0,len(grid))
+        b = np.random.randint(0,len(grid))
+        wolff_1(grid,(a,b),beta,reg)
+
+        #计算反转后的信息
+        nn_b,E_B = heff(grid)
+        Eeff.append(nn_b)
+        Eeff = reg.predict(Eeff)
+        Eeff_A = Eeff[0]
+        Eeff_B = Eeff[1]
+        if rand() > np.exp(-1*beta*((E_B-Eeff_B)-(E_A-Eeff_A))):
+            grid = temp
 
 
+# 适用于多近邻的wolff算法
 def wolff_1(grid,location:tuple, beta, reg):
     j_n = len(reg.coef_) # total numbers of j
-    p = -1*reg.coef_
-    p = 1 - np.exp(-2*beta*p)
+    j = -1*reg.coef_
+    p = 1 - np.exp(-2*beta*j)
     stack = []
     x = location[0]
     y = location[1]
@@ -123,7 +129,6 @@ def wolff_1(grid,location:tuple, beta, reg):
         x = i[0]
         y = i[1]
         grid[x][y] = -1*grid[x][y]
-
     return grid
 
 
@@ -220,20 +225,23 @@ if __name__ == '__main__':
     # (2)使用得到的大量哈密顿量进行机器学习
     reg = linearRegression(test_x, test_y)
     for i in range(100):  # 对模型进行误差分析
-        config = Ising_Metropolis.init_state(L)
-        traningdata.append(config.copy())
-        label_x.append(heff(config)[0])
-        label_y.append(heff(config)[1])
+        config = Ising_Metropolis.init_state(L) #生成构型
+        traningdata.append(config.copy())  #将构型的初始量存放在训练集中
+        label_x.append(heff(config)[0]) #存放初始的近邻关系
+        label_y.append(heff(config)[1]) #存放初始的哈密顿量
         for estep in range(esteps):
-            metropolis_flip(config, 1 / T)
-        testdata.append(config)
-        testdata_x.append(heff(config)[0])
-        testdata_y.append(heff(config)[1])
-    error = reg.predict(testdata_x)
+            metropolis_flip(config, 1 / T) #经过local update算法进行平衡
+        testdata.append(config) #放入到测试集当中
+        testdata_x.append(heff(config)[0]) #将紧邻关系存放到测试集中
+        # testdata_y 存放的是用有四体相互作用计算的哈密顿量
+        testdata_y.append(heff(config)[1]) #将平衡后的哈密顿量存放到测试集中
+    error = reg.predict(testdata_x) #使用有效模型计算平衡后的哈密顿量
     print('init_config:', init_times, ' esteps:', esteps)
     print('balanced error:', np.mean(error - testdata_y))
-    error = reg.predict(label_x)
-    print('original configuration error:', np.mean(error - label_y))
+    error = reg.predict(label_x) #使用模型计算初始的哈密顿量
+    # 计算误差应用平衡后的哈密顿量来计算误差
+    #  公式是用来计算最终的哈密顿量 所以理论上应用平衡后的哈密顿量计算
+    print('original configuration error:', np.mean(error - testdata_y))
     # 最后的结果 j2 j3 足够小，又决定只使用j1进行线性回归
     # print(reg.coef_)
     # wollf(1000,1000,8,reg)

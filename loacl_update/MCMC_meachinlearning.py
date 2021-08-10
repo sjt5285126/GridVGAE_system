@@ -257,6 +257,21 @@ if __name__ == '__main__':
 
     # Ising_Metropolis.metropolis(1000,1000,8)
     '''
-    using wollf iteration lineregression
+    下面进行第三步 使用wollf全局更新算法来 对构型进行翻转
     '''
+
+    new_test = []
+    for i in range(100):
+        config = Ising_Metropolis.init_state(L)
+        wolff_flip(config,beta,reg)
+        new_test.append(config.copy()) #得到wollf更新后的测试集
+    for test in new_test:
+        x,y = heff(test)
+        test_x.append(x)
+        test_y.append(y)
+    test_x.extend()
+    # 对于新生成的构型计算其近邻关系与哈密顿量 增大测试用例来进行fit
+    
+
+
 

@@ -81,7 +81,7 @@ def metropolis_flip(grid, beta, J=1, K=0.2):
 # 算法的应用
 def wolff_flip(grid, beta, reg, J=1, K=0.2):
     # 在有效模型中,我们要对wolff的每一次翻转进行有效性判断
-    steps = 100
+    steps = 1
     for i in range(steps):
         Eeff = [] #存放通过有效模型计算的哈密顿量
         temp = grid.copy() #保存未翻转的构型
@@ -263,16 +263,23 @@ if __name__ == '__main__':
     下面进行第三步 使用wollf全局更新算法来 对构型进行翻转
     '''
     new_test = []
-    for i in range(100):
-        config = Ising_Metropolis.init_state(L)
-        wolff_flip(config,beta,reg)
-        new_test.append(config.copy()) #得到wollf更新后的测试集
-    for test in new_test:
-        x,y = heff(test)
-        test_x.append(x)
-        test_y.append(y)
-    reg.fit(test_x,test_y)
-    test(reg)
+    # 使用wollf处理与初始状态相同的构型 来迭代模型
+    count = 1;
+    while count<100:
+        for i in range(init_times):
+            config = Ising_Metropolis.init_state(L)
+            wolff_flip(config,beta,reg)
+            new_test.append(config.copy()) #得到wollf更新后的测试集
+        # test_x,test_y = []
+        for test in new_test:
+            x,y = heff(test)
+            # 在测试集的选取上面可以选择叠加到原来的测试集上 和 重新用该测试集构建
+            test_x.append(x)
+            test_y.append(y)
+        reg.fit(test_x,test_y)
+        print('第{}次迭代后的模型误差'.format(count))
+        test(reg)
+        count += 1
 
 
 

@@ -194,6 +194,38 @@ def metropolis(eqsteps, mcsteps, N):
     plt.plot(T, abs(np.array(M)), "ob")
     plt.show()
 
+def test(reg):
+    '''
+    对模型进行误差分析
+    '''
+    print('wollf更新参与迭代之前')
+    for i in range(100):
+        config = Ising_Metropolis.init_state(L) #生成构型
+        traningdata.append(config.copy())  #将构型的初始量存放在训练集中
+        label_x.append(heff(config)[0]) #存放初始的近邻关系
+        label_y.append(heff(config)[1]) #存放初始的哈密顿量
+        for estep in range(esteps):
+            metropolis_flip(config, 1 / T) #经过local update算法进行平衡
+        testdata.append(config) #放入到测试集当中
+        testdata_x.append(heff(config)[0]) #将紧邻关系存放到测试集中
+        # testdata_y 存放的是用有四体相互作用计算的哈密顿量
+        testdata_y.append(heff(config)[1]) #将平衡后的哈密顿量存放到测试集中
+    error = reg.predict(testdata_x) #使用有效模型计算平衡后的哈密顿量
+    print('init_config:', init_times, ' esteps:', esteps)
+    print('balanced error:', np.mean(error - testdata_y))
+    error = reg.predict(label_x) #使用模型计算初始的哈密顿量
+    # 计算误差应用平衡后的哈密顿量来计算误差
+    #  公式是用来计算最终的哈密顿量 所以理论上应用平衡后的哈密顿量计算
+    print('original configuration error(originala h):',np.mean(error-label_y))
+    print('original configuration error(balance h):', np.mean(error - testdata_y))
+    # 最后的结果 j2 j3 足够小，又决定只使用j1进行线性回归
+    # print(reg.coef_)
+    # wollf(1000,1000,8,reg)
+
+    # metropolis(1000,1000,8) #计算斑点自旋后的local update算法
+
+    # Ising_Metropolis.metropolis(1000,1000,8)
+
 
 if __name__ == '__main__':
     L = 4
@@ -226,40 +258,10 @@ if __name__ == '__main__':
         test_y.append(y)
     # (2)使用得到的大量哈密顿量进行机器学习
     reg = linearRegression(test_x, test_y)
-
-
-    '''
-    对模型进行误差分析
-    '''
-    for i in range(100):
-        config = Ising_Metropolis.init_state(L) #生成构型
-        traningdata.append(config.copy())  #将构型的初始量存放在训练集中
-        label_x.append(heff(config)[0]) #存放初始的近邻关系
-        label_y.append(heff(config)[1]) #存放初始的哈密顿量
-        for estep in range(esteps):
-            metropolis_flip(config, 1 / T) #经过local update算法进行平衡
-        testdata.append(config) #放入到测试集当中
-        testdata_x.append(heff(config)[0]) #将紧邻关系存放到测试集中
-        # testdata_y 存放的是用有四体相互作用计算的哈密顿量
-        testdata_y.append(heff(config)[1]) #将平衡后的哈密顿量存放到测试集中
-    error = reg.predict(testdata_x) #使用有效模型计算平衡后的哈密顿量
-    print('init_config:', init_times, ' esteps:', esteps)
-    print('balanced error:', np.mean(error - testdata_y))
-    error = reg.predict(label_x) #使用模型计算初始的哈密顿量
-    # 计算误差应用平衡后的哈密顿量来计算误差
-    #  公式是用来计算最终的哈密顿量 所以理论上应用平衡后的哈密顿量计算
-    print('original configuration error:', np.mean(error - testdata_y))
-    # 最后的结果 j2 j3 足够小，又决定只使用j1进行线性回归
-    # print(reg.coef_)
-    # wollf(1000,1000,8,reg)
-
-    # metropolis(1000,1000,8) #计算斑点自旋后的local update算法
-
-    # Ising_Metropolis.metropolis(1000,1000,8)
+    test(reg)
     '''
     下面进行第三步 使用wollf全局更新算法来 对构型进行翻转
     '''
-
     new_test = []
     for i in range(100):
         config = Ising_Metropolis.init_state(L)
@@ -269,9 +271,9 @@ if __name__ == '__main__':
         x,y = heff(test)
         test_x.append(x)
         test_y.append(y)
-    test_x.extend()
-    # 对于新生成的构型计算其近邻关系与哈密顿量 增大测试用例来进行fit
-    
+    reg.fit(test_x,test_y)
+    test(reg)
+
 
 
 

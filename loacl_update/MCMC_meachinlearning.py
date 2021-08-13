@@ -6,7 +6,8 @@ from Ising_Metropolis import nn
 import wolff
 import Ising_Metropolis
 import matplotlib.pyplot as plt
-
+import seaborn as sns
+import pandas as pd
 
 # 文献中使用的例子L = 10,20,40 我们可以适当进行缩小
 
@@ -238,6 +239,7 @@ if __name__ == '__main__':
     testdata = []
     testdata_x = []
     testdata_y = []
+    Jarray = []
     init_times = 1000  # 选择用来拟合的构型
     for i in range(init_times):  # 先生成100个图片进行MC模拟
         config = Ising_Metropolis.init_state(L)
@@ -265,8 +267,19 @@ if __name__ == '__main__':
     '''
     new_test = []
     # 使用wollf处理与初始状态相同的构型 来迭代模型
-    count = 1;
-    while count<100:
+    '''
+    对模型的迭代可以用j大小的变化来直观的感受模型的收敛
+    新的图形中 横坐标代表迭代次数
+    纵坐标代表 j的大小
+    将j_1 j_2 j_3 同时放在一个图像中动态的进行表示
+    '''
+    count = 1
+    times = []
+    Jclass = []
+    while count<10:
+        times.append(count)
+        Jarray.extend(reg.coef_)
+        Jclass.extend([1,2,3])
         for i in range(init_times):
             config = Ising_Metropolis.init_state(L)
             wolff_flip(config,beta,reg)
@@ -281,6 +294,9 @@ if __name__ == '__main__':
         print('第{}次迭代后的模型误差'.format(count))
         test(reg,file)
         count += 1
+    df = pd.DataFrame({'times':times,'value':Jarray,'class':Jclass})
+    sns.lineplot(x='time',y='value',hue='class',data=df,ci=None,markers=True,dashes=False)
+    plt.show()
     file.close()
 
 

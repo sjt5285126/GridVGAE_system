@@ -190,9 +190,24 @@ def metropolis(eqsteps, mcsteps, N):
     plt.plot(T, abs(np.array(M)), "ob")
     plt.show()
 
+#定义一个误差函数
+def cost(h:np.ndarray,y:np.ndarray):
+    return np.mean((h-y)**2)/2
+
 def test(reg,file):
+    L = 4
+    T = 2.493
+    init_times = 1000  # 选择用来拟合的构型
+    esteps = 500  # 选择平衡步数
+    traningdata = []
+    testdata = []
+    label_x = []
+    label_y = []
+    testdata_x = []
+    testdata_y = []
     '''
     对模型进行误差分析
+    以往的误差模型 新生成的wollf算法并没有 进行平衡，所以应该用平衡后的算法来计算误差
     '''
     for i in range(100):
         config = Ising_Metropolis.init_state(L) #生成构型
@@ -208,15 +223,15 @@ def test(reg,file):
     error = reg.predict(testdata_x) #使用有效模型计算平衡后的哈密顿量
     file.write('init_config: {} esteps: {}'.format(init_times,esteps))
     print('init_config:', init_times, ' esteps:', esteps)
-    file.write('balanced error:{}'.format(np.mean(error - testdata_y)))
-    print('balanced error:', np.mean(error - testdata_y))
+    file.write('balanced error:{}'.format(cost(error,testdata_y)))
+    print('balanced error:', cost(error,testdata_y))
     error = reg.predict(label_x) #使用模型计算初始的哈密顿量
     # 计算误差应用平衡后的哈密顿量来计算误差
     #  公式是用来计算最终的哈密顿量 所以理论上应用平衡后的哈密顿量计算
-    file.write('original configuration error(originala h):{}'.format(np.mean(error-label_y)))
-    print('original configuration error(originala h):',np.mean(error-label_y))
-    file.write('original configuration error(balance h):{}'.format(np.mean(error - testdata_y)))
-    print('original configuration error(balance h):', np.mean(error - testdata_y))
+    file.write('original configuration error(originala h):{}'.format(cost(error,label_y)))
+    print('original configuration error(originala h):',cost(error,label_y))
+    file.write('original configuration error(balance h):{}'.format(cost(error,testdata_y)))
+    print('original configuration error(balance h):', cost(error,label_y))
     # 最后的结果 j2 j3 足够小，又决定只使用j1进行线性回归
     # print(reg.coef_)
     # wollf(1000,1000,8,reg)
@@ -233,12 +248,6 @@ if __name__ == '__main__':
     test_x = []
     test_y = []
     esteps = 500  # 选择平衡步数
-    traningdata = []
-    label_x = []
-    label_y = []
-    testdata = []
-    testdata_x = []
-    testdata_y = []
     Jarray = []
     init_times = 1000  # 选择用来拟合的构型
     for i in range(init_times):  # 先生成100个图片进行MC模拟

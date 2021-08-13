@@ -277,7 +277,7 @@ if __name__ == '__main__':
     times = []
     Jclass = []
     while count<10:
-        times.append(count)
+        times.append([count,count,count])
         Jarray.extend(reg.coef_)
         Jclass.extend([1,2,3])
         for i in range(init_times):

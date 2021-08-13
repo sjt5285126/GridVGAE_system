@@ -33,7 +33,7 @@ def heff(grid, J=1, K=0.2):
             temp = []
             for k in range(1, 4):  # 对range(a,b)中 b的修改会改变计算近邻的数量
                 e = np.array(nn(grid, (i, j), k, n)).sum()
-                temp.append(e * s)
+                temp.append(e * s) #表示 Si*Sj
             x.append(temp)
     x = np.array(x)
     # print(x)
@@ -139,33 +139,28 @@ def wolff_1(grid,location:tuple, beta, reg):
 
 
 
-'''
-def wollf(eqsteps,mcsteps,N,reg):
-    T = np.linspace(0.1, 5, 10)
-    n1 = 1 / (N * N * mcsteps)
+def wolff_test(esteps,mcsteps,reg,N):
+    T = np.linspace(0.1,5,10)
+    n1 = 1 / (N*N*mcsteps)
     M = []
     j = 0
     for t in T:
         m = 0
         config = Ising_Metropolis.init_state(N)
-        for i in range(eqsteps):
-            wolff_flip(config, 1 / t,reg)
+        for i in range(esteps):
+            wolff_flip(config,1/t,reg)
         for i in range(mcsteps):
-            wolff_flip(config, 1 / t,reg)
+            wolff_flip(config,1/t,reg)
             m += abs(np.sum(config))
             j += 1
             if j%10 == 0:
-                print("已完成第%d步模拟" % j)
-        M.append(m * n1)
-
-
+                print('已完成第%d步模拟')
+        M.append(m*n1)
     plt.xlabel('T')
     plt.ylabel('m')
-    plt.title('wolff')
-    plt.plot(T, abs(np.array(M)), "ob")
+    plt.title('wollf')
+    plt.plot(T,abs(np.array(M)),'ob')
     plt.show()
-
-'''
 
 
 
@@ -194,11 +189,10 @@ def metropolis(eqsteps, mcsteps, N):
     plt.plot(T, abs(np.array(M)), "ob")
     plt.show()
 
-def test(reg):
+def test(reg,file):
     '''
     对模型进行误差分析
     '''
-    print('wollf更新参与迭代之前')
     for i in range(100):
         config = Ising_Metropolis.init_state(L) #生成构型
         traningdata.append(config.copy())  #将构型的初始量存放在训练集中
@@ -211,12 +205,16 @@ def test(reg):
         # testdata_y 存放的是用有四体相互作用计算的哈密顿量
         testdata_y.append(heff(config)[1]) #将平衡后的哈密顿量存放到测试集中
     error = reg.predict(testdata_x) #使用有效模型计算平衡后的哈密顿量
+    file.write('init_config: {} esteps: {}'.format(init_times,esteps))
     print('init_config:', init_times, ' esteps:', esteps)
+    file.write('balanced error:{}'.format(np.mean(error - testdata_y)))
     print('balanced error:', np.mean(error - testdata_y))
     error = reg.predict(label_x) #使用模型计算初始的哈密顿量
     # 计算误差应用平衡后的哈密顿量来计算误差
     #  公式是用来计算最终的哈密顿量 所以理论上应用平衡后的哈密顿量计算
+    file.write('original configuration error(originala h):{}'.format(np.mean(error-label_y)))
     print('original configuration error(originala h):',np.mean(error-label_y))
+    file.write('original configuration error(balance h):{}'.format(np.mean(error - testdata_y)))
     print('original configuration error(balance h):', np.mean(error - testdata_y))
     # 最后的结果 j2 j3 足够小，又决定只使用j1进行线性回归
     # print(reg.coef_)
@@ -258,9 +256,12 @@ if __name__ == '__main__':
         test_y.append(y)
     # (2)使用得到的大量哈密顿量进行机器学习
     reg = linearRegression(test_x, test_y)
-    test(reg)
+
+    file = open('testresult.txt','a+')
+    print('wollf更新参与迭代之前')
+    test(reg,file)
     '''
-    下面进行第三步 使用wollf全局更新算法来 对构型进行翻转
+    #下面进行第三步 使用wollf全局更新算法来 对构型进行翻转
     '''
     new_test = []
     # 使用wollf处理与初始状态相同的构型 来迭代模型
@@ -270,16 +271,18 @@ if __name__ == '__main__':
             config = Ising_Metropolis.init_state(L)
             wolff_flip(config,beta,reg)
             new_test.append(config.copy()) #得到wollf更新后的测试集
-        # test_x,test_y = []
-        for test in new_test:
-            x,y = heff(test)
+        # test_x,test_y = [],[]
+        for tests in new_test:
+            x,y = heff(tests)
             # 在测试集的选取上面可以选择叠加到原来的测试集上 和 重新用该测试集构建
             test_x.append(x)
             test_y.append(y)
-        reg.fit(test_x,test_y)
+        reg = linearRegression(test_x, test_y)
         print('第{}次迭代后的模型误差'.format(count))
-        test(reg)
+        test(reg,file)
         count += 1
+    file.close()
+
 
 
 

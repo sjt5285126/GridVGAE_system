@@ -277,7 +277,7 @@ if __name__ == '__main__':
     times = []
     Jclass = []
     while count<10:
-        times.append([count,count,count])
+        times.extend([count,count,count])
         Jarray.extend(reg.coef_)
         Jclass.extend([1,2,3])
         for i in range(init_times):
@@ -295,7 +295,7 @@ if __name__ == '__main__':
         test(reg,file)
         count += 1
     df = pd.DataFrame({'times':times,'value':Jarray,'class':Jclass})
-    sns.lineplot(x='time',y='value',hue='class',data=df,ci=None,markers=True,dashes=False)
+    sns.lineplot(x='times',y='value',hue='class',data=df,ci=None,markers=True,dashes=False)
     plt.show()
     file.close()
 

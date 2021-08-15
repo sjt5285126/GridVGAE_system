@@ -192,6 +192,7 @@ def metropolis(eqsteps, mcsteps, N):
 
 #定义一个误差函数
 def cost(h:np.ndarray,y:np.ndarray):
+
     return np.mean((h-y)**2)/2
 
 def test(reg,file):
@@ -199,6 +200,7 @@ def test(reg,file):
     T = 2.493
     init_times = 1000  # 选择用来拟合的构型
     esteps = 500  # 选择平衡步数
+    msteps = 1000
     traningdata = []
     testdata = []
     label_x = []
@@ -221,8 +223,9 @@ def test(reg,file):
         label_x.append(heff(config)[0]) #存放初始的近邻关系
         label_y.append(heff(config)[1]) #存放初始的哈密顿量
         for estep in range(esteps):
-            wolff_flip(temp,1/T,reg) #使用新的wollf算法进行平衡 wollf是集团算法 平衡步数小于local update
             metropolis_flip(config, 1 / T) #经过local update算法进行平衡
+        for estep in range(msteps):
+            wolff_flip(temp, 1 / T, reg)  # 使用新的wollf算法进行平衡 wollf是集团算法 平衡步数小于local update
         tempArray.append(temp)
         temp_x.append(heff(temp)[0])
         temp_y.append(heff(temp)[1])
@@ -240,9 +243,9 @@ def test(reg,file):
     #  公式是用来计算最终的哈密顿量 所以理论上应用平衡后的哈密顿量计算
     file.write('未平衡的哈密顿量误差(H-Heff):{}\n'.format(cost(error,label_y)))
     print('未平衡的哈密顿量误差(H-Heff):',cost(error,label_y))
-    error = temp_y
-    file.write('使用wollf平衡的h与localupdate平衡的h的误差:{}\n'.format(cost(temp_y,testdata_y)))
-    print('使用wollf平衡的h与localupdate平衡的h的误差:', cost(temp_y,testdata_y))
+    error = np.array(temp_y)
+    file.write('使用wollf平衡的h与localupdate平衡的h的误差:{}\n'.format(cost(error,testdata_y)))
+    print('使用wollf平衡的h与localupdate平衡的h的误差:', cost(error,testdata_y))
     # 最后的结果 j2 j3 足够小，又决定只使用j1进行线性回归
     # print(reg.coef_)
     # wollf(1000,1000,8,reg)
@@ -261,6 +264,7 @@ if __name__ == '__main__':
     esteps = 500  # 选择平衡步数
     Jarray = []
     init_times = 1000  # 选择用来拟合的构型
+    fig,ax = plt.subplots()
     for i in range(init_times):  # 先生成100个图片进行MC模拟
         config = Ising_Metropolis.init_state(L)
         # 进行热浴平衡
@@ -314,8 +318,10 @@ if __name__ == '__main__':
         print('第{}次迭代后的模型误差'.format(count))
         test(reg,file)
         count += 1
-    df = pd.DataFrame({'times':times,'value':Jarray,'class':Jclass})
-    sns.lineplot(x='times',y='value',hue='class',data=df,ci=None,markers=True,dashes=False)
+        ax.cla()
+        df = pd.DataFrame({'times': times, 'value': Jarray, 'class': Jclass})
+        sns.lineplot(x='times', y='value', hue='class', data=df, ci=None, markers=True, dashes=False)
+        plt.pause(1)
     plt.show()
     file.close()
 

@@ -205,33 +205,44 @@ def test(reg,file):
     label_y = []
     testdata_x = []
     testdata_y = []
+    tempArray = []
+    temp_x = []
+    temp_y = []
     '''
     对模型进行误差分析
     以往的误差模型 新生成的wollf算法并没有 进行平衡，所以应该用平衡后的算法来计算误差
+    误差的计算之所以之前很大是因为我们用未平衡的哈密顿量比较已经用local update更新平衡的哈密顿量
+    所以目前的误差计算方式为 用有效模型的wollf模型平衡的哈密顿量 - local update更新平衡的哈密顿量
     '''
     for i in range(100):
         config = Ising_Metropolis.init_state(L) #生成构型
+        temp = config.copy()
         traningdata.append(config.copy())  #将构型的初始量存放在训练集中
         label_x.append(heff(config)[0]) #存放初始的近邻关系
         label_y.append(heff(config)[1]) #存放初始的哈密顿量
         for estep in range(esteps):
+            wolff_flip(temp,1/T,reg) #使用新的wollf算法进行平衡 wollf是集团算法 平衡步数小于local update
             metropolis_flip(config, 1 / T) #经过local update算法进行平衡
+        tempArray.append(temp)
+        temp_x.append(heff(temp)[0])
+        temp_y.append(heff(temp)[1])
         testdata.append(config) #放入到测试集当中
         testdata_x.append(heff(config)[0]) #将紧邻关系存放到测试集中
         # testdata_y 存放的是用有四体相互作用计算的哈密顿量
         testdata_y.append(heff(config)[1]) #将平衡后的哈密顿量存放到测试集中
     error = reg.predict(testdata_x) #使用有效模型计算平衡后的哈密顿量
-    file.write('init_config: {} esteps: {}'.format(init_times,esteps))
-    print('init_config:', init_times, ' esteps:', esteps)
-    file.write('balanced error:{}'.format(cost(error,testdata_y)))
-    print('balanced error:', cost(error,testdata_y))
+    file.write('用来拟合的构型: {} 步数: {}\n'.format(init_times,esteps))
+    print('用来拟合的构型:', init_times, ' 步数:', esteps)
+    file.write('使用localupdate平衡后哈密顿量(h-heff)的误差:{}\n'.format(cost(error,testdata_y)))
+    print('使用localupdate平衡后哈密顿量(h-heff)的误差:', cost(error,testdata_y))
     error = reg.predict(label_x) #使用模型计算初始的哈密顿量
     # 计算误差应用平衡后的哈密顿量来计算误差
     #  公式是用来计算最终的哈密顿量 所以理论上应用平衡后的哈密顿量计算
-    file.write('original configuration error(originala h):{}'.format(cost(error,label_y)))
-    print('original configuration error(originala h):',cost(error,label_y))
-    file.write('original configuration error(balance h):{}'.format(cost(error,testdata_y)))
-    print('original configuration error(balance h):', cost(error,label_y))
+    file.write('未平衡的哈密顿量误差(H-Heff):{}\n'.format(cost(error,label_y)))
+    print('未平衡的哈密顿量误差(H-Heff):',cost(error,label_y))
+    error = temp_y
+    file.write('使用wollf平衡的h与localupdate平衡的h的误差:{}\n'.format(cost(temp_y,testdata_y)))
+    print('使用wollf平衡的h与localupdate平衡的h的误差:', cost(temp_y,testdata_y))
     # 最后的结果 j2 j3 足够小，又决定只使用j1进行线性回归
     # print(reg.coef_)
     # wollf(1000,1000,8,reg)

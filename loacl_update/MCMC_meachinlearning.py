@@ -102,7 +102,6 @@ def wolff_flip(grid, beta, reg, J=1, K=0.2):
         Eeff_B = Eeff[1]
         if rand() > np.exp(-1*beta*((E_B-Eeff_B)-(E_A-Eeff_A))):
             grid = temp
-    print(reg.coef_)
     return grid
 
 
@@ -197,6 +196,7 @@ def cost(h:np.ndarray,y:np.ndarray):
     return np.mean((h-y)**2)/2
 
 def test(reg,file):
+    print(reg.coef_)
     L = 4
     T = 2.493
     init_times = 1000  # 选择用来拟合的构型

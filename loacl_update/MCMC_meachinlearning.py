@@ -82,7 +82,7 @@ def metropolis_flip(grid, beta, J=1, K=0.2):
 # 算法的应用
 def wolff_flip(grid, beta, reg, J=1, K=0.2):
     # 在有效模型中,我们要对wolff的每一次翻转进行有效性判断
-    steps = 1
+    steps = 10
     for i in range(steps):
         Eeff = [] #存放通过有效模型计算的哈密顿量
         temp = grid.copy() #保存未翻转的构型
@@ -102,6 +102,7 @@ def wolff_flip(grid, beta, reg, J=1, K=0.2):
         Eeff_B = Eeff[1]
         if rand() > np.exp(-1*beta*((E_B-Eeff_B)-(E_A-Eeff_A))):
             grid = temp
+    print(reg.coef_)
     return grid
 
 
@@ -244,8 +245,11 @@ def test(reg,file):
     file.write('未平衡的哈密顿量误差(H-Heff):{}\n'.format(cost(error,label_y)))
     print('未平衡的哈密顿量误差(H-Heff):',cost(error,label_y))
     error = reg.predict(temp_x)
-    file.write('使用wollf平衡的h与localupdate平衡的h的误差:{}\n'.format(cost(error,testdata_y)))
-    print('使用wollf平衡的h与localupdate平衡的h的误差:', cost(error,testdata_y))
+    file.write('使用wollf平衡的h(有效模型)与localupdate平衡的h的误差:{}\n'.format(cost(error,testdata_y)))
+    print('使用wollf平衡的h(有效模型)与localupdate平衡的h的误差:', cost(error,testdata_y))
+    error = np.array(temp_y)
+    file.write('使用wollf平衡的h(四体相互作用)与localupdate平衡的h的误差:{}\n'.format(cost(error,testdata_y)))
+    print('使用wollf平衡的h(四体相互作用)与localupdate平衡的h的误差:', cost(error,testdata_y))
     # 最后的结果 j2 j3 足够小，又决定只使用j1进行线性回归
     # print(reg.coef_)
     # wollf(1000,1000,8,reg)

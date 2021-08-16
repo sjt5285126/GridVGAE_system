@@ -199,7 +199,7 @@ def test(reg,file):
     L = 4
     T = 2.493
     init_times = 1000  # 选择用来拟合的构型
-    esteps = 500  # 选择平衡步数
+    esteps = 1000  # 选择平衡步数
     msteps = 1000
     traningdata = []
     testdata = []
@@ -243,7 +243,7 @@ def test(reg,file):
     #  公式是用来计算最终的哈密顿量 所以理论上应用平衡后的哈密顿量计算
     file.write('未平衡的哈密顿量误差(H-Heff):{}\n'.format(cost(error,label_y)))
     print('未平衡的哈密顿量误差(H-Heff):',cost(error,label_y))
-    error = np.array(temp_y)
+    error = reg.predict(temp_x)
     file.write('使用wollf平衡的h与localupdate平衡的h的误差:{}\n'.format(cost(error,testdata_y)))
     print('使用wollf平衡的h与localupdate平衡的h的误差:', cost(error,testdata_y))
     # 最后的结果 j2 j3 足够小，又决定只使用j1进行线性回归
@@ -261,9 +261,9 @@ if __name__ == '__main__':
     beta = 1 / T
     test_x = []
     test_y = []
-    esteps = 500  # 选择平衡步数
+    esteps = 1000  # 选择平衡步数
     Jarray = []
-    init_times = 1000  # 选择用来拟合的构型
+    init_times = 500 # 选择用来拟合的构型
     fig,ax = plt.subplots()
     for i in range(init_times):  # 先生成100个图片进行MC模拟
         config = Ising_Metropolis.init_state(L)

@@ -1,12 +1,15 @@
 import os.path as osp
 import argparse
-
+import os
 import torch
 import torch.nn.functional as F
 # 导入引文网络数据集,节点代表文档,边代表引文链接
 from torch_geometric.datasets import Planetoid
 import torch_geometric.transforms as T
 from torch_geometric.nn import GCNConv, ChebConv  # noqa
+
+#os.environ["CUDA_VISIBLE_DEVICES"] = '0'
+
 
 # 编写一个命令行接口，可以使用 --user_gdc命令
 parser = argparse.ArgumentParser()
@@ -21,6 +24,7 @@ dataset = 'Cora'
 path = osp.join(osp.dirname(osp.realpath(__file__)),  'data', dataset)
 # 得到我们的数据集并将其归一化
 dataset = Planetoid(path, dataset, transform=T.NormalizeFeatures())
+
 '''
 处理之后的数据可以通过属性 .data 获得，它将返回一个数据对象，包括如下几部分：
 * x: 节点的特征，维度为 2708 * 1433，类型为 np.ndarray

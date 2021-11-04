@@ -24,7 +24,7 @@ data.train_mask = data.val_mask = data.test_mask = data.y = None
 
 # 将data中的边 随机划分成 训练集边
 data = train_test_split_edges(data)
-x,train_pos_edge_index = data.x.to(device),data.train_pos_edge_mask.to(device)
+x,train_pos_edge_index = data.x.to(device),data.train_pos_edge_index.to(device)
 optimizer = torch.optim.Adam(model.parameters(),lr=0.01)
 
 def train():

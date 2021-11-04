@@ -36,8 +36,10 @@ class VAE(nn.Module):
         # encoder
         h_ = self.encoder(x)
         # [b,20] => [b,10] and [b,10]
+        # 前10维为均值，后10维为方差
         mu,sigma = h_.chunk(2,dim=1) # 分块
         # reparametrize trick, epison~N(0,1)
+        # 一个均值 一个方差，对应一个隐藏值
         h = mu + sigma * torch.randn_like(sigma)
 
         # decoder

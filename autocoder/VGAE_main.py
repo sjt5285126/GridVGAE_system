@@ -31,7 +31,7 @@ def train():
     model.train()
     optimizer.zero_grad()
     z = model.encode(x,train_pos_edge_index)
-    # recon_loss 继承自GAE类
+    # recon_loss 继承自GAE类 给定计算误差的方式
     loss = model.recon_loss(z,train_pos_edge_index)+model.kl_loss()/data.num_nodes
     loss.backward()
     optimizer.step()

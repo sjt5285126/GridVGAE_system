@@ -22,3 +22,7 @@ VGAE继承于torch_geometric.nn.models.autoencoder.GAE
 3. autocode的进步是否也可以做创新之一
 4. GAN也是生成模型的一种,是否也可以来做应用
 
+##### 创新点
+1. 将图分类级别的图神经网络与自编码器结合
+2. 使用合适的pooling池化与合适的图卷积核
+

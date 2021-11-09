@@ -16,3 +16,9 @@ VGAE继承于torch_geometric.nn.models.autoencoder.GAE
 3. 更换不同的损失函数
 4. 自己构造数据集
 
+##### 当前遇到的阻碍
+1. 目前的VGAE与VAE都是node-level级别的,而我们要做的是graph-level的
+2. 对于graph-level的分类需要应用池化,考虑什么样的池化函数
+3. autocode的进步是否也可以做创新之一
+4. GAN也是生成模型的一种,是否也可以来做应用
+

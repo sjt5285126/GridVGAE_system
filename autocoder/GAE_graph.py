@@ -23,6 +23,6 @@ class GAE_G(nn.Module):
         return
     def forward(self,x,edge_index):
 
-        return
+        return  x
 
 

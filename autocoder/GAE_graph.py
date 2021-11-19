@@ -17,13 +17,15 @@ class GAE_G(nn.Module):
             nn.ReLU()
         ])
         self.conv1 = nn.Conv1d(in_channels=out_channels, out_channels=32, kernel_size=3, padding=1)
-        self.encoder2 = nn.Sequential(
-            nn.Conv1d(in_channels=out_channels, out_channels=32, kernel_size=3, padding=1),
-            nn.MaxPool1d(kernel_size=4,return_indices=True),
-            nn.Conv1d(in_channels=32, out_channels=64, kernel_size=3, padding=1),
-            nn.MaxPool1d(kernel_size=4,return_indices=True),
-            nn.Conv1d(in_channels=64, out_channels=64, kernel_size=3, padding=1),
-            nn.MaxPool1d(kernel_size=4,return_indices=True),
+        self.pool = nn.MaxPool1d(kernel_size=4,return_indices=True)
+        self.conv2 = nn.Conv1d(in_channels=32,out_channels=64,kernel_size=3,padding=1)
+        self.conv3 = nn.Conv1d(in_channels=64,out_channels=64,kernel_size=3,padding=1)
+        self.unConv1 = nn.ConvTranspose1d(in_channels=64,out_channels=64,kernel_size=3,padding=1)
+        self.unConv2 = nn.ConvTranspose1d(in_channels=64, out_channels=64, kernel_size=3, padding=1)
+        self.unpool = nn.MaxUnpool1d(kernel_size=4)
+        self.unConv3 = nn.ConvTranspose1d(in_channels=64,out_channels=32,kernel_size=3,padding=1)
+        self.unConv4 = nn.ConvTranspose1d(in_channels=32,out_channels=out_channels,kernel_size=3,padding=1)
+        self.lin1 = nn.Sequential(
             nn.Flatten(start_dim=1),
             nn.Linear(1024, 512),
             nn.ReLU(),
@@ -32,12 +34,8 @@ class GAE_G(nn.Module):
             nn.Linear(256, 128),
             nn.ReLU(),
             nn.Linear(128, 2)
-            #nn.Relu()
-            #nn.Sigmoid()
-            #nn.Softmax()
         )
-        # 思路没问题，但是代码编写仍存在一些毛病
-        self.decoder1 = nn.Sequential(
+        self.lin2 = nn.Sequential(
             nn.Linear(2,128),
             nn.ReLU(),
             nn.Linear(128,256),
@@ -45,25 +43,45 @@ class GAE_G(nn.Module):
             nn.Linear(256,512),
             nn.ReLU(),
             nn.Linear(512,1024),
-            nn.ReLU(),
-            nn.Unflatten(1,(64,16)),
-            nn.ConvTranspose1d(in_channels=64,out_channels=64,kernel_size=3,padding=1),
-            nn.MaxUnpool1d(4),
-            #nn.ConvTranspose1d(in_channels=64,out_channels=64,kernel_size=3,padding=1),
-            #nn.MaxUnpool1d(kernel_size=4),
-            #nn.ConvTranspose1d(in_channels=64,out_channels=32,kernel_size=3,padding=1),
-            #nn.MaxUnpool1d(kernel_size=4),
-            #nn.ConvTranspose1d(in_channels=32,out_channels=out_channels,kernel_size=3,padding=1)
+            nn.Unflatten(1,(64,16))
         )
-        self.encoder2 = gnn.InnerProductDecoder()
+        # 思路没问题，但是代码编写仍存在一些毛病
+        self.decoder2 = gnn.InnerProductDecoder()
         self.relu = nn.ReLU()
         self.unflatten = nn.Unflatten(0,(5,1024))
+        self.flatten = nn.Flatten(0,1)
+    def encoder2(self,x)->(torch.Tensor,list):
+        index = []
+        x = self.conv1(x)
+        x,indices = self.pool(x)
+        index.append(indices)
+        x = self.conv2(x)
+        x,indices = self.pool(x)
+        index.append(indices)
+        x = self.conv3(x)
+        x,indices = self.pool(x)
+        index.append(indices)
+        x = self.lin1(x)
+        return x,index
+
+    def decoder1(self,x:torch.Tensor,index:list):
+        x = self.lin2(x)
+        x = self.unConv1(x)
+        x = self.unpool(x,index[2])
+        x = self.unConv2(x)
+        x = self.unpool(x,index[1])
+        x = self.unConv3(x)
+        x = self.unpool(x,index[0])
+        x = self.unConv4(x)
+        x = torch.transpose(x,1,2)
+        x = self.flatten(x)
+        return x
     def forward(self,x,edge_index):
         x = self.encoder1(x,edge_index)
         x = self.unflatten(x)
         x = torch.transpose(x,1,2)
-        x = self.encoder2(x)
-        x = self.decoder1(x)
+        x,index = self.encoder2(x)
+        x = self.decoder1(x,index)
         x = self.decoder2(x,edge_index)
         return x
 
@@ -77,6 +95,7 @@ model = GAE_G(1,2).to(device)
 batchs = gloader.DataLoader(data,batch_size=5,shuffle=True)
 
 for batch in batchs:
+    print(batch.x.shape)
     z = model(batch.x, batch.edge_index)
     print(z.shape)
 

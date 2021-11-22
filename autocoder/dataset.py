@@ -4,7 +4,13 @@ import torch
 from torch_geometric.data import Data
 import numpy as np
 
-
+# 生成概率
+def init_p(n:int)->np.ndarray:
+    '''
+    :param n: 需要生成多少[0,1]之间的概率
+    :return:  返回一个概率列表
+    '''
+    return np.linspace(0,1,num=n)
 # edge_index：四方晶格, 每个顶点有四条边;三角晶格，每个定点有六条边
 def neighbor(location: tuple, k: int, N: int, c: int):
     """location:顶点二维坐标；k:k接邻居；N：晶格一行的定点数；c：2（四方晶格）3（三角晶格）"""
@@ -30,7 +36,7 @@ def neighbor(location: tuple, k: int, N: int, c: int):
     return result
 
 
-def init_data(n: int, p_list: list, graph_num: int) -> list:
+def init_data(n: int, p_list: list, graph_num: int,c=2) -> list:
     total_node = n * n
     x = []
 
@@ -44,15 +50,15 @@ def init_data(n: int, p_list: list, graph_num: int) -> list:
             # print(x_list)
             x.append(x_list)
 
-    print(np.array(x).shape)
+    #print(np.array(x).shape)
     edge_index = []
     for i in range(n):
         for j in range(n):
-            edge_index.extend(neighbor((i, j), 1, n, c=3))
+            edge_index.extend(neighbor((i, j), 1, n, c))
     edge_index = torch.tensor(edge_index, dtype=torch.long)
     edge_index = edge_index.t().contiguous()
     # print(edge_index)
-    print(np.array(edge_index).shape)
+    #print(np.array(edge_index).shape)
     # print(len(edge_index[0]))
 
     # edge_attr:若两个节点值都为为1，则其相连的边属性值为1
@@ -70,18 +76,18 @@ def init_data(n: int, p_list: list, graph_num: int) -> list:
                 edge_attr_graph[i] = 1
         edge_attr.append(edge_attr_graph)
     # print(edge_attr)
-    print(np.array(edge_attr).shape)
+    #print(np.array(edge_attr).shape)
 
     # y的值：概率大于0.6的赋值为1，小于0.6的赋值为0
     y_list = []
     for p in p_list:
-        for i in range(100):
+        for i in range(graph_num):
             if p >= 0.6:
                 y_list.append([1])
             else:
                 y_list.append([0])
     # print(y_list)
-    print(np.array(y_list).shape)
+    #print(np.array(y_list).shape)
 
     data = []
     for x, y, z in zip(x, y_list, edge_attr):
@@ -91,10 +97,6 @@ def init_data(n: int, p_list: list, graph_num: int) -> list:
         data.append(Data(x=x, edge_index=edge_index, edge_attr=z, y=y))
 
     random.shuffle(data)
-    print(data)
+    print(len(data))
     return data
 
-
-p_list = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-
-init_data(4, p_list, 100)

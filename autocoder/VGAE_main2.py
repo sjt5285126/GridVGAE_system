@@ -33,6 +33,7 @@ loss2 = criterion2(z,flatten(data[0].x.to(torch.long)))
 print(loss2)
 loss3 = criterion3(z,flatten(data[0].x.to(torch.long)))
 print(loss3)
+print(loss3.backward())
 x_ = model.decode(data[0].x,data[0].edge_index)
 
 print(x_.shape)

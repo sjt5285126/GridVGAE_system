@@ -15,7 +15,7 @@ class gae(nn.Module):
             nn.ReLU(),
             nn.Linear(8,4),
             nn.ReLU(),
-            nn.Linear(4,2)
+            nn.Linear(4,1)
         )
         self.decoder = nn.Sequential(
             nn.Linear(2,4),

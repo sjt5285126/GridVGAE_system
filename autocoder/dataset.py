@@ -37,6 +37,14 @@ def neighbor(location: tuple, k: int, N: int, c: int):
 
 
 def init_data(n: int, p_list: list, graph_num: int,c=2) -> list:
+    '''
+
+    :param n: 生成构型的规格 n*n
+    :param p_list: 生成构型的概率序列
+    :param graph_num: 每种概率生成的数量
+    :param c: 几个晶格之间会有相互作用力
+    :return: 一组晶格的图结构
+    '''
     total_node = n * n
     x = []
 

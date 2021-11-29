@@ -130,23 +130,26 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int=2):
     #config_map = {}
     # 生成节点
     x = []
+    count = 0
     for T in T_list:
-        gird_list = []
         for num in range(config_nums):
             gird = IsingGrid.Grid(n,1)
             gird.randomize()
             # 得到热浴平衡下的构型
-            for i in range(n*1000):
+            for i in range(1):
                 gird.clusterFlip(T)
             #将构型平整为1维
-            gird_list.append(gird)
+            #print(gird.canvas)
             x_list = gird.canvas.reshape((n*n,1))
+            #print(x_list)
             # 取构型的绝对值
             x_list = np.where(np.sum(x_list)>0,x_list,-x_list)
             # 将-1转换1
             x_list = np.where(x_list>0,x_list,0)
             x.append(x_list)
-        config_file.create_dataset('T={}'.format(T),data=x_list)
+        # 数据以一维形式存放在hdf5文件中
+        config_file.create_dataset('T={}'.format(T),data=np.array(x[count*config_nums:(count+1)*config_nums]))
+        count += 1
         #config_map['T={}'.format(T)] = gird_list
     config_file.close()
     # 生成边
@@ -194,5 +197,16 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int=2):
     file.close()
     print(len(data))
 
-init_ising(3,[1,2,3],10)
+def reshape_Ising(gird):
+    '''
+    将一维的ising模型解压为二维
+    :param gird:
+    :param size:
+    :return:
+    '''
+    size = int(math.sqrt(len(gird)))
+    gird = np.where(gird>0,1,-1)
+    return size,gird.reshape((size,size))
+
+#init_ising(3,[1,2,3],10)
 

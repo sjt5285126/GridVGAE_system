@@ -12,14 +12,14 @@ class Grid(object):
     """Grid is a 2-D, periodic-boundaried and square canvas consisting of spins"""
     """Initial Grid only consists of positive spins"""
 
-    def __init__(self, size, Jfactor,canvas=None):
+    def __init__(self, size, Jfactor, canvas=None):
         self.size = size
         self.Jfactor = Jfactor
         # configuration
         if canvas is None:
             self.canvas = np.ones([size, size], int)
         else:
-            self.canvas = np.array(canvas,int)
+            self.canvas = np.array(canvas, int)
 
     def randomize(self):
         self.canvas = np.random.randint(0, 2, [self.size, self.size]) * 2 - 1

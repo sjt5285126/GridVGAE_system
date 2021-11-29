@@ -4,6 +4,8 @@ import torch
 from torch_geometric.data import Data
 import numpy as np
 import IsingGrid
+import h5py
+import pickle
 
 # 生成概率
 def init_p(n: int) -> np.ndarray:
@@ -39,7 +41,7 @@ def neighbor(location: tuple, k: int, N: int, c: int):
     return result
 
 
-def init_data(n: int, p_list: list, graph_num: int, c=2) -> list:
+def init_data(n: int, p_list: list, graph_num: int, c:int=2) -> list:
     '''
 
     :param n: 生成构型的规格 n*n
@@ -112,7 +114,7 @@ def init_data(n: int, p_list: list, graph_num: int, c=2) -> list:
     print(len(data))
     return data
 
-def init_ising(n: int, T_list: list, config_nums: int, c: int):
+def init_ising(n: int, T_list: list, config_nums: int, c: int=2):
     '''
     需要对数据进行持久化层处理，并且保存图结构与普通结构两种状态
     :param n:
@@ -124,25 +126,29 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int):
     total_node = n * n
 
     # 保存未被转化为图结构的构型文件
-    config_map = {}
-
+    config_file = h5py.File('data/Ising/{}size.hdf5'.format(n),'w')
+    #config_map = {}
     # 生成节点
     x = []
     for T in T_list:
+        gird_list = []
         for num in range(config_nums):
             gird = IsingGrid.Grid(n,1)
             gird.randomize()
             # 得到热浴平衡下的构型
-            for i in range(1000):
+            for i in range(n*1000):
                 gird.clusterFlip(T)
             #将构型平整为1维
+            gird_list.append(gird)
             x_list = gird.canvas.reshape((n*n,1))
             # 取构型的绝对值
             x_list = np.where(np.sum(x_list)>0,x_list,-x_list)
             # 将-1转换1
             x_list = np.where(x_list>0,x_list,0)
             x.append(x_list)
-
+        config_file.create_dataset('T={}'.format(T),data=x_list)
+        #config_map['T={}'.format(T)] = gird_list
+    config_file.close()
     # 生成边
     edge_index = []
     for i in range(n):
@@ -180,8 +186,13 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int):
         data.append(Data(x=x,edge_index=edge_index,edge_attr=z))
 
     # 将数据集进行打乱
+    # 数据生成
     random.shuffle(data)
+    # 将生成的graph数据集放在磁盘上
+    file = open('data/IsingGraph/data{}.pkl'.format(n),'wb')
+    pickle.dump(data,file)
+    file.close()
     print(len(data))
 
-
+init_ising(3,[1,2,3],10)
 

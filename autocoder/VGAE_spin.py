@@ -14,6 +14,9 @@ import os.path as osp
 import dataset
 
 class EncoderSpin(nn.Module):
+    """
+    推断模型,用来生成概率分布
+    """
     def __init__(self):
         super(EncoderSpin, self).__init__()
         self.conv1 = gnn.GCNConv(1, 32, cached=True)
@@ -66,7 +69,7 @@ datafile = open('data/IsingGraph/data3.pkl','rb')
 data = pickle.load(datafile)
 datafile.close()
 print(data)
-data_train_batchs = gloader.DataLoader(data,batch_size=1,shuffle=True)
+data_train_batchs = gloader.DataLoader(data,batch_size=2,shuffle=True)
 
 optim = torch.optim.Adam(model.parameters(),lr=0.01)
 

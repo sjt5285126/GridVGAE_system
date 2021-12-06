@@ -116,12 +116,12 @@ def init_data(n: int, p_list: list, graph_num: int, c:int=2) -> list:
 
 def init_ising(n: int, T_list: list, config_nums: int, c: int=2):
     '''
-    需要对数据进行持久化层处理，并且保存图结构与普通结构两种状态
-    :param n:
-    :param T_list:
-    :param config_num:
-    :param c:
-    :return:
+    需要对数据进行持久化层处理，并且保存图结构与普通结构两种状态到不同的文件
+    :param n: 构型的尺寸大小
+    :param T_list: 温度列表，表示生成不同温度下的构型
+    :param config_num: 每种温度下的稳态的构型数
+    :param c: 构型的结构 默认是2体相互作用晶格
+    :return: 无返回项
     '''
     total_node = n * n
 
@@ -200,9 +200,8 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int=2):
 def reshape_Ising(gird):
     '''
     将一维的ising模型解压为二维
-    :param gird:
-    :param size:
-    :return:
+    :param gird: 需要解压的构型
+    :return: 构型的尺寸，解压完的构型
     '''
     size = int(math.sqrt(len(gird)))
     gird = np.where(gird>0,1,-1)

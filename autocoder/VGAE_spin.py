@@ -16,20 +16,29 @@ import dataset
 class EncoderSpin(nn.Module):
     """
     推断模型,用来生成概率分布
+    因为是对每一个点进行采样，所以要避免过拟合
     """
     def __init__(self):
+        '''
+        模型介绍:
+        推断模型采用GraphConv卷积(具体什么卷积的效果好仍需要不断测试),同时采用了
+        图归一化与dropout,后续仍可能使用adj_dropout
+        '''
         super(EncoderSpin, self).__init__()
-        self.conv1 = gnn.GCNConv(1, 32, cached=True)
-        self.conv_mu = gnn.GCNConv(32, 16, cached=True)
-        self.conv_logvar = gnn.GCNConv(32, 16, cached=True)
+        self.conv1 = gnn.GraphConv(1, 8)
+        self.conv_mu = gnn.GraphConv(8, 16)
+        self.conv_logvar = gnn.GraphConv(8, 16)
         self.relu = nn.ReLU()
+        self.dropout = nn.Dropout(p=0.5)
+        self.graph_norm1= gnn.GraphNorm(8)
 
-    def forward(self, x, edge_index):
-        x = self.relu(self.conv1(x, edge_index))
+    def forward(self, x, edge_index,edge_weight,batch):
+        x = self.relu(self.conv1(x, edge_index,edge_weight))
         # 在中间可以加入dropout操作
-        # x = nn.Dropout(x)
-        mu = self.conv_mu(x, edge_index)
-        logvar = self.conv_logvar(x, edge_index)
+        x = self.dropout(x)
+        x = self.graph_norm1(x,batch)
+        mu = self.conv_mu(x, edge_index,edge_weight)
+        logvar = self.conv_logvar(x, edge_index,edge_weight)
 
         return mu, logvar
 
@@ -77,7 +86,7 @@ for epoch in range(100):
     model.train()
     for d in data_train_batchs:
         d = d.to(device)
-        z = model.encode(d.x,d.edge_index)
+        z = model.encode(d.x,d.edge_index,d.edge_attr,d.batch)
         x_ = model.decode(z)
         optim.zero_grad()
         loss = model.recon_loss(d.x,x_)

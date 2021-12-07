@@ -172,21 +172,29 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int=2):
             edge_1_index = edge_1.item()
             edge_2 = edge_index[1][i]
             edge_2_index = edge_2.item()
-            if x[num][edge_1_index] == 1 and x[num][edge_2_index] == 1:
+            if x[num][edge_1_index] == x[num][edge_2_index]:
+                edge_attr_graph[i] = -1
+            else:
                 edge_attr_graph[i] = 1
         edge_attr.append(edge_attr_graph)
 
     # 生成图标签y与生成节点标签y只能有一个存在
 
     # 生成图标签y的值
-
+    y_list = []
+    for id_t,t in enumerate(T_list):
+        for i in range(config_nums):
+            y_list.append([id_t])
     # 生成节点标签y的值
+
+
 
     data = []
     for x,z in zip(x,edge_attr):
+        y = torch.tensor(y)
         x = torch.tensor(x,dtype=torch.float)
         z = torch.tensor(z,dtype=torch.float)
-        data.append(Data(x=x,edge_index=edge_index,edge_attr=z))
+        data.append(Data(x=x,edge_index=edge_index,edge_attr=z,y=y))
 
     # 将数据集进行打乱
     # 数据生成

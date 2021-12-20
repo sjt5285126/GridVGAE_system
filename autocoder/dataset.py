@@ -12,6 +12,8 @@ import time
 '''
 验证出 数据集在cpu上运行速度要大于在gpu上的运行速度，因为生成的构型非常小
 在GPU上数据全部都用作数据流的交换 严重影响了数据生成的速度，所以应该将数据集的生成放在CPU上处理
+
+可能在大规模计算上 仍需要放在gpu上去处理
 '''
 
 
@@ -144,7 +146,7 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int = 2):
             gird = IsingGrid.Grid(n, 1)
             gird.randomize()
             # 得到热浴平衡下的构型
-            for i in range(100):
+            for i in range(1000):
                 gird.clusterFlip(T)
             # 将构型平整为1维
             # print(gird.canvas)
@@ -216,6 +218,9 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int = 2):
 
 '''
 GPU代码可能需要的流处理影响了速度，实际应用并没有cpu版本的速度快需要进行改进
+
+大量的I/O处理将降低了代码的运行时间，如果想要在GPU上获得高效率运算就需要尽量避免这些I/O流处理
+所以 我们需要在GPU上将这些数据都生成完，再统一放回到CPU进行保存
 '''
 
 
@@ -240,7 +245,7 @@ def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
         for num in range(config_nums):
             gird = Grid_gpu(n, 1)
             # 得到热浴平衡下的构型
-            for i in range(100):
+            for i in range(1000):
                 gird.clusterFlip(T)
             # 将构型平整为1维
             # print(gird.canvas)
@@ -320,5 +325,5 @@ def reshape_Ising(gird):
     gird = np.where(gird > 0, 1, -1)
     return size, gird.reshape((size, size))
 
-# init_ising(16,[1,2,3],10)
-# init_Ising_gpu(16, [1, 2, 3], 10)
+init_ising(16,[1,2,3],10)
+init_Ising_gpu(16, [1, 2, 3], 10)

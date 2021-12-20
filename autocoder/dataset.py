@@ -246,7 +246,7 @@ def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
             x_list = torch.where(x_list > 0, x_list, 0)
             x.append(x_list)
         # 数据以一维形式存放在hdf5文件中
-        val= torch.tensor([item.cpu().detach().numpy() for item in x[count * config_nums:(count + 1) * config_nums]])
+        #val= torch.tensor([item.cpu().detach().numpy() for item in x[count * config_nums:(count + 1) * config_nums]])
         #config_file.create_dataset('T={}'.format(T), data=val)
         count += 1
         # config_map['T={}'.format(T)] = gird_list

@@ -224,6 +224,7 @@ def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
     '''
     begin = time.time()
     dev = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(dev)
     #config_file = h5py.File('data/Ising/{}size.hdf5'.format(n), 'w')
     # config_map = {}
     # 生成节点

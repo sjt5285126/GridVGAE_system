@@ -76,10 +76,12 @@ model = SVGAE(EncoderSpin(),DecoderSpin()).to(device)
 print(model)
 datafile = open('data/IsingGraph/data3.pkl','rb')
 data = pickle.load(datafile)
+datafile2 = open('data/IsingGraph/data16.pkl','rb')
+data2 = pickle.load(datafile2)
 datafile.close()
-print(data)
+datafile2.close()
+data.extend(data2)
 data_train_batchs = gloader.DataLoader(data,batch_size=2,shuffle=True)
-
 optim = torch.optim.Adam(model.parameters(),lr=0.01)
 
 for epoch in range(100):

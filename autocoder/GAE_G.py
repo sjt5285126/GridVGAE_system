@@ -6,6 +6,10 @@ import torch_geometric.loader as gloader
 import dataset
 
 class gae(nn.Module):
+    '''
+    可以将模型修改为可以提取分类信息的autocoder
+    或者可以采用现成有的无监督图分类方法
+    '''
     def __init__(self,in_channels,out_channels):
         super(gae, self).__init__()
         self.conv1 = gnn.GraphConv(in_channels,2*out_channels)

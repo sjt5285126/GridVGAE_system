@@ -7,8 +7,8 @@ from IsingGrid_gpu import Grid_gpu
 import IsingGrid
 import h5py
 import pickle
+import time
 
-dev = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 # 生成概率
@@ -128,8 +128,7 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int = 2):
     :param c: 构型的结构 默认是2体相互作用晶格
     :return: 无返回项
     '''
-    total_node = n * n
-
+    begin = time.time()
     # 保存未被转化为图结构的构型文件
     config_file = h5py.File('data/Ising/{}size.hdf5'.format(n), 'w')
     # config_map = {}
@@ -194,7 +193,7 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int = 2):
 
     data = []
     for x, y, z in zip(x, y_list, edge_attr):
-        y = torch.tensor(y, device=dev)
+        y = torch.tensor(y)
         x = torch.tensor(x, dtype=torch.float)
         z = torch.tensor(z, dtype=torch.float)
         data.append(Data(x=x, edge_index=edge_index, edge_attr=z, y=y))
@@ -207,8 +206,12 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int = 2):
     pickle.dump(data, file)
     file.close()
     print(len(data))
+    end = time.time()
+    print('cost time:{}'.format(end-begin))
 
-
+'''
+GPU代码可能需要的流处理影响了速度，实际应用并没有cpu版本的速度快需要进行改进
+'''
 def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
     '''
     需要对数据进行持久化层处理，并且保存图结构与普通结构两种状态到不同的文件
@@ -219,7 +222,9 @@ def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
     :param c: 构型的结构 默认是2体相互作用晶格
     :return: 无返回项
     '''
-    config_file = h5py.File('data/Ising/{}size.hdf5'.format(n), 'w')
+    begin = time.time()
+    dev = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    #config_file = h5py.File('data/Ising/{}size.hdf5'.format(n), 'w')
     # config_map = {}
     # 生成节点
     x = []
@@ -242,10 +247,10 @@ def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
             x.append(x_list)
         # 数据以一维形式存放在hdf5文件中
         val= torch.tensor([item.cpu().detach().numpy() for item in x[count * config_nums:(count + 1) * config_nums]])
-        config_file.create_dataset('T={}'.format(T), data=val)
+        #config_file.create_dataset('T={}'.format(T), data=val)
         count += 1
         # config_map['T={}'.format(T)] = gird_list
-    config_file.close()
+    #config_file.close()
     # 生成边
     edge_index = []
     for i in range(n):
@@ -294,7 +299,8 @@ def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
     pickle.dump(data, file)
     file.close()
     print(len(data))
-
+    end = time.time()
+    print('cost time:{}'.format(end - begin))
 
 def reshape_Ising(gird):
     '''
@@ -306,6 +312,5 @@ def reshape_Ising(gird):
     gird = np.where(gird > 0, 1, -1)
     return size, gird.reshape((size, size))
 
-
-# init_ising(3,[1,2,3],10)
-#init_Ising_gpu(3, [1, 2, 3], 10)
+init_ising(16,[1,2,3],10)
+init_Ising_gpu(16, [1, 2, 3], 10)

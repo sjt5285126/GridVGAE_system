@@ -10,7 +10,7 @@ class Grid_gpu(Grid):
         super(Grid_gpu, self).__init__(size, Jfactor, canvas=None)
         self.dev = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         if canvas is None:
-            self.canvas = torch.ones([size,size],dtype=torch.int,device=self.dev)
+            self.canvas = torch.randint(0,2, [self.size, self.size],device=self.dev) * 2 - 1
         else:
             self.canvas = torch.tensor(canvas,dtype=torch.int,device=self.dev)
 
@@ -25,6 +25,8 @@ class Grid_gpu(Grid):
 
     def totalM(self):
         return torch.sum(self.canvas)
+    def getCanvas(self):
+        return self.canvas.cpu().numpy()
 '''
 #测试用例
 grid = Grid_gpu(3,1)

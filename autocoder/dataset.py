@@ -9,6 +9,10 @@ import h5py
 import pickle
 import time
 
+'''
+验证出 数据集在cpu上运行速度要大于在gpu上的运行速度，因为生成的构型非常小
+在GPU上数据全部都用作数据流的交换 严重影响了数据生成的速度，所以应该将数据集的生成放在CPU上处理
+'''
 
 
 # 生成概率
@@ -140,7 +144,7 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int = 2):
             gird = IsingGrid.Grid(n, 1)
             gird.randomize()
             # 得到热浴平衡下的构型
-            for i in range(1):
+            for i in range(100):
                 gird.clusterFlip(T)
             # 将构型平整为1维
             # print(gird.canvas)
@@ -207,11 +211,14 @@ def init_ising(n: int, T_list: list, config_nums: int, c: int = 2):
     file.close()
     print(len(data))
     end = time.time()
-    print('cost time:{}'.format(end-begin))
+    print('cost time:{}'.format(end - begin))
+
 
 '''
 GPU代码可能需要的流处理影响了速度，实际应用并没有cpu版本的速度快需要进行改进
 '''
+
+
 def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
     '''
     需要对数据进行持久化层处理，并且保存图结构与普通结构两种状态到不同的文件
@@ -225,33 +232,28 @@ def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
     begin = time.time()
     dev = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(dev)
-    #config_file = h5py.File('data/Ising/{}size.hdf5'.format(n), 'w')
-    # config_map = {}
+    config_map = {}
     # 生成节点
     x = []
     count = 0
     for T in T_list:
         for num in range(config_nums):
             gird = Grid_gpu(n, 1)
-            gird.randomize()
             # 得到热浴平衡下的构型
-            for i in range(1):
+            for i in range(100):
                 gird.clusterFlip(T)
             # 将构型平整为1维
             # print(gird.canvas)
-            x_list = gird.canvas.reshape((n * n, 1))
+            x_list = gird.getCanvas().reshape((n * n, 1))
             # print(x_list)
             # 取构型的绝对值
-            x_list = torch.where(torch.sum(x_list) > 0, x_list, -x_list)
+            x_list = np.where(np.sum(x_list) > 0, x_list, -x_list)
             # 将-1转换1
-            x_list = torch.where(x_list > 0, x_list, 0)
+            x_list = np.where(x_list > 0, x_list, 0)
             x.append(x_list)
-        # 数据以一维形式存放在hdf5文件中
-        #val= torch.tensor([item.cpu().detach().numpy() for item in x[count * config_nums:(count + 1) * config_nums]])
-        #config_file.create_dataset('T={}'.format(T), data=val)
+        config_map['T={}'.format(T)] = x[config_nums * count:]
         count += 1
-        # config_map['T={}'.format(T)] = gird_list
-    #config_file.close()
+    # config_file.close()
     # 生成边
     edge_index = []
     for i in range(n):
@@ -290,18 +292,23 @@ def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
     data = []
     for x, y, z in zip(x, y_list, edge_attr):
         y = torch.tensor(y, device=dev)
-        data.append(Data(x=x, edge_index=edge_index, edge_attr=z, y=y))
+        x = torch.tensor(x, dtype=torch.float, device=dev)
+        data.append(Data(x=x, edge_index=edge_index, edge_attr=z.float(), y=y))
 
     # 将数据集进行打乱
     # 数据生成
     random.shuffle(data)
     # 将生成的graph数据集放在磁盘上
     file = open('data/IsingGraph/data{}.pkl'.format(n), 'wb')
+    file_config = open('data/Ising/dataSize{}.pkl'.format(n), 'wb')
     pickle.dump(data, file)
+    pickle.dump(config_map, file_config)
     file.close()
+    file_config.close()
     print(len(data))
     end = time.time()
     print('cost time:{}'.format(end - begin))
+
 
 def reshape_Ising(gird):
     '''
@@ -313,5 +320,5 @@ def reshape_Ising(gird):
     gird = np.where(gird > 0, 1, -1)
     return size, gird.reshape((size, size))
 
-init_ising(16,[1,2,3],10)
-init_Ising_gpu(16, [1, 2, 3], 10)
+# init_ising(16,[1,2,3],10)
+# init_Ising_gpu(16, [1, 2, 3], 10)

@@ -373,7 +373,7 @@ def IsingInit(size, T_list, nums):
         print('存入温度{}'.format(T))
         count += 1
     config_file.close()
-    file = open('data/IsingGraph/data{}'.format(size), 'wb')
+    file = open('data/IsingGraph/data{}.pkl'.format(size), 'wb')
     pickle.dump(data, file)
     file.close()
     end = time.time()
@@ -391,6 +391,7 @@ def reshape_Ising(gird):
     return size, gird.reshape((size, size))
 
 
-init_ising(3, [1,2,3], 3)
+# 测试数据
+#init_ising(32, [1,2,3], 32)
 # init_Ising_gpu(3,[2],3)
-IsingInit(3, [1,2,3], 3)
+#IsingInit(32, [1,2,3], 32)

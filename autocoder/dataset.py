@@ -8,6 +8,7 @@ import IsingGrid
 import h5py
 import pickle
 import time
+from Ising import Config
 
 '''
 验证出 数据集在cpu上运行速度要大于在gpu上的运行速度，因为生成的构型非常小
@@ -32,7 +33,8 @@ def neighbor(location: tuple, k: int, N: int, c: int):
     nn = []
     x = location[0]
     y = location[1]
-    t = np.math.ceil(k / 2)  # 向上取整
+    t = np.math.ceil(k / 2)
+    # 向上取整
     if c == 2:
         nn.append([(x - t) % N, (y + t) % N])
         nn.append([(x + t) % N, (y + t) % N])
@@ -315,6 +317,69 @@ def init_Ising_gpu(n: int, T_list: list, config_nums: int, c: int = 2):
     print('cost time:{}'.format(end - begin))
 
 
+'''
+IsingInit 为优化的生成数据集机器 
+优化的方向为：
+直接生成tensor 减少numpy或list转换为tensor的时间
+将只使用一次的数据 不进行存储并及时清理内存
+'''
+
+
+def IsingInit(size, T_list, nums):
+    begin = time.time()
+
+    # 数据存放位置
+    data = []
+    # 形成对应的边
+
+    edge_nums = size * size * 4
+    edge_index = torch.zeros((2, edge_nums), dtype=torch.long)
+    location = 0
+    for x in range(size):
+        for y in range(size):
+            edge_index[0, location:location + 4] = x * size + y
+            edge_index[1][location] = (x - 1) % size * size + y
+            edge_index[1][location + 1] = x * size + (y + 1) % size
+            edge_index[1][location + 2] = (x + 1) % size * size + y
+            edge_index[1][location + 3] = x * size + (y - 1) % size
+            location += 4
+
+    # 形成图的对应标签
+    y_list = torch.zeros((len(T_list) * nums, 1), dtype=torch.int8)
+    for id_t, t in enumerate(T_list):
+        for i in range(nums):
+            y_list[id_t * nums + i] = id_t
+
+    config_file = h5py.File('data/Ising/{}size.hdf5'.format(size), 'w')
+    count = 0
+    for T in T_list:
+        configs = Config(size, 1, nums, False)
+        configs.wollfAll(T)
+        # 一个温度下的所有构型都产生完毕
+        config = configs.canvas.reshape((nums, size * size, 1))
+        del configs
+        config = np.where(np.sum(config) > 0, config, -config)
+        config = np.where(config > 0, config, 0)
+        config_file.create_dataset('T={}'.format(T), data=config)
+        for canvas, y in zip(config, y_list[count * nums:(count + 1) * nums]):
+            x = torch.tensor(canvas, dtype=float)
+            edge_attr_graph = torch.ones((edge_nums, 1))
+            for i in range(edge_nums):
+                edge_1 = edge_index[0][i]
+                edge_2 = edge_index[1][i]
+                if x[edge_1] == x[edge_2]:
+                    edge_attr_graph[i] = -1
+            data.append(Data(x=x, edge_index=edge_index, y=y, edge_attr=edge_attr_graph))
+        print('存入温度{}'.format(T))
+        count += 1
+    config_file.close()
+    file = open('data/IsingGraph/data{}'.format(size), 'wb')
+    pickle.dump(data, file)
+    file.close()
+    end = time.time()
+    print(end - begin)
+
+
 def reshape_Ising(gird):
     '''
     将一维的ising模型解压为二维
@@ -325,5 +390,7 @@ def reshape_Ising(gird):
     gird = np.where(gird > 0, 1, -1)
     return size, gird.reshape((size, size))
 
-init_ising(16,[1,2,3],10)
-init_Ising_gpu(16, [1, 2, 3], 10)
+
+init_ising(3, [1,2,3], 3)
+# init_Ising_gpu(3,[2],3)
+IsingInit(3, [1,2,3], 3)

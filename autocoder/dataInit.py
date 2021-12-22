@@ -10,4 +10,4 @@ size = int(argv[1])
 T_list = eval(argv[2])
 nums = int(argv[3])
 
-dataset.IsingInit(size,T_list,nums,False)
+dataset.IsingInit(size,T_list,nums)

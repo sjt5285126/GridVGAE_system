@@ -103,7 +103,7 @@ class Config():
             for i in range(10 * self.size ** 3):
                 self.clusterFlip(canva,temperature)
             if count%10 == 0:
-                print('-----完成{}%-----'.format(count/self.nums))
+                print('-----完成{}%-----'.format(count/self.nums * 100))
             count += 1
 
 

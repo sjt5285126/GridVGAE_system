@@ -104,6 +104,7 @@ class Config():
                 self.clusterFlip(canva,temperature)
             if count%10 == 0:
                 print('-----完成{}%-----'.format(count/self.nums))
+            count += 1
 
 
 '''

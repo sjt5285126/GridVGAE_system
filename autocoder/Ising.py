@@ -100,7 +100,7 @@ class Config():
     def wollfAll(self,temperature):
         count = 0
         for canva in self.canvas:
-            for i in range(10 * self.size ** 3):
+            for i in range(400 * self.size):
                 self.clusterFlip(canva,temperature)
             if count%10 == 0:
                 print('-----完成{}%-----'.format(count/self.nums * 100))

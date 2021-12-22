@@ -394,4 +394,5 @@ def reshape_Ising(gird):
 # 测试数据
 #init_ising(32, [1,2,3], 32)
 # init_Ising_gpu(3,[2],3)
-#IsingInit(32, [1,2,3], 32)
+#IsingInit(3,[1,3], 3)
+

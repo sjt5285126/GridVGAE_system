@@ -369,6 +369,8 @@ def IsingInit(size, T_list, nums):
                 edge_2 = edge_index[1][i]
                 if x[edge_1] == x[edge_2]:
                     edge_attr_graph[i] = -1
+                else:
+                    edge_attr_graph[i] = 1
             data.append(Data(x=x, edge_index=edge_index, y=y, edge_attr=edge_attr_graph))
         print('存入温度{}'.format(T))
         count += 1

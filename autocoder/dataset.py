@@ -362,7 +362,7 @@ def IsingInit(size, T_list, nums):
         config = np.where(config > 0, config, 0)
         config_file.create_dataset('T={}'.format(T), data=config)
         for canvas, y in zip(config, y_list[count * nums:(count + 1) * nums]):
-            x = torch.tensor(canvas, dtype=float)
+            x = torch.tensor(canvas, dtype=torch.float) # 重大bug 导致数据类型出错
             edge_attr_graph = torch.ones((edge_nums, 1))
             for i in range(edge_nums):
                 edge_1 = edge_index[0][i]

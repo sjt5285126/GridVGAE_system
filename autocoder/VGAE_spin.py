@@ -81,10 +81,11 @@ data = data[3000:4000]
 data_train_batchs = gloader.DataLoader(data,batch_size=50)
 optim = torch.optim.Adam(model.parameters(),lr=0.01)
 
-for epoch in range(100):
+for epoch in range(1000):
     model.train()
     for d in data_train_batchs:
         d = d.to(device)
+        d.x = d.x.float()
         z = model.encode(d.x,d.edge_index,d.edge_attr,d.batch)
         x_ = model.decode(z)
         optim.zero_grad()

@@ -6,6 +6,7 @@ import torch
 import torch.nn as nn
 import torch_geometric.nn as gnn
 from torch_geometric.nn.models.autoencoder import VGAE, GAE
+import os
 
 
 class EncoderSpin(nn.Module):

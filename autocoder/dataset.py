@@ -325,7 +325,7 @@ IsingInit 为优化的生成数据集机器
 '''
 
 
-def IsingInit(size, T_list, nums):
+def IsingInit(size, T_list, nums,name):
     begin = time.time()
 
     # 数据存放位置
@@ -350,7 +350,7 @@ def IsingInit(size, T_list, nums):
         for i in range(nums):
             y_list[id_t * nums + i] = id_t
 
-    config_file = h5py.File('data/Ising/{}size.hdf5'.format(size), 'w')
+    config_file = h5py.File('data/Ising/{}.hdf5'.format(name), 'w')
     count = 0
     for T in T_list:
         configs = Config(size, 1, nums, False)
@@ -375,7 +375,7 @@ def IsingInit(size, T_list, nums):
         print('存入温度{}'.format(T))
         count += 1
     config_file.close()
-    file = open('data/IsingGraph/data{}.pkl'.format(size), 'wb')
+    file = open('data/IsingGraph/data_{}.pkl'.format(name), 'wb')
     pickle.dump(data, file)
     file.close()
     end = time.time()

@@ -53,7 +53,11 @@ class DecoderSpin(nn.Module):
             nn.ReLU(),
             (gnn.GraphConv(32, 16), 'x,edge_index -> x'),
             nn.ReLU(),
-            (gnn.GraphConv(16, 2), 'x,edge_index -> x'),
+            nn.Linear(16,8),
+            nn.ReLU(),
+            nn.Linear(8,4),
+            nn.ReLU(),
+            nn.Linear(4,2),
             nn.Softmax()
         ])
 

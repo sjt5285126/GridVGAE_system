@@ -96,7 +96,7 @@ datafile = open('data/IsingGraph/data16.pkl', 'rb')
 data = pickle.load(datafile)
 datafile.close()
 # 读取温度在2.25的构型
-data_train_batchs = gloader.DataLoader(data, batch_size=1000,pin_memory=True)
+data_train_batchs = gloader.DataLoader(data, batch_size=3000,pin_memory=True)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 lossMIN = 9999999

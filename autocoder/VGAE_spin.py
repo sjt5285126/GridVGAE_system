@@ -58,7 +58,7 @@ class DecoderSpin(nn.Module):
             nn.Linear(8,4),
             nn.ReLU(),
             nn.Linear(4,2),
-            nn.Softmax()
+            nn.Softmax(dim=-1)
         ])
 
     def forward(self, z, edge_index):

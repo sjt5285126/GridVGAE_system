@@ -29,7 +29,7 @@ optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 lossMIN = 9999999
 
-for epoch in range(1000):
+for epoch in range(epochs):
     model.train()
     for d in data_train_batchs:
         d = d.to(device)

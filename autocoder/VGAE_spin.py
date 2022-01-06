@@ -48,10 +48,10 @@ class EncoderSpin(nn.Module):
 class DecoderSpin(nn.Module):
     def __init__(self):
         super(DecoderSpin, self).__init__()
-        self.decoder = gnn.Sequential('x,edge_index', [
-            (gnn.GraphConv(64, 32), 'x,edge_index -> x'),
+        self.decoder = nn.Sequential(
+            nn.Linear(64,32),
             nn.ReLU(),
-            (gnn.GraphConv(32, 16), 'x,edge_index -> x'),
+            nn.Linear(32,16),
             nn.ReLU(),
             nn.Linear(16, 8),
             nn.ReLU(),
@@ -59,10 +59,10 @@ class DecoderSpin(nn.Module):
             nn.ReLU(),
             nn.Linear(4, 2),
             nn.Softmax(dim=-1)
-        ])
+        )
 
-    def forward(self, z, edge_index):
-        return (self.decoder(z, edge_index))
+    def forward(self, z):
+        return (self.decoder(z))
 
 
 class SVGAE(VGAE):
@@ -76,3 +76,6 @@ class SVGAE(VGAE):
         size = x.shape[0]
         loss = self.loss(x_, self.flatten(x).to(torch.long)) + self.kl_loss()
         return loss
+
+    def get_mu_logstd(self):
+        return self.__mu__,self.__logstd__

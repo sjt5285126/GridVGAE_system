@@ -35,11 +35,11 @@ for epoch in range(epochs):
         d = d.to(device)
         d.x = d.x.float()
         z = model.encode(d.x, d.edge_index, d.edge_attr, d.batch)
-        x_ = model.decode(z, d.edge_index)
-        optim.zero_grad()
+        x_ = model.decode(z)
         loss = model.recon_loss(d.x, x_)
         lossMIN = lossMIN if loss > lossMIN else loss
         print('loss:{}'.format(loss))
+        optim.zero_grad()
         loss.backward()
         optim.step()
 

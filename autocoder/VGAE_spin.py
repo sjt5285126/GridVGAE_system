@@ -7,7 +7,9 @@ import torch.nn as nn
 import torch_geometric.nn as gnn
 from torch_geometric.nn.models.autoencoder import VGAE, GAE
 import os
+from dataset import reshapeIsing
 
+# 保留修改意见 使用MSELoss 与 L1Loss
 
 class EncoderSpin(nn.Module):
     """
@@ -57,8 +59,8 @@ class DecoderSpin(nn.Module):
             nn.ReLU(),
             nn.Linear(8, 4),
             nn.ReLU(),
-            nn.Linear(4, 2),
-            nn.Softmax(dim=-1)
+            nn.Linear(4, 1),
+            nn.Sigmoid()
         )
 
     def forward(self, z):
@@ -69,12 +71,14 @@ class SVGAE(VGAE):
     def __init__(self, encoder, decoder):
         super().__init__(encoder, decoder)
         # 定义交叉熵损失函数
-        self.loss = nn.CrossEntropyLoss()
+        self.loss = nn.MSELoss()
         self.flatten = nn.Flatten(start_dim=0)
+        # 添加L1正则化 将x_模型还原为Ising模型的样式来进行L1正则化计算
+        self.L1loss = nn.L1Loss()
 
     def recon_loss(self, x, x_):
-        size = x.shape[0]
-        loss = self.loss(x_, self.flatten(x).to(torch.long)) + self.kl_loss()
+        loss = self.loss(x_, self.flatten(x)) + self.kl_loss() \
+               + self.L1loss(x_,self.flatten(x))
         return loss
 
     def get_mu_logstd(self):

@@ -99,6 +99,7 @@ class Config():
 
     def wollfAll(self,temperature):
         count = 0
+        # 并行对每个张量进行函数运算
         for canva in self.canvas:
             for i in range(400 * self.size):
                 self.clusterFlip(canva,temperature)

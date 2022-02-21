@@ -325,7 +325,7 @@ IsingInit 为优化的生成数据集机器
 '''
 
 
-def IsingInit(size, T_list, nums,name):
+def IsingInit(size, T_list, nums, name):
     begin = time.time()
 
     # 数据存放位置
@@ -362,7 +362,7 @@ def IsingInit(size, T_list, nums,name):
         config = np.where(config > 0, config, 0)
         config_file.create_dataset('T={}'.format(T), data=config)
         for canvas, y in zip(config, y_list[count * nums:(count + 1) * nums]):
-            x = torch.tensor(canvas, dtype=torch.float) # 重大bug 导致数据类型出错
+            x = torch.tensor(canvas, dtype=torch.float)  # 重大bug 导致数据类型出错
             edge_attr_graph = torch.ones((edge_nums, 1))
             for i in range(edge_nums):
                 edge_1 = edge_index[0][i]
@@ -392,9 +392,17 @@ def reshape_Ising(gird):
     gird = np.where(gird > 0, 1, -1)
     return size, gird.reshape((size, size))
 
+#　将Ising模型重整化
+def reshapeIsing(config, batch_size):
+    # 根据 batch_size 来还原config
+    # 确定batchsize的格式
+    config = config.argmax(dim=-1)
+    size = int(math.sqrt(config.shape[0] / batch_size))
+    config = config.reshape((batch_size,size,size))
+
+    return config
 
 # 测试数据
-#init_ising(32, [1,2,3], 32)
+# init_ising(32, [1,2,3], 32)
 # init_Ising_gpu(3,[2],3)
-#IsingInit(3,[1,3], 3)
-
+# IsingInit(3,[1,3], 3)

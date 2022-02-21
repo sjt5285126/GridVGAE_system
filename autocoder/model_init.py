@@ -24,7 +24,8 @@ datafile = open('data/IsingGraph/data16.pkl', 'rb')
 data = pickle.load(datafile)
 datafile.close()
 # 读取温度在2.25的构型
-data_train_batchs = gloader.DataLoader(data, batch_size=5000, pin_memory=True)
+batch_size = 5000
+data_train_batchs = gloader.DataLoader(data, batch_size=batch_size, pin_memory=True)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 lossMIN = 9999999
@@ -36,7 +37,7 @@ for epoch in range(epochs):
         d.x = d.x.float()
         z = model.encode(d.x, d.edge_index, d.edge_attr, d.batch)
         x_ = model.decode(z)
-        loss = model.recon_loss(d.x, x_)
+        loss = model.recon_loss(x_,d.x)
         lossMIN = lossMIN if loss > lossMIN else loss
         print('loss:{}'.format(loss))
         optim.zero_grad()
@@ -44,6 +45,6 @@ for epoch in range(epochs):
         optim.step()
 
 # 保存模型
-
+mu,log = model.get_mu_logstd()
 torch.save({'epoch': epochs, 'state_dict': model.state_dict(), 'best_loss': lossMIN,
-            'optimizer': optim.state_dict()}, '{}.pkl'.format(name))
+            'optimizer': optim.state_dict(),'batch_size':batch_size,'mu':mu,'log':log}, '{}.pkl'.format(name))

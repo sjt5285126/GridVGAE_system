@@ -9,6 +9,7 @@ import h5py
 import pickle
 import time
 from Ising import Config
+import matplotlib.pyplot as plt
 
 '''
 验证出 数据集在cpu上运行速度要大于在gpu上的运行速度，因为生成的构型非常小
@@ -401,6 +402,25 @@ def reshapeIsing(config, batch_size):
     config = config.reshape((batch_size,size,size))
 
     return config
+
+def reshapeIsing_MSE(config,batch_size):
+    config = torch.where(config>0.5,1,-1) #概率可以进行调整
+    size = int(math.sqrt(config.shape[0]/batch_size))
+    config = config.reshape((batch_size,size,size))
+    return config
+
+def calculate(configs):
+    """
+    该函数负责计算 构型的能量，磁化水平等各项物理特征，同时可以给出构型的灰度值图像
+    :param config: config为reshape重整化后的多个Ising构型的组合，
+    :return:
+    """
+    nums = configs.shape[0]
+    size = configs.shape[1]
+    canvas = Config(size,1,nums,True)
+    canvas.setCanvans(configs)
+
+
 
 # 测试数据
 # init_ising(32, [1,2,3], 32)

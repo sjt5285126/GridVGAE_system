@@ -1,7 +1,7 @@
 import torch
 from VGAE_spin import EncoderSpin, DecoderSpin, SVGAE
 import dataset
-from dataset import reshapeIsing
+from dataset import reshapeIsing_MSE
 import pickle
 import torch_geometric.loader as gloader
 
@@ -10,6 +10,8 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
     if checkpoint_PATH != None:
         model_CKPT = torch.load(checkpoint_PATH)
         model.load_state_dict(model_CKPT['state_dict'], False)
+        print("mu:\n"+model_CKPT['mu'])
+        print("log:\n"+model_CKPT['log'])
         print('loading checkpoint!')
         optimizer.load_state_dict(model_CKPT['optimizer'])
     # 返回模型，优化器
@@ -29,7 +31,7 @@ optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 # PATH = argv[1]
 
-PATH = 'model_16_220106.pkl'
+PATH = 'model_16_220221.pkl'
 
 checkpoint = torch.load(PATH)
 # 模型的测试
@@ -42,7 +44,7 @@ for epoch in range(1000):
             batch = batch.to(device)
             z = model.encode(batch.x,batch.edge_index,batch.edge_attr,batch.batch)
             x_ = model.decode(z)
-            print(reshapeIsing(x_,2))
+            print(reshapeIsing_MSE(x_,2))
 
 
 

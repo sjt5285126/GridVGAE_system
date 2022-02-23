@@ -9,11 +9,15 @@ class Config():
         self.nums = nums
         self.tensor = tensor
         if self.tensor is True:
-            self.canvas = torch.randint(0, 2, [self.nums,self.size, self.size],device='cuda') * 2 - 1
+            self.canvas =  None
         else:
             self.canvas = np.random.randint(0, 2, [self.nums,self.size, self.size]) * 2 - 1
     def choiceGPU(self):
         self.canvas = self.canvas.to('cuda' if torch.cuda.is_available() else 'cpu')
+
+    def setCanvans(self,config):
+        self.canvas = config
+
     def left(self, x, y):
         if x < 0.5:
             return [self.size - 1, y]
@@ -106,6 +110,42 @@ class Config():
             if count%10 == 0:
                 print('-----完成{}%-----'.format(count/self.nums * 100))
             count += 1
+
+    def unitE(self,x,y,canva):
+        [leftx,lefty] = self.left(x,y)
+        [rightx,righty] = self.right(x,y)
+        [upx,upy] = self.up(x,y)
+        [downx,downy] = self.down(x,y)
+        return -self.Jfactor * canva[x,y] * (
+            canva[leftx,lefty] + canva[rightx,righty] +
+            canva[upx,upy] + canva[downx,downy]
+        )
+
+    def totalE(self,canva):
+        totalEnergy = 0
+        for x in range(0,self.size):
+            for y in range(0,self.size):
+                totalEnergy = totalEnergy + self.unitE(x,y,canva)
+        return totalEnergy
+
+    def calculateTotalE(self):
+        energy = np.zeros([self.nums,])
+        for i,canva in enumerate(self.canvas):
+            energy[i] = self.totalE(canva)
+        return energy
+
+    def calculateTotalM(self):
+        magnetic = np.zeros([self.nums,])
+        for i,canva in enumerate(self.canvas):
+            magnetic[i] = canva.sum()
+        return magnetic
+
+    def calculateAvrE(self):
+        return self.calculateTotalE()/(self.size ** 2)
+
+    def calculateAvrM(self):
+        return self.calculateTotalM()/(self.size ** 2)
+
 
 
 '''

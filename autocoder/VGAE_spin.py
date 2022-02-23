@@ -77,8 +77,8 @@ class SVGAE(VGAE):
         self.L1loss = nn.L1Loss()
 
     def recon_loss(self, x, x_):
-        loss = self.loss(x_, self.flatten(x)) + self.kl_loss() \
-               + self.L1loss(x_,self.flatten(x))
+        loss = self.loss(x_, x) + self.kl_loss() \
+               + self.L1loss(x_,x)
         return loss
 
     def get_mu_logstd(self):

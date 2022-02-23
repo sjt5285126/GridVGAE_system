@@ -11,7 +11,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
         model_CKPT = torch.load(checkpoint_PATH)
         model.load_state_dict(model_CKPT['state_dict'], False)
         print("mu:\n{}".format(model_CKPT['mu']))
-        print("log:\n".format(model_CKPT['log']))
+        print("log:\n{}".format(model_CKPT['log']))
         print('loading checkpoint!')
         optimizer.load_state_dict(model_CKPT['optimizer'])
     # 返回模型，优化器
@@ -44,7 +44,8 @@ for epoch in range(1000):
             batch = batch.to(device)
             z = model.encode(batch.x,batch.edge_index,batch.edge_attr,batch.batch)
             x_ = model.decode(z)
-            print(reshapeIsing_MSE(x_,2))
+            print("测试集:{}".format(batch.x))
+            #print(reshapeIsing_MSE(x_,2))
 
 
 

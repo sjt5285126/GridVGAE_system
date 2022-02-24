@@ -31,7 +31,7 @@ optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 # PATH = argv[1]
 
-PATH = 'model_16_220221.pkl'
+PATH = 'model_16_220224.pkl'
 
 checkpoint = torch.load(PATH)
 # 模型的测试

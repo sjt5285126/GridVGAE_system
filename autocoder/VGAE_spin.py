@@ -9,6 +9,7 @@ from torch_geometric.nn.models.autoencoder import VGAE, GAE
 import os
 from dataset import reshapeIsing
 
+
 # 保留修改意见 使用MSELoss 与 L1Loss
 
 class EncoderSpin(nn.Module):
@@ -31,13 +32,19 @@ class EncoderSpin(nn.Module):
         self.conv_logvar = gnn.GraphConv(64, 64)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(p=0.5)
+        self.batch_norm1 = gnn.BatchNorm(16)
+        self.batch_norm2 = gnn.BatchNorm(32)
+        self.batch_norm3 = gnn.BatchNorm(64)
         self.graph_norm1 = gnn.GraphNorm(64)
 
     def forward(self, x, edge_index, edge_weight, batch):
         x = self.relu(self.conv1(x, edge_index, edge_weight))
+        x = self.batch_norm1(x)
         x = self.relu(self.conv2(x, edge_index, edge_weight))
+        x = self.batch_norm2(x)
         x = self.relu(self.conv3(x, edge_index, edge_weight))
         # 在中间可以加入dropout操作
+        x = self.batch_norm3(x)
         x = self.dropout(x)
         # 加入图归一化操作
         x = self.graph_norm1(x, batch)
@@ -51,9 +58,9 @@ class DecoderSpin(nn.Module):
     def __init__(self):
         super(DecoderSpin, self).__init__()
         self.decoder = nn.Sequential(
-            nn.Linear(64,32),
+            nn.Linear(64, 32),
             nn.ReLU(),
-            nn.Linear(32,16),
+            nn.Linear(32, 16),
             nn.ReLU(),
             nn.Linear(16, 8),
             nn.ReLU(),
@@ -77,9 +84,8 @@ class SVGAE(VGAE):
         self.L1loss = nn.L1Loss()
 
     def recon_loss(self, x, x_):
-        loss = self.loss(x_, x) + self.kl_loss() \
-               + self.L1loss(x_,x)
+        loss = -(self.loss(x_, x) + self.L1loss(x_, x))
         return loss
 
     def get_mu_logstd(self):
-        return self.__mu__,self.__logstd__
+        return self.__mu__, self.__logstd__

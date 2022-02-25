@@ -47,4 +47,6 @@ epochs = 1
 for epoch in range(epochs):
     model.eval()
     z = reparametrize(mu,log)
-    print(z.shape[0]/batch_size)
+    x_ = model.decode(z)
+    configs = reshapeIsing_MSE(x_,batch_size)
+    print(configs)

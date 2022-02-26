@@ -1,10 +1,11 @@
 import torch
 from VGAE_spin import EncoderSpin, DecoderSpin, SVGAE
 import dataset
-from dataset import reshapeIsing_MSE
+from dataset import reshapeIsing_MSE,acc
 import pickle
 import torch_geometric.loader as gloader
 import time
+
 
 # 导入model
 def load_checkpoint(model, checkpoint_PATH, optimizer):
@@ -47,6 +48,7 @@ for epoch in range(1000):
             x_ = model.decode(z)
             print("测试构型:{}".format(reshapeIsing_MSE(batch.x,2)))
             print("重构后的构型:{}".format(reshapeIsing_MSE(x_,2)))
+            print("acc:{}%".format(acc(x,x_,2)))
             time.sleep(10)
 
 

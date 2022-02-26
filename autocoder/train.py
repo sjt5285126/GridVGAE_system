@@ -16,7 +16,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
         print('loading checkpoint!')
         optimizer.load_state_dict(model_CKPT['optimizer'])
     # 返回模型，优化器
-    return model, optimizer
+    return model, optimizer,model_CKPT['batch_size']
 
 
 # 构建模型
@@ -36,7 +36,7 @@ PATH = 'model_16_220224.pkl'
 
 checkpoint = torch.load(PATH)
 # 模型的测试
-model, optim = load_checkpoint(model, PATH, optim)
+model, optim ,batch_size= load_checkpoint(model, PATH, optim)
 
 for epoch in range(1000):
     model.eval()
@@ -45,8 +45,8 @@ for epoch in range(1000):
             batch = batch.to(device)
             z = model.encode(batch.x,batch.edge_index,batch.edge_attr,batch.batch)
             x_ = model.decode(z)
-            print("测试构型:{}".format(reshapeIsing_MSE(batch.x,2)))
-            print("重构后的构型:{}".format(reshapeIsing_MSE(x_,2)))
+            print("测试构型:{}".format(reshapeIsing_MSE(batch.x,batch_size)))
+            print("重构后的构型:{}".format(reshapeIsing_MSE(x_,batch_size)))
             time.sleep(10)
 
 

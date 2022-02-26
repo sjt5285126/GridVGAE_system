@@ -48,7 +48,7 @@ for epoch in range(1000):
             x_ = model.decode(z)
             print("测试构型:{}".format(reshapeIsing_MSE(batch.x,2)))
             print("重构后的构型:{}".format(reshapeIsing_MSE(x_,2)))
-            print("acc:{}%".format(acc(x,x_,2)))
+            print("acc:{}%".format(acc(batch.x,x_,2)))
             time.sleep(10)
 
 

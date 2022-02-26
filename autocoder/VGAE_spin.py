@@ -84,7 +84,13 @@ class SVGAE(VGAE):
         self.L1loss = nn.L1Loss()
 
     def recon_loss(self, x, x_):
-        loss = -self.loss(x_, x)
+        # 增加能量约束 loss_energy = (x_.energy - x.energy).mean()
+        # 在model_16_220224 中 loss = -self.loss(x_,x)
+        # 目前想法是在之后的model中给分别测试
+        # loss = self.loss(x_,x).mean() **
+        # loss = -self.loss(x_,x).mean()
+        # loss = self.loss(x_,x)
+        loss = self.loss(x_, x)+self.L1loss(x_,x)
         return loss
 
     def get_mu_logstd(self):

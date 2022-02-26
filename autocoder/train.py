@@ -44,8 +44,8 @@ for epoch in range(1000):
             batch = batch.to(device)
             z = model.encode(batch.x,batch.edge_index,batch.edge_attr,batch.batch)
             x_ = model.decode(z)
-            print("测试集:{}".format(reshapeIsing_MSE(batch.x,2)))
-            print(reshapeIsing_MSE(x_,2))
+            print("测试构型:{}".format(reshapeIsing_MSE(batch.x,2)))
+            print("重构后的构型:{}".format(reshapeIsing_MSE(x_,2)))
 
 
 

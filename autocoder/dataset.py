@@ -1,5 +1,7 @@
 import random
 import math
+
+import numpy
 import torch
 from torch_geometric.data import Data
 import numpy as np
@@ -393,6 +395,21 @@ def reshape_Ising(gird):
     gird = np.where(gird > 0, 1, -1)
     return size, gird.reshape((size, size))
 
+# 设计计算准确率的算法
+def acc(x,x_,batch_size):
+    size = int(math.sqrt(x[0])/batch_size)
+    x_ = x_ - x
+    x_ = abs(x_).sum(dim=1)
+    acc = (x_/size).mean()
+
+    # 返回该批次量的平均准确率
+    return acc * 100
+
+
+
+
+
+
 #　将Ising模型重整化
 def reshapeIsing(config, batch_size):
     # 根据 batch_size 来还原config
@@ -402,6 +419,13 @@ def reshapeIsing(config, batch_size):
     config = config.reshape((batch_size,size,size))
 
     return config
+
+def reshapeIsingHdf5(config,batch_size):
+    config = numpy.where(config<=0,-1,1)
+    size = int(math.sqrt(config.shape[1]))
+    config = config.reshape((batch_size,size,size))
+    return config
+
 
 def reshapeIsing_MSE(config,batch_size):
     config = torch.where(config>0.5,1,-1) #概率可以进行调整
@@ -414,11 +438,22 @@ def calculate(configs):
     该函数负责计算 构型的能量，磁化水平等各项物理特征，同时可以给出构型的灰度值图像
     :param config: config为reshape重整化后的多个Ising构型的组合，
     :return:
+        TotalM: 总磁化强度
+        TotalE: 总能量
+        AvrM: 平均磁化强度
+        AvrE: 平均能量
     """
     nums = configs.shape[0]
     size = configs.shape[1]
     canvas = Config(size,1,nums,True)
     canvas.setCanvans(configs)
+    TotalM = canvas.calculateTotalM()
+    TotalE = canvas.calculateTotalE()
+    AvrM = canvas.calculateAvrM()
+    AvrE = canvas.calculateAvrE()
+
+    return TotalM,TotalE,AvrM,AvrE
+
 
 
 

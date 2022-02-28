@@ -1,8 +1,8 @@
 import torch
 from VGAE_spin_origin import EncoderSpin, DecoderSpin, SVGAE
 import dataset
-from dataset import calculate
-from dataset import reshapeIsing_MSE,reshapeIsingHdf5
+from dataset import calculate, acc_loss
+from dataset import reshapeIsing_MSE, reshapeIsingHdf5
 import pickle
 import torch_geometric.loader as gloader
 import h5py
@@ -20,6 +20,7 @@ import h5py
     3. print('准确率{}'.format(acc * 100))
 '''
 
+
 # 加载模型的函数
 def load_checkpoint(model, checkpoint_PATH, optimizer):
     if checkpoint_PATH != None:
@@ -34,6 +35,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
         batch_size = model_CKPT['batch_size']
     # 返回模型，优化器
     return model, optimizer, mu, log, batch_size
+
 
 # 定义测试所需要的设备，模型，优化器
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -57,19 +59,24 @@ for key in testData.keys():
     testConfigs = testData[key][:batch_size]
 
 print(testConfigs.shape)
-testConfigs = reshapeIsingHdf5(testConfigs,batch_size)
+testConfigs = reshapeIsingHdf5(testConfigs, batch_size)
 print(testConfigs.shape)
-#testFeatures = calculate(testConfigs)
+TotalM, TotalE, AvrM, AvrE = calculate(testConfigs)
 # 归一化计算  (f - f.mean()) / f.std()
 
 
 epochs = 1
 
-for epoch in range(epochs):
-    model.eval()
-    z = reparametrize(mu, log)
-    x_ = model.decode(z)
-    configs = reshapeIsing_MSE(x_, batch_size)
-    print(configs.shape)
-    features = calculate(configs)
-    # 得到configs
+with torch.no_grad():
+    for epoch in range(epochs):
+        model.eval()
+        z = reparametrize(mu, log)
+        x_ = model.decode(z)
+        configs = reshapeIsing_MSE(x_, batch_size)
+        print(configs.shape)
+        evalTotalM, evalTotalE, evalAvrM, evalAvrE = calculate(configs)
+        print(acc_loss(testConfigs,configs))
+
+print("hello world")
+
+# 得到configs

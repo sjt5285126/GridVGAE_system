@@ -57,7 +57,8 @@ for key in testData.keys():
     testConfigs = testData[key][:batch_size]
 
 print(testConfigs.shape)
-#testConfigs = reshapeIsingHdf5(testConfigs,batch_size)
+testConfigs = reshapeIsingHdf5(testConfigs,batch_size)
+print(testConfigs.shape)
 #testFeatures = calculate(testConfigs)
 # 归一化计算  (f - f.mean()) / f.std()
 
@@ -69,6 +70,6 @@ for epoch in range(epochs):
     z = reparametrize(mu, log)
     x_ = model.decode(z)
     configs = reshapeIsing_MSE(x_, batch_size)
-    print(configs)
+    print(configs.shape)
     features = calculate(configs)
     # 得到configs

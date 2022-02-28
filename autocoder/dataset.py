@@ -407,10 +407,10 @@ def acc_loss(pre_config, after_config):
     m = pre_config.shape[0]
     pre_totalM, pre_totalE, pre_AvrM, pre_AvrE = calculate(pre_config)
     after_totalM, after_totalE, after_AvrM, after_AvrE = calculate(after_config)
-    acc_totalM = torch.sqrt((after_totalM - pre_totalM) ** 2).sum() / (2 * m)
-    acc_totalE = torch.sqrt((after_totalE - pre_totalE) ** 2).sum() / (2 * m)
-    acc_AvrM = torch.sqrt((after_AvrM - pre_AvrM) ** 2).sum() / (2 * m)
-    acc_AvrE = torch.sqrt((after_AvrE - pre_AvrE) ** 2).sum() / (2 * m)
+    acc_totalM = np.sqrt((after_totalM - pre_totalM) ** 2).sum() / (2 * m)
+    acc_totalE = np.sqrt((after_totalE - pre_totalE) ** 2).sum() / (2 * m)
+    acc_AvrM = np.sqrt((after_AvrM - pre_AvrM) ** 2).sum() / (2 * m)
+    acc_AvrE = np.sqrt((after_AvrE - pre_AvrE) ** 2).sum() / (2 * m)
 
     # 返回该批次量的平均准确率
     return acc_totalM, acc_totalE, acc_AvrM, acc_AvrE

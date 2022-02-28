@@ -138,7 +138,7 @@ class Config():
         magnetic = np.zeros([self.nums,])
         for i,canva in enumerate(self.canvas):
             magnetic[i] = canva.sum()
-        return magnetic.abs()
+        return np.abs(magnetic)
 
     def calculateAvrE(self):
         return self.calculateTotalE()/(self.size ** 2)

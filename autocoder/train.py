@@ -33,7 +33,7 @@ optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 # PATH = argv[1]
 
-PATH = 'model_16_220224.pkl'
+PATH = 'model_16_0226.pkl'
 
 checkpoint = torch.load(PATH)
 # 模型的测试
@@ -46,6 +46,7 @@ for epoch in range(1000):
             batch = batch.to(device)
             z = model.encode(batch.x,batch.edge_index,batch.edge_attr,batch.batch)
             x_ = model.decode(z)
+	    print("loss:{}".format(model.recon_loss(batch.x,x_) + model.kl_loss() / (batch.num_nodes/2)))
             print("测试构型:{}".format(reshapeIsing_MSE(batch.x,2)))
             print("重构后的构型:{}".format(reshapeIsing_MSE(x_,2)))
             print("acc:{}%".format(acc(batch.x,x_,2)))

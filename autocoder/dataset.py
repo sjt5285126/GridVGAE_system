@@ -395,8 +395,9 @@ def reshape_Ising(gird):
     gird = np.where(gird > 0, 1, -1)
     return size, gird.reshape((size, size))
 
+
 # 计算物理特征之间的差异
-def acc_loss(pre_config,after_config):
+def acc_loss(pre_config, after_config):
     '''
 
     :param pre_config: shape:[nums,size,size] 原始构型
@@ -404,18 +405,19 @@ def acc_loss(pre_config,after_config):
     :return:
     '''
     m = pre_config.shape[0]
-    pre_totalM,pre_totalE,pre_AvrM,pre_AvrE = calculate(pre_config)
-    after_totalM,after_totalE,after_AvrM,after_AvrE = calculate(after_config)
-    acc_totalM = torch.sqrt((after_totalM-pre_totalM)**2).sum()/(2*m)
-    acc_totalE = torch.sqrt((after_totalE-pre_totalE)**2).sum()/(2*m)
-    acc_AvrM = torch.sqrt((after_AvrM-pre_AvrM)**2).sum()/(2*m)
-    acc_AvrE = torch.sqrt((after_AvrE-pre_AvrE)**2).sum()/(2*m)
+    pre_totalM, pre_totalE, pre_AvrM, pre_AvrE = calculate(pre_config)
+    after_totalM, after_totalE, after_AvrM, after_AvrE = calculate(after_config)
+    acc_totalM = torch.sqrt((after_totalM - pre_totalM) ** 2).sum() / (2 * m)
+    acc_totalE = torch.sqrt((after_totalE - pre_totalE) ** 2).sum() / (2 * m)
+    acc_AvrM = torch.sqrt((after_AvrM - pre_AvrM) ** 2).sum() / (2 * m)
+    acc_AvrE = torch.sqrt((after_AvrE - pre_AvrE) ** 2).sum() / (2 * m)
 
     # 返回该批次量的平均准确率
-    return acc_totalM,acc_totalE,acc_AvrM,acc_AvrE
+    return acc_totalM, acc_totalE, acc_AvrM, acc_AvrE
+
 
 # 计算生成和重构的准确率
-def acc(x,x_,batch_size):
+def acc(x, x_, batch_size):
     '''
     计算重构的构型的准确率，对于生成的构型来说只有通过物理特征来判断
     :param x: shape:[nums,size,size]
@@ -423,53 +425,51 @@ def acc(x,x_,batch_size):
     :param batch_size:
     :return:
     '''
-    TP = torch.where(x==x_,1,0)
-    TP = TP.sum(dim=(1,2))
-    acc = (TP / x.shape[1]**2).mean()
-
-
+    TP = torch.where(x == x_, 1, 0)
+    TP = TP.sum(dim=(1, 2))
+    acc = (TP / x.shape[1] ** 2).mean()
 
     return acc * 100
 
 
-
-
-
-#　将Ising模型重整化
+# 　将Ising模型重整化
 def reshapeIsing(config, batch_size):
     # 根据 batch_size 来还原config
     # 确定batchsize的格式
     config = config.argmax(dim=-1)
-    config = torch.where(config==0,-1,1)
+    config = torch.where(config == 0, -1, 1)
     size = int(math.sqrt(config.shape[0] / batch_size))
-    config = config.reshape((batch_size,size,size))
+    config = config.reshape((batch_size, size, size))
 
     return config
 
-def reshapeTorch(config,batch_size):
+
+def reshapeTorch(config, batch_size):
     '''
     将数据重整化为 构型的样式
     :param config: shape:[batch_size*size*size,1]
     :param batch_size:
     :return:
     '''
-    config = torch.where(config<=0,-1,1)
-    size = int(math.sqrt(config.shape[1])/batch_size)
-    config = config.reshape((batch_size,size,size))
+    config = torch.where(config <= 0, -1, 1)
+    size = int(math.sqrt(config.shape[1]) / batch_size)
+    config = config.reshape((batch_size, size, size))
     return config
 
-def reshapeIsingHdf5(config,batch_size):
-    config = numpy.where(config<=0,-1,1)
+
+def reshapeIsingHdf5(config, batch_size):
+    config = numpy.where(config <= 0, -1, 1)
     size = int(math.sqrt(config.shape[1]))
-    config = config.reshape((batch_size,size,size))
+    config = config.reshape((batch_size, size, size))
     return config
 
 
-def reshapeIsing_MSE(config,batch_size):
-    config = torch.where(config>0.5,1,-1) #概率可以进行调整
-    size = int(math.sqrt(config.shape[0]/batch_size))
-    config = config.reshape((batch_size,size,size))
+def reshapeIsing_MSE(config, batch_size):
+    config = torch.where(config > 0.5, 1, -1)  # 概率可以进行调整
+    size = int(math.sqrt(config.shape[0] / batch_size))
+    config = config.reshape((batch_size, size, size))
     return config
+
 
 def calculate(configs):
     """
@@ -483,17 +483,14 @@ def calculate(configs):
     """
     nums = configs.shape[0]
     size = configs.shape[1]
-    canvas = Config(size,1,nums,True)
+    canvas = Config(size, 1, nums, True)
     canvas.setCanvans(configs)
     TotalM = canvas.calculateTotalM()
     TotalE = canvas.calculateTotalE()
     AvrM = canvas.calculateAvrM()
     AvrE = canvas.calculateAvrE()
 
-    return TotalM,TotalE,AvrM,AvrE
-
-
-
+    return TotalM, TotalE, AvrM, AvrE
 
 # 测试数据
 # init_ising(32, [1,2,3], 32)

@@ -1,7 +1,7 @@
 import torch
-from VGAE_spin import EncoderSpin, DecoderSpin, SVGAE
+from VGAE_spin_origin import EncoderSpin, DecoderSpin, SVGAE
 import dataset
-from dataset import reshapeIsing_MSE,acc,reshapeIsing,reshapeTorch
+from dataset import reshapeIsing_MSE, acc, acc_loss
 import pickle
 import torch_geometric.loader as gloader
 import time
@@ -17,7 +17,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
         print('loading checkpoint!')
         optimizer.load_state_dict(model_CKPT['optimizer'])
     # 返回模型，优化器
-    return model, optimizer,model_CKPT['batch_size']
+    return model, optimizer, model_CKPT['batch_size']
 
 
 # 构建模型
@@ -25,7 +25,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 # 读取数据
 datafile = open('data/IsingGraph/data16.pkl', 'rb')
 data = pickle.load(datafile)
-test_batch = gloader.DataLoader(data,batch_size=2,shuffle=True)
+test_batch = gloader.DataLoader(data, batch_size=2, shuffle=True)
 datafile.close()
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
@@ -37,21 +37,17 @@ PATH = 'model_16_0226.pkl'
 
 checkpoint = torch.load(PATH)
 # 模型的测试
-model, optim ,batch_size= load_checkpoint(model, PATH, optim)
+model, optim, batch_size = load_checkpoint(model, PATH, optim)
 
 for epoch in range(1000):
     model.eval()
     with torch.no_grad():
         for batch in test_batch:
             batch = batch.to(device)
-            z = model.encode(batch.x,batch.edge_index,batch.edge_attr,batch.batch)
+            z = model.encode(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
             x_ = model.decode(z)
-            print("loss:{}".format(model.recon_loss(batch.x,x_) + model.kl_loss() / (batch.num_nodes/2)))
-            print("测试构型:{}".format(reshapeIsing_MSE(batch.x,2)))
-            print("重构后的构型:{}".format(reshapeIsing_MSE(x_,2)))
-            print("acc:{}%".format(acc(batch.x,x_,2)))
+            print("loss:{}".format(model.recon_loss(batch.x, x_) + model.kl_loss()))
+            print("测试构型:{}".format(reshapeIsing_MSE(batch.x, 2)))
+            print("重构后的构型:{}".format(reshapeIsing_MSE(x_, 2)))
+
             time.sleep(10)
-
-
-
-

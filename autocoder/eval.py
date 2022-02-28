@@ -56,7 +56,7 @@ testData = h5py.File('data/Ising/16eval.hdf5', 'r')
 for key in testData.keys():
     testConfigs = testData[key][:batch_size]
 
-print(testConfigs)
+print(testConfigs.shape)
 #testConfigs = reshapeIsingHdf5(testConfigs,batch_size)
 #testFeatures = calculate(testConfigs)
 # 归一化计算  (f - f.mean()) / f.std()

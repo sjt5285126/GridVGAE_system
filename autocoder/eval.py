@@ -52,7 +52,7 @@ def reparametrize(mu, log):
 
 
 # 填装测试数据,用来和生成模型的特征进行比对
-testData = h5py.File('16eval.hdf5', 'r')
+testData = h5py.File('data/Ising/16eval.hdf5', 'r')
 for key in testData.keys():
     testConfigs = testData[key][:batch_size]
 

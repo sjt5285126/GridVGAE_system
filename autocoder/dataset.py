@@ -395,16 +395,44 @@ def reshape_Ising(gird):
     gird = np.where(gird > 0, 1, -1)
     return size, gird.reshape((size, size))
 
-# 设计计算准确率的算法
-def acc(x,x_,batch_size):
-    size = int(math.sqrt(x[0])/batch_size)
-    x_ = x_ - x
-    x_ = abs(x_).sum(dim=1)
-    acc = (x_/size).mean()
+# 计算物理特征之间的差异
+def acc_loss(x,x_,batch_size):
+    '''
+
+    :param x: shape:[nums,size,size]
+    :param x_: shape:[nums,size,size]
+    :param batch_size: 每次批处理的数量
+    :return:
+    '''
+    pre_config = reshapeIsing(x,batch_size)
+    after_config = reshapeIsing(x_,batch_size)
+    m = pre_config.shape[0]
+    pre_totalM,pre_totalE,pre_AvrM,pre_AvrE = calculate(pre_config)
+    after_totalM,after_totalE,after_AvrM,after_AvrE = calculate(after_config)
+    acc_totalM = torch.sqrt((after_totalM-pre_totalM)**2).sum()/(2*m)
+    acc_totalE = torch.sqrt((after_totalE-pre_totalE)**2).sum()/(2*m)
+    acc_AvrM = torch.sqrt((after_AvrM-pre_AvrM)**2).sum()/(2*m)
+    acc_AvrE = torch.sqrt((after_AvrE-pre_AvrE)**2).sum()/(2*m)
 
     # 返回该批次量的平均准确率
-    return acc * 100
+    return acc_totalM,acc_totalE,acc_AvrM,acc_AvrE
 
+# 计算生成和重构的准确率
+def acc(x,x_,batch_size):
+    '''
+    计算重构的构型的准确率，对于生成的构型来说只有通过物理特征来判断
+    :param x: shape:[nums,size,size]
+    :param x_: shape:[nums,size,size]
+    :param batch_size:
+    :return:
+    '''
+    TP = torch.where(x==x_,1,0)
+    TP = TP.sum(dim=(1,2))
+    acc = (TP / x.shape[1]**2).mean()
+
+
+
+    return acc * 100
 
 
 
@@ -415,9 +443,22 @@ def reshapeIsing(config, batch_size):
     # 根据 batch_size 来还原config
     # 确定batchsize的格式
     config = config.argmax(dim=-1)
+    config = torch.where(config==0,-1,1)
     size = int(math.sqrt(config.shape[0] / batch_size))
     config = config.reshape((batch_size,size,size))
 
+    return config
+
+def reshapeTorch(config,batch_size):
+    '''
+    将数据重整化为 构型的样式
+    :param config: shape:[batch_size*size*size,1]
+    :param batch_size:
+    :return:
+    '''
+    config = torch.where(config<=0,-1,1)
+    size = int(math.sqrt(config.shape[1])/batch_size)
+    config = config.reshape((batch_size,size,size))
     return config
 
 def reshapeIsingHdf5(config,batch_size):

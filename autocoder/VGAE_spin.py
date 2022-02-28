@@ -66,7 +66,7 @@ class DecoderSpin(nn.Module):
             nn.ReLU(),
             nn.Linear(8, 4),
             nn.ReLU(),
-            nn.Linear(4, 1),
+            nn.Linear(4, 2),
             nn.Sigmoid()
         )
 
@@ -78,10 +78,11 @@ class SVGAE(VGAE):
     def __init__(self, encoder, decoder):
         super().__init__(encoder, decoder)
         # 定义交叉熵损失函数
-        self.loss = nn.MSELoss()
+        #self.loss = nn.MSELoss()
+        self.crossLoss = nn.CrossEntropyLoss()
         self.flatten = nn.Flatten(start_dim=0)
         # 添加L1正则化 将x_模型还原为Ising模型的样式来进行L1正则化计算
-        self.L1loss = nn.L1Loss()
+        #self.L1loss = nn.L1Loss()
 
     def recon_loss(self, x, x_):
         # 增加能量约束 loss_energy = (x_.energy - x.energy).mean()
@@ -90,7 +91,8 @@ class SVGAE(VGAE):
         # loss = self.loss(x_,x).mean() **
         # loss = -self.loss(x_,x).mean()
         # loss = self.loss(x_,x)
-        loss = self.loss(x_, x)+self.L1loss(x_,x)
+        # 可以增加能量，磁化强度的差值来增强损失函数
+        loss = self.loss(x_, self.flatten(x).to(torch.long))
         return loss
 
     def get_mu_logstd(self):

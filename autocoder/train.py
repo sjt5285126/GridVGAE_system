@@ -1,7 +1,7 @@
 import torch
 from VGAE_spin import EncoderSpin, DecoderSpin, SVGAE
 import dataset
-from dataset import reshapeIsing_MSE,acc
+from dataset import reshapeIsing_MSE,acc,reshapeIsing,reshapeTorch
 import pickle
 import torch_geometric.loader as gloader
 import time
@@ -47,8 +47,8 @@ for epoch in range(1000):
             z = model.encode(batch.x,batch.edge_index,batch.edge_attr,batch.batch)
             x_ = model.decode(z)
             print("loss:{}".format(model.recon_loss(batch.x,x_) + model.kl_loss() / (batch.num_nodes/2)))
-            print("测试构型:{}".format(reshapeIsing_MSE(batch.x,2)))
-            print("重构后的构型:{}".format(reshapeIsing_MSE(x_,2)))
+            print("测试构型:{}".format(reshapeTorch(batch.x,2)))
+            print("重构后的构型:{}".format(reshapeIsing(x_,2)))
             print("acc:{}%".format(acc(batch.x,x_,2)))
             time.sleep(10)
 

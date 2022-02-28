@@ -52,6 +52,6 @@ for epoch in range(1000):
             print("测试构型:{}".format(reshapeIsing_MSE(batch.x, 2)))
             print("重构后的构型:{}".format(reshapeIsing_MSE(x_, 2)))
             print("acc:{}%".format(acc(preConfig,afterConfig)))
-            print("acc_totalM:{}, acc_totalE:{}, acc_AvrM:{}, acc_AvrE:{}".format(acc_loss(preConfig,afterConfig)))
-
+            #print("acc_totalM:{}, acc_totalE:{}, acc_AvrM:{}, acc_AvrE:{}".format(acc_loss(preConfig,afterConfig)))
+	    	print(acc_loss(preConfig,afterConfig))
             time.sleep(10)

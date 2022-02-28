@@ -2,7 +2,7 @@ import torch
 from VGAE_spin_origin import EncoderSpin, DecoderSpin, SVGAE
 import dataset
 from dataset import calculate
-from dataset import reshapeIsing_MSE
+from dataset import reshapeIsing_MSE,reshapeIsingHdf5
 import pickle
 import torch_geometric.loader as gloader
 import h5py
@@ -20,7 +20,7 @@ import h5py
     3. print('准确率{}'.format(acc * 100))
 '''
 
-
+# 加载模型的函数
 def load_checkpoint(model, checkpoint_PATH, optimizer):
     if checkpoint_PATH != None:
         model_CKPT = torch.load(checkpoint_PATH)
@@ -35,7 +35,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
     # 返回模型，优化器
     return model, optimizer, mu, log, batch_size
 
-
+# 定义测试所需要的设备，模型，优化器
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
@@ -56,8 +56,9 @@ testData = h5py.File('16eval.hdf5', 'r')
 for key in testData.keys():
     testConfigs = testData[key][:batch_size]
 
-testConfigs = reshapeIsing_MSE(testConfigs, batch_size)
-testFeatures = calculate(testConfigs)
+print(testConfigs)
+#testConfigs = reshapeIsingHdf5(testConfigs,batch_size)
+#testFeatures = calculate(testConfigs)
 # 归一化计算  (f - f.mean()) / f.std()
 
 

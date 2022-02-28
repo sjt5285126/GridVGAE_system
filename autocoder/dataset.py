@@ -396,16 +396,13 @@ def reshape_Ising(gird):
     return size, gird.reshape((size, size))
 
 # 计算物理特征之间的差异
-def acc_loss(x,x_,batch_size):
+def acc_loss(pre_config,after_config):
     '''
 
-    :param x: shape:[nums,size,size]
-    :param x_: shape:[nums,size,size]
-    :param batch_size: 每次批处理的数量
+    :param pre_config: shape:[nums,size,size] 原始构型
+    :param after_config: shape:[nums,size,size] 生成或重构的构型
     :return:
     '''
-    pre_config = reshapeIsing(x,batch_size)
-    after_config = reshapeIsing(x_,batch_size)
     m = pre_config.shape[0]
     pre_totalM,pre_totalE,pre_AvrM,pre_AvrE = calculate(pre_config)
     after_totalM,after_totalE,after_AvrM,after_AvrE = calculate(after_config)

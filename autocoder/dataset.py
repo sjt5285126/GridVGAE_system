@@ -417,7 +417,7 @@ def acc_loss(pre_config, after_config):
 
 
 # 计算生成和重构的准确率
-def acc(x, x_, batch_size):
+def acc(x, x_):
     '''
     计算重构的构型的准确率，对于生成的构型来说只有通过物理特征来判断
     :param x: shape:[nums,size,size]

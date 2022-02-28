@@ -47,7 +47,11 @@ for epoch in range(1000):
             z = model.encode(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
             x_ = model.decode(z)
             print("loss:{}".format(model.recon_loss(batch.x, x_) + model.kl_loss()))
+            preConfig = reshapeIsing_MSE(batch.x,2)
+            afterConfig = reshapeIsing_MSE(x_,2)
             print("测试构型:{}".format(reshapeIsing_MSE(batch.x, 2)))
             print("重构后的构型:{}".format(reshapeIsing_MSE(x_, 2)))
+            print("acc:{}%".format(acc(preConfig,afterConfig)))
+            print("acc_totalM:{}, acc_totalE:{}, acc_AvrM:{}, acc_AvrE:{}".format(acc_loss(preConfig,afterConfig)))
 
             time.sleep(10)

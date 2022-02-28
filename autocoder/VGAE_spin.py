@@ -92,7 +92,7 @@ class SVGAE(VGAE):
         # loss = -self.loss(x_,x).mean()
         # loss = self.loss(x_,x)
         # 可以增加能量，磁化强度的差值来增强损失函数
-        loss = self.loss(x_, self.flatten(x).to(torch.long))
+        loss = self.crossLoss(x_, self.flatten(x).to(torch.long))
         return loss
 
     def get_mu_logstd(self):

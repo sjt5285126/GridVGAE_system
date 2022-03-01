@@ -356,14 +356,23 @@ def IsingInit(size, T_list, nums, name):
     config_file = h5py.File('data/Ising/{}.hdf5'.format(name), 'w')
     count = 0
     for T in T_list:
+        # configs.shape:[nums,size,size]
         configs = Config(size, 1, nums, False)
         configs.wollfAll(T)
+        TotalM = configs.calculateTotalM()
+        TotalE = configs.calculateTotalE()
+        AvrM = configs.calculateAvrM()
+        AvrE = configs.calculateAvrE()
         # 一个温度下的所有构型都产生完毕
         config = configs.canvas.reshape((nums, size * size, 1))
         del configs
         config = np.where(np.sum(config) > 0, config, -config)
         config = np.where(config > 0, config, 0)
         config_file.create_dataset('T={}'.format(T), data=config)
+        config_file.create_dataset('T={}_TotalM'.format(T), data=TotalM)
+        config_file.create_dataset('T={}_TotalE'.format(T), data=TotalE)
+        config_file.create_dataset('T={}_AvrM'.format(T), data=AvrM)
+        config_file.create_dataset('T={}_AvrE'.format(T), data=AvrE)
         for canvas, y in zip(config, y_list[count * nums:(count + 1) * nums]):
             x = torch.tensor(canvas, dtype=torch.float)  # 重大bug 导致数据类型出错
             edge_attr_graph = torch.ones((edge_nums, 1))

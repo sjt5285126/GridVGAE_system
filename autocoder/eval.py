@@ -52,30 +52,33 @@ def reparametrize(mu, log):
     # 返回重采样的z
     return mu + torch.randn_like(log) + torch.exp(log)
 
-
-# 填装测试数据,用来和生成模型的特征进行比对
-testData = h5py.File('data/Ising/16eval.hdf5', 'r')
-for key in testData.keys():
-    testConfigs = testData[key][:batch_size]
-
-print(testConfigs.shape)
-testConfigs = reshapeIsingHdf5(testConfigs, batch_size)
-print(testConfigs.shape)
-TotalM, TotalE, AvrM, AvrE = calculate(testConfigs)
 # 归一化计算  (f - f.mean()) / f.std()
+testData = h5py.File('16evalFeatures.hdf5','r')
+
+testTotalM = testData['TotalM'][:]
+testTotalE = testData['TotalE'][:]
+testAvrM = testData['AvrM'][:]
+testAvrE = testData['AvrE'][:]
+
 
 
 epochs = 1
 
+
 with torch.no_grad():
     for epoch in range(epochs):
+        f_gen = h5py.File('16gen_{}.hdf5'.format(epoch), 'w')
         model.eval()
         z = reparametrize(mu, log)
         x_ = model.decode(z)
         configs = reshapeIsing_MSE(x_, batch_size)
         print(configs.shape)
         evalTotalM, evalTotalE, evalAvrM, evalAvrE = calculate(configs)
-        print(acc_loss(testConfigs,configs))
+        f_gen['TotalM'] = evalTotalM
+        f_gen['TotalE'] = evalTotalE
+        f_gen['AvrM'] = evalAvrM
+        f_gen['AvrE'] = evalAvrE
+        f_gen.close()
 
 print("hello world")
 

@@ -27,13 +27,13 @@ datafile = open('data/IsingGraph/data16.pkl', 'rb')
 data = pickle.load(datafile)
 test_batch = gloader.DataLoader(data, batch_size=2, shuffle=True)
 datafile.close()
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 # PATH = argv[1]
 
-PATH = 'model_16_0226.pkl'
+PATH = 'model_16_MSE_0228.pkl'
 
 checkpoint = torch.load(PATH)
 # 模型的测试
@@ -54,5 +54,5 @@ for epoch in range(1000):
             print("acc:{}%".format(acc(preConfig, afterConfig)))
             # print("acc_totalM:{}, acc_totalE:{}, acc_AvrM:{}, acc_AvrE:{}".format(acc_loss(preConfig,afterConfig)))
             # print(acc_loss(preConfig,afterConfig))
-            print(acc_loss(preConfig, afterConfig))
+            # print(acc_loss(preConfig, afterConfig))
             time.sleep(10)

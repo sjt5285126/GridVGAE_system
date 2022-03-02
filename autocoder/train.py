@@ -27,13 +27,13 @@ datafile = open('data/IsingGraph/data16.pkl', 'rb')
 data = pickle.load(datafile)
 test_batch = gloader.DataLoader(data,batch_size=200,shuffle=True)
 datafile.close()
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 # PATH = argv[1]
 
-PATH = 'model_16_0226.pkl'
+PATH = 'model_16_0228.pkl'
 
 checkpoint = torch.load(PATH)
 # 模型的测试

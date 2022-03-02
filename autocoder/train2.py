@@ -10,7 +10,7 @@ import time
 # 导入model
 def load_checkpoint(model, checkpoint_PATH, optimizer):
     if checkpoint_PATH != None:
-        model_CKPT = torch.load(checkpoint_PATH)
+        model_CKPT = torch.load(checkpoint_PATH,map_location=device)
         model.load_state_dict(model_CKPT['state_dict'], False)
         print("mu:\n{}".format(model_CKPT['mu']))
         print("log:\n{}".format(model_CKPT['log']))
@@ -23,11 +23,11 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 # 构建模型
 
 # 读取数据
+device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 datafile = open('data/IsingGraph/data16.pkl', 'rb')
 data = pickle.load(datafile)
 test_batch = gloader.DataLoader(data, batch_size=2, shuffle=True)
 datafile.close()
-device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
@@ -35,7 +35,7 @@ optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 PATH = 'model_16_MSE_0228.pkl'
 
-checkpoint = torch.load(PATH)
+checkpoint = torch.load(PATH,map_location=device)
 # 模型的测试
 model, optim, batch_size = load_checkpoint(model, PATH, optim)
 

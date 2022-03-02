@@ -15,7 +15,7 @@ name = argv[2]
 # 先对单温度单尺寸进行训练,多温度单尺寸进行训练
 
 # 定义设备
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:3' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 print(model)
 

@@ -24,7 +24,7 @@ import h5py
 # 加载模型的函数
 def load_checkpoint(model, checkpoint_PATH, optimizer):
     if checkpoint_PATH != None:
-        model_CKPT = torch.load(checkpoint_PATH)
+        model_CKPT = torch.load(checkpoint_PATH,map_location=device)
         model.load_state_dict(model_CKPT['state_dict'], False)
         print("mu:\n{}".format(model_CKPT['mu']))
         print("log:\n{}".format(model_CKPT['log']))
@@ -38,12 +38,12 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 
 
 # 定义测试所需要的设备，模型，优化器
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
 PATH = 'model_16_0226.pkl'
 
-checkpoint = torch.load(PATH)
+checkpoint = torch.load(PATH,map_location=device)
 
 model, optim, mu, log, batch_size = load_checkpoint(model, PATH, optim)
 

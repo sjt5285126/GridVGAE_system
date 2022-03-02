@@ -55,10 +55,14 @@ def reparametrize(mu, log):
 # 归一化计算  (f - f.mean()) / f.std()
 testData = h5py.File('16evalFeatures.hdf5','r')
 
+'''
 testTotalM = testData['TotalM'][:]
 testTotalE = testData['TotalE'][:]
 testAvrM = testData['AvrM'][:]
 testAvrE = testData['AvrE'][:]
+
+'''
+
 
 
 epochs = 1

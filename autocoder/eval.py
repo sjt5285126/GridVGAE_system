@@ -2,7 +2,7 @@ import torch
 from VGAE_spin_origin import EncoderSpin, DecoderSpin, SVGAE
 import dataset
 from dataset import calculate, acc_loss
-from dataset import reshapeIsing_MSE, reshapeIsingHdf5
+from dataset import reshapeIsing_MSE, reshapeIsingHdf5,reshapeIsing
 import pickle
 import torch_geometric.loader as gloader
 import h5py
@@ -41,7 +41,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
-PATH = 'model_16_0226.pkl'
+PATH = 'model_16_0228.pkl'
 
 checkpoint = torch.load(PATH,map_location=device)
 
@@ -66,11 +66,11 @@ epochs = 1
 
 with torch.no_grad():
     for epoch in range(epochs):
-        f_gen = h5py.File('16gen_{}.hdf5'.format(epoch), 'w')
+        f_gen = h5py.File('16gen_{}_0228.hdf5'.format(epoch), 'w')
         model.eval()
         z = reparametrize(mu, log)
         x_ = model.decode(z)
-        configs = reshapeIsing_MSE(x_, batch_size)
+        configs = reshapeIsing(x_, batch_size)
         print(configs.shape)
         evalTotalM, evalTotalE, evalAvrM, evalAvrE = calculate(configs)
         f_gen['TotalM'] = evalTotalM

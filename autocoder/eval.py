@@ -41,7 +41,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
-PATH = 'model_16_0228.pkl'
+PATH = 'model_16_MSE_0228.pkl'
 
 checkpoint = torch.load(PATH,map_location=device)
 
@@ -53,7 +53,7 @@ def reparametrize(mu, log):
     return mu + torch.randn_like(log) + torch.exp(log)
 
 # 归一化计算  (f - f.mean()) / f.std()
-testData = h5py.File('16evalFeatures.hdf5','r')
+# testData = h5py.File('16evalFeatures.hdf5','r')
 
 '''
 testTotalM = testData['TotalM'][:]
@@ -70,11 +70,11 @@ epochs = 1
 
 with torch.no_grad():
     for epoch in range(epochs):
-        f_gen = h5py.File('16gen_{}_0228.hdf5'.format(epoch), 'w')
+        f_gen = h5py.File('16gen_{}_0228_MSE.hdf5'.format(epoch), 'w')
         model.eval()
         z = reparametrize(mu, log)
         x_ = model.decode(z)
-        configs = reshapeIsing(x_, batch_size)
+        configs = reshapeIsing_MSE(x_, batch_size)
         print(configs.shape)
         evalTotalM, evalTotalE, evalAvrM, evalAvrE = calculate(configs)
         f_gen['TotalM'] = evalTotalM

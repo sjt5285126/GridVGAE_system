@@ -5,17 +5,20 @@ import torch
 
 from VGAE_spin_update import SVGAE, EncoderSpin, DecoderSpin
 
+'''
 if len(argv) < 3:
-    print("please input: python model_init_pre.py epochs name")
+    print("please input: python model_init_update.py epochs name")
     exit()
 
 epochs = int(argv[1])
 name = argv[2]
-
+'''
 # 先对单温度单尺寸进行训练,多温度单尺寸进行训练
 
 # 定义设备
-device = torch.device('cuda:3' if torch.cuda.is_available() else 'cpu')
+epochs = 10000
+name = "model_160303_gconv"
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 print(model)
 

@@ -37,7 +37,7 @@ for epoch in range(epochs):
         d.x = d.x.float()
         z = model.encode(d.x, d.edge_index, d.edge_attr, d.batch)
         x_ = model.decode(z)
-        loss = model.recon_loss(d.x, x_) + model.kl_loss()/(4*(d.num_nodes/batch_size))
+        loss = model.recon_loss(d.x, x_) + model.kl_loss()
         lossMIN = lossMIN if loss > lossMIN else loss
         print('loss:{}'.format(loss))
         optim.zero_grad()

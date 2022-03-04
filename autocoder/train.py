@@ -12,8 +12,8 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
     if checkpoint_PATH != None:
         model_CKPT = torch.load(checkpoint_PATH,map_location=device)
         model.load_state_dict(model_CKPT['state_dict'], False)
-        print("mu:\n{}".format(model_CKPT['mu']))
-        print("log:\n{}".format(model_CKPT['log']))
+        print("mu:\n{:.10f}".format(model_CKPT['mu']))
+        print("log:\n{:.10f}".format(model_CKPT['log']))
         print('loading checkpoint!')
         optimizer.load_state_dict(model_CKPT['optimizer'])
     # 返回模型，优化器

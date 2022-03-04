@@ -20,11 +20,11 @@ model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 print(model)
 
 # 　读取数据文件
-datafile = open('data/IsingGraph/data16.pkl', 'rb')
+datafile = open('data/IsingGraph/data_16_PTP.pkl', 'rb')
 data = pickle.load(datafile)
 datafile.close()
 # 读取温度在2.25的构型
-batch_size = 2500
+batch_size = 5000
 data_train_batchs = gloader.DataLoader(data, batch_size=batch_size)
 optim = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=0.001)
 
@@ -37,7 +37,7 @@ for epoch in range(epochs):
         d.x = d.x.float()
         z = model.encode(d.x, d.edge_index, d.edge_attr, d.batch)
         x_ = model.decode(z)
-        loss = model.recon_loss(d.x, x_) + model.kl_loss()/(2*(d.num_nodes/batch_size))
+        loss = model.recon_loss(d.x, x_) + model.kl_loss()/(4*(d.num_nodes/batch_size))
         lossMIN = lossMIN if loss > lossMIN else loss
         print('loss:{}'.format(loss))
         optim.zero_grad()

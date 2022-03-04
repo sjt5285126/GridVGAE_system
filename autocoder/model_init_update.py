@@ -5,7 +5,6 @@ import torch
 
 from VGAE_spin_update import SVGAE, EncoderSpin, DecoderSpin
 
-
 if len(argv) < 3:
     print("please input: python model_init_update.py epochs name")
     exit()
@@ -37,7 +36,8 @@ for epoch in range(epochs):
         d = d.to(device)
         d.x = d.x.float()
         z = model.encode(d.x, d.edge_index, d.edge_attr, d.batch)
-        x_ = model.decode(z,d.edge_index,d.edge_attr,d.batch)
+        x_ = model.decode(z, d.edge_index)
+        print(d.edge_index.shape)
         loss = model.recon_loss(d.x, x_) + model.kl_loss()
         lossMIN = lossMIN if loss > lossMIN else loss
         print('loss:{}'.format(loss))

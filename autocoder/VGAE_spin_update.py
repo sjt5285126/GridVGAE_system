@@ -72,7 +72,7 @@ class DecoderSpin(nn.Module):
         self.bn3 = gnn.BatchNorm(8)
         self.bn4 = gnn.BatchNorm(4)
 
-    def forward(self, z, edge_index, edge_weight, batch):
+    def forward(self, z, edge_index):
         z = self.relu(self.conv1(z, edge_index))
         z = self.bn1(z)
         z = self.dropout(z)

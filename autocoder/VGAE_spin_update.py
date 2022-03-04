@@ -72,20 +72,20 @@ class DecoderSpin(nn.Module):
         self.bn3 = gnn.BatchNorm(8)
         self.bn4 = gnn.BatchNorm(4)
 
-    def forward(self, z, edge_index, edge_weight, batch):
-        z = self.relu(self.conv1(z, edge_index, edge_weight))
+    def forward(self, z, edge_index):
+        z = self.relu(self.conv1(z, edge_index))
         z = self.bn1(z)
         z = self.dropout(z)
-        z = self.relu(self.conv2(z, edge_index, edge_weight))
+        z = self.relu(self.conv2(z, edge_index))
         z = self.bn2(z)
         z = self.dropout(z)
-        z = self.relu(self.conv3(z, edge_index, edge_weight))
+        z = self.relu(self.conv3(z, edge_index))
         z = self.bn3(z)
         z = self.dropout(z)
-        z = self.relu(self.conv4(z, edge_index, edge_weight))
+        z = self.relu(self.conv4(z, edge_index))
         z = self.bn4(z)
         z = self.dropout(z)
-        z = self.sigmod(self.conv5(z, edge_index, edge_weight))
+        z = self.sigmod(self.conv5(z, edge_index))
         return z
 
 

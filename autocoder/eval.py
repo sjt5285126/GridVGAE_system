@@ -26,8 +26,8 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
     if checkpoint_PATH != None:
         model_CKPT = torch.load(checkpoint_PATH,map_location=device)
         model.load_state_dict(model_CKPT['state_dict'], False)
-        print("mu:\n{:.10f}".format(model_CKPT['mu']))
-        print("log:\n{:.10f}".format(model_CKPT['log']))
+        print("mu:\n{}".format(model_CKPT['mu']))
+        print("log:\n{}".format(model_CKPT['log']))
         print('loading checkpoint!')
         optimizer.load_state_dict(model_CKPT['optimizer'])
         mu = model_CKPT['mu']
@@ -41,7 +41,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
-PATH = 'model_16_MSE_0303.pkl'
+PATH = 'model_320304.pkl'
 
 checkpoint = torch.load(PATH,map_location=device)
 
@@ -70,7 +70,7 @@ epochs = 1
 
 with torch.no_grad():
     for epoch in range(epochs):
-        f_gen = h5py.File('16gen_{}_0303_MSE.hdf5'.format(epoch), 'w')
+        f_gen = h5py.File('32gen_{}_0304.hdf5'.format(epoch), 'w')
         model.eval()
         z = reparametrize(mu, log)
         x_ = model.decode(z)

@@ -6,9 +6,10 @@ from dataset import reshapeIsingHdf5,calculate
 
 batch_size = 5000
 # 填装测试数据,用来和生成模型的特征进行比对
-testData = h5py.File('data/Ising/16eval.hdf5', 'r')
+testData = h5py.File('data/Ising/32size.hdf5', 'r')
+print(testData.keys())
 for key in testData.keys():
-    testConfigs = testData[key][:batch_size]
+    testConfigs = testData[key][:5000]
 testData.close()
 print(testConfigs.shape)
 testConfigs = reshapeIsingHdf5(testConfigs, batch_size)
@@ -17,7 +18,7 @@ TotalM, TotalE, AvrM, AvrE = calculate(testConfigs)
 
 # 可以采用hdf5方式来存储数据的物理量，我们可以在生成数据的时候就将物理量全部计算出来，
 # 这样可以节省一部分空间
-f = h5py.File('16evalFeatures.hdf5','w')
+f = h5py.File('32Features.hdf5','w')
 f['TotalM'] = TotalM
 f['TotalE'] = TotalE
 f['AvrM'] = AvrM

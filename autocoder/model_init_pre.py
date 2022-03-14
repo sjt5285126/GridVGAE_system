@@ -15,7 +15,7 @@ name = argv[2]
 # 先对单温度单尺寸进行训练,多温度单尺寸进行训练
 
 # 定义设备
-device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 print(model)
 
@@ -29,7 +29,7 @@ data2 = pickle.load(datafile2)
 datafile2.close()
 data.extend(data2)
 # 读取温度在2.25的构型
-batch_size = 2000
+batch_size = 1500
 data_train_batchs = gloader.DataLoader(data, batch_size=batch_size,shuffle=True)
 optim = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=0.001)
 

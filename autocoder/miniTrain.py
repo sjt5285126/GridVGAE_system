@@ -49,7 +49,9 @@ for epoch in range(epochs):
         x_ = model.decode(z)
         loss = model.recon_loss(d.x, x_) + model.kl_loss() / (4 * (d.num_nodes / batch_size))
         lossMIN = lossMIN if loss > lossMIN else loss
-        print('loss:{}'.format(loss))
+        preConfig = reshapeIsing_MSE(d.x, batch_size)
+        afterConfig = reshapeIsing_MSE(x_, batch_size)
+        print("acc:{}%".format(acc(preConfig, afterConfig)))
         optim.zero_grad()
         loss.backward()
         optim.step()

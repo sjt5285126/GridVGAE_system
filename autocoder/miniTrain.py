@@ -10,7 +10,8 @@ import time
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 # 再次小批量训练一组数据
-data = pickle.load('data/IsingGraph/data16.pkl')
+datafile = open('data/IsingGraph/data16.pkl', 'rb')
+data = pickle.load(datafile)
 batch_size = 100
 data = data[:batch_size]
 data_train_batchs = gloader.DataLoader(data, batch_size=100)

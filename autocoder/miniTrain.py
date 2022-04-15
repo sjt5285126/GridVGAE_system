@@ -10,11 +10,11 @@ import time
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 # 再次小批量训练一组数据
-datafile = open('data/IsingGraph/data16.pkl', 'rb')
+datafile = open('data/IsingGraph/data32.pkl', 'rb')
 data = pickle.load(datafile)
-batch_size = 100
+batch_size = 1000
 data = data[:batch_size]
-data_train_batchs = gloader.DataLoader(data, batch_size=100)
+data_train_batchs = gloader.DataLoader(data, batch_size=batch_size)
 
 
 # 加载模型
@@ -49,7 +49,6 @@ for epoch in range(epochs):
         z = model.encode(d.x, d.edge_index, d.edge_attr, d.batch)
         x_ = model.decode(z)
         loss = model.recon_loss(d.x, x_) + model.kl_loss() / (4 * (d.num_nodes / batch_size))
-        lossMIN = lossMIN if loss > lossMIN else loss
         preConfig = reshapeIsing_MSE(d.x, batch_size)
         afterConfig = reshapeIsing_MSE(x_, batch_size)
         print("acc:{}%".format(acc(preConfig, afterConfig)))
@@ -68,7 +67,7 @@ def reparametrize(mu, log):
 
 
 # 生成数据
-f_gen = h5py.File('16mix32gen.hdf5', 'w')
+f_gen = h5py.File('32mix.hdf5', 'w')
 model.eval()
 z = reparametrize(mu, log)
 x_ = model.decode(z)

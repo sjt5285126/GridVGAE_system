@@ -41,11 +41,11 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
-PATH = 'model_16_T_3.pkl'
+PATH = 'model_16_T_3_0412.pkl'
 
 checkpoint = torch.load(PATH,map_location=device)
-
 model, optim, mu, log, batch_size = load_checkpoint(model, PATH, optim)
+print(batch_size)
 
 
 def reparametrize(mu, log):

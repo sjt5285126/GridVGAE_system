@@ -24,7 +24,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 
 # 读取数据
 device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
-datafile = open('data/IsingGraph/data16.pkl', 'rb')
+datafile = open('data/IsingGraph/data_16_T_3.pkl', 'rb')
 data = pickle.load(datafile)
 test_batch = gloader.DataLoader(data, batch_size=200, shuffle=True)
 datafile.close()
@@ -33,7 +33,7 @@ optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 # PATH = argv[1]
 
-PATH = 'model_16_MSE_0228.pkl'
+PATH = 'model_16_T_3_0412.pkl'
 
 checkpoint = torch.load(PATH,map_location=device)
 # 模型的测试
@@ -47,8 +47,8 @@ for epoch in range(1000):
             z = model.encode(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
             x_ = model.decode(z)
             print("loss:{}".format(model.recon_loss(batch.x, x_) + model.kl_loss()))
-            preConfig = reshapeIsing_MSE(batch.x, batch_size)
-            afterConfig = reshapeIsing_MSE(x_, batch_size)
+            preConfig = reshapeIsing_MSE(batch.x, 200)
+            afterConfig = reshapeIsing_MSE(x_, 200)
             #print("测试构型:{}".format(reshapeIsing_MSE(batch.x, 2)))
             #print("重构后的构型:{}".format(reshapeIsing_MSE(x_, 2)))
             print("acc:{}%".format(acc(preConfig, afterConfig)))

@@ -48,7 +48,7 @@ for epoch in range(epochs):
         d.x = d.x.float()
         z = model.encode(d.x, d.edge_index, d.edge_attr, d.batch)
         x_ = model.decode(z)
-        loss = model.recon_loss(d.x, x_) + model.kl_loss() / (4 * (d.num_nodes / batch_size))
+        loss = model.recon_loss(d.x, x_, ) + model.kl_loss() / (4 * (d.num_nodes / batch_size))
         preConfig = reshapeIsing_MSE(d.x, batch_size)
         afterConfig = reshapeIsing_MSE(x_, batch_size)
         print("acc:{}%".format(acc(preConfig, afterConfig)))

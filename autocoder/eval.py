@@ -1,8 +1,8 @@
 import torch
-from VGAE_spin_origin import EncoderSpin, DecoderSpin, SVGAE
+from VGAE_spin_origin2 import EncoderSpin, DecoderSpin, SVGAE
 import dataset
 from dataset import calculate, acc_loss
-from dataset import reshapeIsing_MSE, reshapeIsingHdf5,reshapeIsing
+from dataset import reshapeIsing_MSE, reshapeIsingHdf5, reshapeIsing
 import pickle
 import torch_geometric.loader as gloader
 import h5py
@@ -24,8 +24,10 @@ import h5py
 # 加载模型的函数
 def load_checkpoint(model, checkpoint_PATH, optimizer):
     if checkpoint_PATH != None:
-        model_CKPT = torch.load(checkpoint_PATH,map_location=device)
+        model_CKPT = torch.load(checkpoint_PATH, map_location=device)
         model.load_state_dict(model_CKPT['state_dict'], False)
+        print(model_CKPT['mu'].shape)
+        print(model_CKPT['log'].shape)
         print("mu:\n{}".format(model_CKPT['mu']))
         print("log:\n{}".format(model_CKPT['log']))
         print('loading checkpoint!')
@@ -41,16 +43,16 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
-PATH = 'model_16_T_3_0412.pkl'
+PATH = 'model_pre2_32_T_3_0422.pkl'
 
-checkpoint = torch.load(PATH,map_location=device)
+checkpoint = torch.load(PATH, map_location=device)
 model, optim, mu, log, batch_size = load_checkpoint(model, PATH, optim)
 print(batch_size)
-
 
 def reparametrize(mu, log):
     # 返回重采样的z
     return mu + torch.randn_like(log) + torch.exp(log)
+
 
 # 归一化计算  (f - f.mean()) / f.std()
 # testData = h5py.File('16evalFeatures.hdf5','r')
@@ -63,14 +65,12 @@ testAvrE = testData['AvrE'][:]
 
 '''
 
-
-
 epochs = 1
 
-
 with torch.no_grad():
+    model.eval()
     for epoch in range(epochs):
-        f_gen = h5py.File('gen_16_T_3.hdf5'.format(epoch), 'w')
+        f_gen = h5py.File('genOrigin_PTP.hdf5'.format(epoch), 'w')
         model.eval()
         z = reparametrize(mu, log)
         x_ = model.decode(z)

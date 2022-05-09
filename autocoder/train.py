@@ -46,7 +46,7 @@ for epoch in range(1000):
             batch = batch.to(device)
             z = model.encode(batch.x,batch.edge_index,batch.edge_attr,batch.batch)
             x_ = model.decode(z)
-            print("loss:{}".format(model.recon_loss(batch.x, x_) + model.kl_loss()))
+            print("loss:{}".format(model.recon_loss(batch.x, x_, ) + model.kl_loss()))
             preConfig = reshapeIsing_MSE(batch.x, 200)
             afterConfig = reshapeIsing(x_, 200)
             #print("测试构型:{}".format(reshapeIsing_MSE(batch.x, 2)))

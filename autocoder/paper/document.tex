@@ -107,304 +107,53 @@ aps,
 	\section{\label{sec:level1}
 		introduction}
 	
-	This sample document demonstrates proper use of REV\TeX~4.2 (and
-	\LaTeXe) in mansucripts prepared for submission to APS
-	journals. Further information can be found in the REV\TeX~4.2
-	documentation included in the distribution or available at
-	\url{http://journals.aps.org/revtex/}.
+	Over the past year, physicists have started to use deep learning techniques to study the field of condensed matter physics. Most of the tasks are done by supervised learning algorithms. In supervised learning, the algorithm is trained on data with labels, which are assigned to data points. After successful training, high precision predictions can be made for labels of previously unseen data. In addition to supervised learning, there are unsupervised learning algorithms that can find structure in unlabeled data. It has become possible to use unsupervised learning techniques to reproduce the Monte Carlo sampling state of the Ising model, and discovering phase transitions in an unsupervised manner has become mainstream. Restricted Boltzmann machines, variational self-coding, and generative adversarial networks have been widely used for the simulation of Ising models with good results. However, none of these models can take into account the molecule-molecule interactions and the influence of the edges between molecules in the physical model during training. Also, the microstructure of many physical models is irregular, and the generated models are poorly generalized and can generally only accommodate one size at one temperature. This requires a deep neural network that can consider unstructured data and can take into account node-to-node and node-to-edge relationships.
+
 	
-	When commands are referred to in this example file, they are always
-	shown with their required arguments, using normal \TeX{} format. In
-	this format, \verb+#1+, \verb+#2+, etc. stand for required
-	author-supplied arguments to commands. For example, in
-	\verb+\section{#1}+ the \verb+#1+ stands for the title text of the
-	author's section heading, and in \verb+\title{#1}+ the \verb+#1+
-	stands for the title text of the paper.
+	Fortunately, the research on graph neural networks in the field of deep learning has been growing in enthusiasm in recent years, and the excellent ability of graph neural networks to handle unstructured data makes them particularly useful for applications in physics, biology, and chemistry. Most physical models are essentially a graph structure. Compared with traditional convolutional networks, graph convolutional networks are better at encoding structural information of graphs and can learn better and deeper representation features. Graph variational self-coding is an unsupervised graph generation algorithm, which is the product of combining graph neural network and generative network, and it can effectively use the graph structure of data to simulate the distribution of training data.
+
+
 	
-	Line breaks in section headings at all levels can be introduced using
-	\textbackslash\textbackslash. A blank input line tells \TeX\ that the
-	paragraph has ended. Note that top-level section headings are
-	automatically uppercased. If a specific letter or word should appear in
-	lowercase instead, you must escape it using \verb+\lowercase{#1}+ as
-	in the word ``via'' above.
+	In this paper, we integrate a graph convolutional network into a graph variational self-encoder framework to construct an Ising model simulator, which is used to simulate Ising model configurations at different temperatures. The trained simulator can effectively generate Ising model states with physical properties that are not different from those obtained from conventional Monte Carlo simulations. It can also be adapted to a wide range of different sizes and significantly reduces the simulation time. We will first introduce the general form of the Ising model, graph variational neural networks and graph convolutional networks. In the core of the paper, we construct a graph variational self-encoder combined with a graph convolutional network to simulate the 2D Ising model at different temperatures and verify the validity of our method by comparing the generated data with those from Monte Carlo simulations.
 	
-	\subsection{\label{sec:level2}Second-level heading: Formatting}
+	\section{Ising model and Graph neural networks}
 	
-	This file may be formatted in either the \texttt{preprint} or
-	\texttt{reprint} style. \texttt{reprint} format mimics final journal output. 
-	Either format may be used for submission purposes. \texttt{letter} sized paper should
-	be used when submitting to APS journals.
+	\subsection{Ising model}
 	
-	\subsubsection{Wide text (A level-3 head)}
-	The \texttt{widetext} environment will make the text the width of the
-	full page, as on page~\pageref{eq:wideeq}. (Note the use the
-	\verb+\pageref{#1}+ command to refer to the page number.) 
-	\paragraph{Note (Fourth-level head is run in)}
-	The width-changing commands only take effect in two-column formatting. 
-	There is no effect if text is in a single column.
-	
-	\subsection{\label{sec:citeref}Citations and References}
-	A citation in text uses the command \verb+\cite{#1}+ or
-	\verb+\onlinecite{#1}+ and refers to an entry in the bibliography. 
-	An entry in the bibliography is a reference to another document.
-	
-	\subsubsection{Citations}
-	Because REV\TeX\ uses the \verb+natbib+ package of Patrick Daly, 
-	the entire repertoire of commands in that package are available for your document;
-	see the \verb+natbib+ documentation for further details. Please note that
-	REV\TeX\ requires version 8.31a or later of \verb+natbib+.
-	
-	\paragraph{Syntax}
-	The argument of \verb+\cite+ may be a single \emph{key}, 
-	or may consist of a comma-separated list of keys.
-	The citation \emph{key} may contain 
-	letters, numbers, the dash (-) character, or the period (.) character. 
-	New with natbib 8.3 is an extension to the syntax that allows for 
-	a star (*) form and two optional arguments on the citation key itself.
-	The syntax of the \verb+\cite+ command is thus (informally stated)
-	\begin{quotation}\flushleft\leftskip1em
-		\verb+\cite+ \verb+{+ \emph{key} \verb+}+, or\\
-		\verb+\cite+ \verb+{+ \emph{optarg+key} \verb+}+, or\\
-		\verb+\cite+ \verb+{+ \emph{optarg+key} \verb+,+ \emph{optarg+key}\ldots \verb+}+,
-	\end{quotation}\noindent
-	where \emph{optarg+key} signifies 
-	\begin{quotation}\flushleft\leftskip1em
-		\emph{key}, or\\
-		\texttt{*}\emph{key}, or\\
-		\texttt{[}\emph{pre}\texttt{]}\emph{key}, or\\
-		\texttt{[}\emph{pre}\texttt{]}\texttt{[}\emph{post}\texttt{]}\emph{key}, or even\\
-		\texttt{*}\texttt{[}\emph{pre}\texttt{]}\texttt{[}\emph{post}\texttt{]}\emph{key}.
-	\end{quotation}\noindent
-	where \emph{pre} and \emph{post} is whatever text you wish to place 
-	at the beginning and end, respectively, of the bibliographic reference
-	(see Ref.~[\onlinecite{witten2001}] and the two under Ref.~[\onlinecite{feyn54}]).
-	(Keep in mind that no automatic space or punctuation is applied.)
-	It is highly recommended that you put the entire \emph{pre} or \emph{post} portion 
-	within its own set of braces, for example: 
-	\verb+\cite+ \verb+{+ \texttt{[} \verb+{+\emph{text}\verb+}+\texttt{]}\emph{key}\verb+}+.
-	The extra set of braces will keep \LaTeX\ out of trouble if your \emph{text} contains the comma (,) character.
-	
-	The star (*) modifier to the \emph{key} signifies that the reference is to be 
-	merged with the previous reference into a single bibliographic entry, 
-	a common idiom in APS and AIP articles (see below, Ref.~[\onlinecite{epr}]). 
-	When references are merged in this way, they are separated by a semicolon instead of 
-	the period (full stop) that would otherwise appear.
-	
-	\paragraph{Eliding repeated information}
-	When a reference is merged, some of its fields may be elided: for example, 
-	when the author matches that of the previous reference, it is omitted. 
-	If both author and journal match, both are omitted.
-	If the journal matches, but the author does not, the journal is replaced by \emph{ibid.},
-	as exemplified by Ref.~[\onlinecite{epr}]. 
-	These rules embody common editorial practice in APS and AIP journals and will only
-	be in effect if the markup features of the APS and AIP Bib\TeX\ styles is employed.
-	
-	\paragraph{The options of the cite command itself}
-	Please note that optional arguments to the \emph{key} change the reference in the bibliography, 
-	not the citation in the body of the document. 
-	For the latter, use the optional arguments of the \verb+\cite+ command itself:
-	\verb+\cite+ \texttt{*}\allowbreak
-	\texttt{[}\emph{pre-cite}\texttt{]}\allowbreak
-	\texttt{[}\emph{post-cite}\texttt{]}\allowbreak
-	\verb+{+\emph{key-list}\verb+}+.
-	
-	\subsubsection{Example citations}
-	By default, citations are numerical\cite{Beutler1994}.
-	Author-year citations are used when the journal is RMP. 
-	To give a textual citation, use \verb+\onlinecite{#1}+: 
-	Refs.~\onlinecite{[][{, and references therein}]witten2001,Bire82}. 
-	By default, the \texttt{natbib} package automatically sorts your citations into numerical order and ``compresses'' runs of three or more consecutive numerical citations.
-	REV\TeX\ provides the ability to automatically change the punctuation when switching between journal styles that provide citations in square brackets and those that use a superscript style instead. This is done through the \texttt{citeautoscript} option. For instance, the journal style \texttt{prb} automatically invokes this option because \textit{Physical 
-		Review B} uses superscript-style citations. The effect is to move the punctuation, which normally comes after a citation in square brackets, to its proper position before the superscript. 
-	To illustrate, we cite several together 
-	\cite{[See the explanation of time travel in ]feyn54,*[The classical relativistic treatment of ][ is a relative classic]epr,witten2001,Berman1983,Davies1998,Bire82}, 
-	and once again in different order (Refs.~\cite{epr,feyn54,Bire82,Berman1983,witten2001,Davies1998}). 
-	Note that the citations were both compressed and sorted. Futhermore, running this sample file under the \texttt{prb} option will move the punctuation to the correct place.
-	
-	When the \verb+prb+ class option is used, the \verb+\cite{#1}+ command
-	displays the reference's number as a superscript rather than in
-	square brackets. Note that the location of the \verb+\cite{#1}+
-	command should be adjusted for the reference style: the superscript
-	references in \verb+prb+ style must appear after punctuation;
-	otherwise the reference must appear before any punctuation. This
-	sample was written for the regular (non-\texttt{prb}) citation style.
-	The command \verb+\onlinecite{#1}+ in the \texttt{prb} style also
-	displays the reference on the baseline.
-	
-	\subsubsection{References}
-	A reference in the bibliography is specified by a \verb+\bibitem{#1}+ command
-	with the same argument as the \verb+\cite{#1}+ command.
-	\verb+\bibitem{#1}+ commands may be crafted by hand or, preferably,
-	generated by Bib\TeX. 
-	REV\TeX~4.2 includes Bib\TeX\ style files
-	\verb+apsrev4-2.bst+, \verb+apsrmp4-2.bst+ appropriate for
-	\textit{Physical Review} and \textit{Reviews of Modern Physics},
-	respectively.
-	
-	\subsubsection{Example references}
-	This sample file employs the \verb+\bibliography+ command, 
-	which formats the \texttt{\jobname .bbl} file
-	and specifies which bibliographic databases are to be used by Bib\TeX\ 
-	(one of these should be by arXiv convention \texttt{\jobname .bib}).
-	Running Bib\TeX\ (via \texttt{bibtex \jobname}) 
-	after the first pass of \LaTeX\ produces the file
-	\texttt{\jobname .bbl} which contains the automatically formatted
-	\verb+\bibitem+ commands (including extra markup information via
-	\verb+\bibinfo+ and \verb+\bibfield+ commands). 
-	If not using Bib\TeX, you will have to create the \verb+thebibiliography+ environment 
-	and its \verb+\bibitem+ commands by hand.
-	
-	Numerous examples of the use of the APS bibliographic entry types appear in the bibliography of this sample document.
-	You can refer to the \texttt{\jobname .bib} file, 
-	and compare its information to the formatted bibliography itself.
-	
-	\subsection{Footnotes}%
-	Footnotes, produced using the \verb+\footnote{#1}+ command, 
-	usually integrated into the bibliography alongside the other entries.
-	Numerical citation styles do this%
-	\footnote{Automatically placing footnotes into the bibliography requires using BibTeX to compile the bibliography.};
-	author-year citation styles place the footnote at the bottom of the text column.
-	Note: due to the method used to place footnotes in the bibliography, 
-	\emph{you must re-run Bib\TeX\ every time you change any of your document's footnotes}. 
-	
-	\section{Math and Equations}
-	Inline math may be typeset using the \verb+$+ delimiters. Bold math
-	symbols may be achieved using the \verb+bm+ package and the
-	\verb+\bm{#1}+ command it supplies. For instance, a bold $\alpha$ can
-	be typeset as \verb+$\bm{\alpha}$+ giving $\bm{\alpha}$. Fraktur and
-	Blackboard (or open face or double struck) characters should be
-	typeset using the \verb+\mathfrak{#1}+ and \verb+\mathbb{#1}+ commands
-	respectively. Both are supplied by the \texttt{amssymb} package. For
-	example, \verb+$\mathbb{R}$+ gives $\mathbb{R}$ and
-	\verb+$\mathfrak{G}$+ gives $\mathfrak{G}$
-	
-	In \LaTeX\ there are many different ways to display equations, and a
-	few preferred ways are noted below. Displayed math will center by
-	default. Use the class option \verb+fleqn+ to flush equations left.
-	
-	Below we have numbered single-line equations; this is the most common
-	type of equation in \textit{Physical Review}:
-	\begin{eqnarray}
-		\chi_+(p)\alt{\bf [}2|{\bf p}|(|{\bf p}|+p_z){\bf ]}^{-1/2}
-		\left(
-		\begin{array}{c}
-			|{\bf p}|+p_z\\
-			px+ip_y
-		\end{array}\right)\;,
-		\\
-		\left\{%
-		\openone234567890abc123\alpha\beta\gamma\delta1234556\alpha\beta
-		\frac{1\sum^{a}_{b}}{A^2}%
-		\right\}%
-		\label{eq:one}.
-	\end{eqnarray}
-	Note the open one in Eq.~(\ref{eq:one}).
-	
-	Not all numbered equations will fit within a narrow column this
-	way. The equation number will move down automatically if it cannot fit
-	on the same line with a one-line equation:
-	\begin{equation}
-		\left\{
-		ab12345678abc123456abcdef\alpha\beta\gamma\delta1234556\alpha\beta
-		\frac{1\sum^{a}_{b}}{A^2}%
-		\right\}.
+	In statistical physics, the Ising model is described as the set of binary spins with coupling interactions in some lattice. Considering that N spins s={$s_i$} can take the value $\pm$ 1, where the index i marks the position of the spin $s_i$, the standard Hamiltonian of the Ising system includes only the nearest-neighbor interactions, and each spin direction may be "up" (+1) or "down" (-1), although the generalized model may include long-range interactions and more spin-selective directions. The standard Hamiltonian quantities are:
+    \begin{equation}
+    H = -J\sum_{neighbors}S_i*S_j
 	\end{equation}
+	\subsection{Graph neural network}
+	A graph is a data structure that models a set of objects (nodes) and their relationships (edges). This year, research on analyzing graphs with machine learning methods has received increasing attention due to the powerful expressiveness of graph structures. Graph neural network is a general term for algorithms that use neural networks to learn graph structured data, extract and uncover features and patterns in graph structured data, and meet the needs of graph learning tasks such as clustering, classification, prediction, segmentation, and generation. One motivation for the development of graph neural networks originated from convolutional neural networks. The widespread use of convolutional neural networks has led to breakthroughs in machine learning and opened the era of deep learning. However, convolutional neural networks can only extract potential features in regular Euclidean space data, which cannot correspond well to the complex and variable graph data in reality, and how to apply convolutional neural networks to the non-Euclidean space of graph structure has become the key problem of graph neural network models. The descriptions and definitions of the relevant symbols in graph neural networks are given below
 	
-	When the \verb+\label{#1}+ command is used [cf. input for
-	Eq.~(\ref{eq:one})], the equation can be referred to in text without
-	knowing the equation number that \TeX\ will assign to it. Just
-	use \verb+\ref{#1}+, where \verb+#1+ is the same name that used in
-	the \verb+\label{#1}+ command.
+	\textbf{Definition 1} \textit{Graph:}The graph is formed by the nodes and the edges connecting the nodes, usually noted as $G=(V,E)$. where $V=\{v_1,v_2,... ,v_n\}$ represents the set of nodes,$E=\{e_1,e_2,... ,e_n\}$ represents the set of edges, and edges can also be represented as $(v_1,v_2)$. Usually nodes are also called vertices or intersections. Edges are also called links or arcs. A generic graph representation is a quintet: $G(V,E,A,X,D)$. Where A represents the adjacency matrix of the graph, X represents the identity matrix of the nodes, and D represents the degree matrix.
 	
-	Unnumbered single-line equations can be typeset
-	using the \verb+\[+, \verb+\]+ format:
-	\[g^+g^+ \rightarrow g^+g^+g^+g^+ \dots ~,~~q^+q^+\rightarrow
-	q^+g^+g^+ \dots ~. \]
+	\textbf{Definition 2} \textit{Adjacency matrix}: The adjacency matrix of a graph refers to the matrix used to represent the connectivity of the nodes in the graph. This matrix can be binary or weighted. For an undirected graph with N nodes, the adjacency matrix is an N*N real symmetric matrix.
 	
+	\textbf{Definition 3} \textit{Degree matrix}: The degree of a node represents the number of edges connected to that node. The degree matrix of a graph is the matrix that describes the degree of each node in the graph. The degree matrix is a diagonal matrix, and for undirected graphs, only the incoming degree matrix or the outgoing degree matrix is generally used.
 	
-	\subsection{Multiline equations}
-	
-	Multiline equations are obtained by using the \verb+eqnarray+
-	environment.  Use the \verb+\nonumber+ command at the end of each line
-	to avoid assigning a number:
-	\begin{eqnarray}
-		{\cal M}=&&ig_Z^2(4E_1E_2)^{1/2}(l_i^2)^{-1}
-		\delta_{\sigma_1,-\sigma_2}
-		(g_{\sigma_2}^e)^2\chi_{-\sigma_2}(p_2)\nonumber\\
-		&&\times
-		[\epsilon_jl_i\epsilon_i]_{\sigma_1}\chi_{\sigma_1}(p_1),
-	\end{eqnarray}
-	\begin{eqnarray}
-		\sum \vert M^{\text{viol}}_g \vert ^2&=&g^{2n-4}_S(Q^2)~N^{n-2}
-		(N^2-1)\nonumber \\
-		& &\times \left( \sum_{i<j}\right)
-		\sum_{\text{perm}}
-		\frac{1}{S_{12}}
-		\frac{1}{S_{12}}
-		\sum_\tau c^f_\tau~.
-	\end{eqnarray}
-	\textbf{Note:} Do not use \verb+\label{#1}+ on a line of a multiline
-	equation if \verb+\nonumber+ is also used on that line. Incorrect
-	cross-referencing will result. Notice the use \verb+\text{#1}+ for
-	using a Roman font within a math environment.
-	
-	To set a multiline equation without \emph{any} equation
-	numbers, use the \verb+\begin{eqnarray*}+,
-		\verb+\end{eqnarray*}+ format:
-	\begin{eqnarray*}
-		\sum \vert M^{\text{viol}}_g \vert ^2&=&g^{2n-4}_S(Q^2)~N^{n-2}
-		(N^2-1)\\
-		& &\times \left( \sum_{i<j}\right)
-		\left(
-		\sum_{\text{perm}}\frac{1}{S_{12}S_{23}S_{n1}}
-		\right)
-		\frac{1}{S_{12}}~.
-	\end{eqnarray*}
-	
-	To obtain numbers not normally produced by the automatic numbering,
-	use the \verb+\tag{#1}+ command, where \verb+#1+ is the desired
-	equation number. For example, to get an equation number of
-	(\ref{eq:mynum}),
+	\textbf{Definition 4} \textit{Combinatorial Laplacian matrix}, also known as standard Laplacian matrix, is a combination of diagonal matrix and adjacency matrix:
 	\begin{equation}
-		g^+g^+ \rightarrow g^+g^+g^+g^+ \dots ~,~~q^+q^+\rightarrow
-		q^+g^+g^+ \dots ~. \tag{2.6$'$}\label{eq:mynum}
+		L = D - A
 	\end{equation}
+	The matrix has non-zero elements only at the central node and at the nodes connected to the first order, and zero everywhere else. Laplacian matrix is also a form of graph.
 	
-	\paragraph{A few notes on \texttt{tag}s} 
-	\verb+\tag{#1}+ requires the \texttt{amsmath} package. 
-	Place the \verb+\tag{#1}+ command before the \verb+\label{#1}+, if any. 
-	The numbering produced by \verb+\tag{#1}+ \textit{does not affect} 
-	the automatic numbering in REV\TeX; 
-	therefore, the number must be known ahead of time, 
-	and it must be manually adjusted if other equations are added. 
-	\verb+\tag{#1}+ works with both single-line and multiline equations. 
-	\verb+\tag{#1}+ should only be used in exceptional cases---%
-	do not use it to number many equations in your paper. 
-	Please note that this feature of the \texttt{amsmath} package
-	is \emph{not} compatible with the \texttt{hyperref} (6.77u) package.
-	
-	Enclosing display math within
-	\verb+\begin{subequations}+ and \verb+\end{subequations}+ will produce
-	a set of equations that are labeled with letters, as shown in
-	Eqs.~(\ref{subeq:1}) and (\ref{subeq:2}) below.
-	You may include any number of single-line and multiline equations,
-	although it is probably not a good idea to follow one display math
-	directly after another.
-	\begin{subequations}
-		\label{eq:whole}
-		\begin{eqnarray}
-			{\cal M}=&&ig_Z^2(4E_1E_2)^{1/2}(l_i^2)^{-1}
-			(g_{\sigma_2}^e)^2\chi_{-\sigma_2}(p_2)\nonumber\\
-			&&\times
-			[\epsilon_i]_{\sigma_1}\chi_{\sigma_1}(p_1).\label{subeq:2}
-		\end{eqnarray}
-		\begin{equation}
-			\left\{
-			abc123456abcdef\alpha\beta\gamma\delta1234556\alpha\beta
-			\frac{1\sum^{a}_{b}}{A^2}
-			\right\},\label{subeq:1}
-		\end{equation}
-	\end{subequations}
+	\textbf{Definition 5} \textit{Normalized Laplacian matrix}
+	\begin{equation}
+		L^{sym} = I - D^{-1/2}AD^{-1/2}
+	\end{equation}
+	Its element value is :
+	\begin{equation}
+		L^{sym}_{(i,j)} = 
+		\begin{cases}
+			1,& \text{i=j,$deg(v_i)\ne0$} \\
+			\frac {-1}{\sqrt{deg(v_i)deg(v_j)}},& \text{${i}\ne{j}$ ,$v_i$ and $v_j$ are adjacent}\\
+			0,& \text{otherwise}
+		\end{cases}
+	\end{equation}
+	where $deg(v)$ is denoted as the degree of node $v$
+	\subsubsection{Graph Convolutional Network}
 	Giving a \verb+\label{#1}+ command directly after the \verb+\begin{subequations}+, 
 		allows you to reference all the equations in the \texttt{subequations} environment. 
 		For example, the equations in the preceding subequations environment were

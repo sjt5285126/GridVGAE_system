@@ -1,18 +1,18 @@
 import h5py
 import torch
-from VGAE_spin_origin import EncoderSpin, DecoderSpin, SVGAE
+from VGAE_spin_origin2 import EncoderSpin, DecoderSpin, SVGAE
 from dataset import reshapeIsing_MSE, acc, reshapeIsing, reshapeTorch, calculate
 import pickle
 import torch_geometric.loader as gloader
 import time
 
 # 定义设备
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
 
 # 再次小批量训练一组数据
-datafile = open('data/IsingGraph/data32.pkl', 'rb')
+datafile = open('data/IsingGraph/data_32_T_PTP.pkl', 'rb')
 data = pickle.load(datafile)
-batch_size = 1000
+batch_size = 250
 data = data[:batch_size]
 data_train_batchs = gloader.DataLoader(data, batch_size=batch_size)
 
@@ -31,7 +31,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 
 
 # 模型地址
-PATH = 'model_1632_0309.pkl'
+PATH = 'model_pre2_64mix32_PTP_0615.pkl'
 
 # 加载模型
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
@@ -39,7 +39,7 @@ optim = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=0.001)  # 增
 model, optim = load_checkpoint(model, PATH, optim)
 
 # 小批量训练
-epochs = 1000
+epochs = 5
 
 for epoch in range(epochs):
     model.train()
@@ -67,7 +67,7 @@ def reparametrize(mu, log):
 
 
 # 生成数据
-f_gen = h5py.File('32mix.hdf5', 'w')
+f_gen = h5py.File('T_PTP_64mix32_32.hdf5', 'w')
 model.eval()
 z = reparametrize(mu, log)
 x_ = model.decode(z)

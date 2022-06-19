@@ -1,0 +1,254 @@
+\providecommand{\noopsort}[1]{}\providecommand{\singleletter}[1]{#1}%
+\begin{thebibliography}{10}
+
+\bibitem{Agarwal2001}
+A.~G. Agarwal.
+\newblock {Proceedings of the Fifth Low Temperature Conference, Madison, WI,
+  1999}.
+\newblock {\em Semiconductors}, 66:1238, 2001.
+
+\bibitem{ballagh2000a}
+R.~Ballagh and C.M. Savage.
+\newblock Bose-einstein condensation: from atomic physics to quantum fluids.
+\newblock In C.M. Savage and M.~Das, editors, {\em Proceedings of the 13th
+  Physics Summer School}. World Scientific, Singapore, 2000.
+
+\bibitem{ballagh2000}
+R.~Ballagh and C.M. Savage.
+\newblock {\em Bose-Einstein condensation: from atomic physics to quantum
+  fluids, Proceedings of the 13th Physics Summer School}.
+\newblock World Scientific, Singapore, 2000.
+
+\bibitem{Beutler1994}
+E.~Beutler.
+\newblock volume~2, chapter~7, pages 654--662.
+\newblock McGraw-Hill, New York, 5 edition, 1994.
+
+\bibitem{Beutler1994a}
+E.~Beutler.
+\newblock In E.~Beutler, M.~A. Lichtman, B.~W. Coller, and T.~S. Kipps,
+  editors, {\em Williams Hematology}, volume~2, chapter~7, pages 654--662.
+  McGraw-Hill, New York, 5 edition, 1994.
+
+\bibitem{Bire82}
+N.~D. Birell and P.~C.~W. Davies.
+\newblock {\em Quantum Fields in Curved Space}.
+\newblock Cambridge University Press, 1982.
+
+\bibitem{Burstyn2004}
+Y.~Burstyn.
+\newblock {Proceedings of the 5th International Molecular Beam Epitaxy
+  Conference, Santa Fe, NM}.
+\newblock (unpublished), 5--8~October 2004.
+
+\bibitem{Davies1998}
+E.~B. Davies and L.~Parns.
+\newblock Trapped modes in acoustic waveguides.
+\newblock {\em Q. J. Mech. Appl. Math.}, 51:477--492, 1988.
+
+\bibitem{epr}
+A.~Einstein, {\relax Yu}~Podolsky, and N.~Rosen.
+\newblock {\em Phys.\ Rev.}, 47:777, 1935.
+
+\bibitem{feyn54}
+R.~P. Feynman.
+\newblock {\em Phys.\ Rev.}, 94:262, 1954.
+
+\bibitem{Fields2005}
+W.~K. Fields.
+\newblock {ECE Report No.} AL944, 2005.
+\newblock Required institution missing.
+
+\bibitem{Berman1983}
+Jr. G.~P.~Berman and Jr. F.~M.~Izrailev.
+\newblock Stability of nonlinear modes.
+\newblock {\em Physica D}, 88:445, 1983.
+
+\bibitem{JohnsonMillerSmith2007}
+M.~P. Johnson, K.~L. Miller, and K.~Smith.
+\newblock personal communication, 1~May 2007.
+
+\bibitem{KawaLin2003}
+S.~R. Kawa and S.-J. Lin.
+\newblock {\em J. Geophys. Res.}, 108(D6):4201, 2003.
+\newblock {DOI:10.1029/2002JD002268}.
+
+\bibitem{inbook-full}
+Donald~E. Knuth.
+\newblock volume~1 of {\em The Art of Computer Programming}, section 1.2, pages
+  10--119.
+\newblock Addison-Wesley, Reading, Massachusetts, second edition, 10~January
+  \noopsort{1973b}1973.
+\newblock A full INBOOK entry.
+
+\bibitem{book-full}
+Donald~E. Knuth.
+\newblock {\em Seminumerical Algorithms}, volume~2 of {\em The Art of Computer
+  Programming}.
+\newblock Addison-Wesley, Reading, Massachusetts, second edition, 10~January
+  \noopsort{1973c}1981.
+\newblock A full BOOK entry.
+
+\bibitem{booklet-full}
+Jill~C. Knvth.
+\newblock The programming of computer art.
+\newblock Vernier Art Center, Stanford, California, February 1988.
+\newblock A full BOOKLET entry.
+
+\bibitem{incollection-full}
+Daniel~D. Lincoll.
+\newblock Semigroups of recurrences.
+\newblock In David~J. Lipcoll, D.~H. Lawrie, and A.~H. Sameh, editors, {\em
+  High Speed Computer and Algorithm Organization}, number~23 in Fast Computers,
+  part~3, pages 179--183. Academic Press, New York, third edition, September
+  1977.
+\newblock A full INCOLLECTION entry.
+
+\bibitem{manual-full}
+Larry Manmaker.
+\newblock {\em The Definitive Computer Manual}.
+\newblock Chips-R-Us, Silicon Valley, silver edition, April-May 1986.
+\newblock A full MANUAL entry.
+
+\bibitem{mastersthesis-full}
+{\'{E}}douard Masterly.
+\newblock Mastering thesis writing.
+\newblock Master's project, Stanford University, English Department,
+  June-August 1988.
+\newblock A full MASTERSTHESIS entry.
+
+\bibitem{Nelson2005}
+J.~Nelson.
+\newblock {U.S. Patent No.} 5,693,000, 12~December~2005.
+
+\bibitem{Nelson1999}
+J.~Nelson.
+\newblock {TWI Report} 666/1999, January~1999.
+\newblock Required institution missing.
+
+\bibitem{Nelson1999a}
+J.~K. Nelson.
+\newblock M.{S}. thesis, New York University, 1999.
+
+\bibitem{Note1}
+Automatically placing footnotes into the bibliography requires using BibTeX to
+  compile the bibliography.
+
+\bibitem{inproceedings-full}
+Alfred~V. Oaho, Jeffrey~D. Ullman, and Mihalis Yannakakis.
+\newblock On notions of information transfer in {VLSI} circuits.
+\newblock In Wizard~V. Oz and Mihalis Yannakakis, editors, {\em Proc. Fifteenth
+  Annual ACM}, number~17 in All ACM Conferences, pages 133--139, New York,
+  March 1983. ACM, Academic Press.
+\newblock A full INPROCEDINGS entry.
+
+\bibitem{Magnetism}
+W.~Opechowski and R.~Guccione.
+\newblock {\em Introduction to the Theory of Normal Metals}, volume IIa, page
+  105.
+\newblock Academic Press, New York, 1965.
+
+\bibitem{Magnetisma}
+W.~Opechowski and R.~Guccione.
+\newblock Introduction to the theory of normal metals.
+\newblock In G.~T. Rado and H.~Suhl, editors, {\em Magnetism}, volume IIa, page
+  105. Academic Press, New York, 1965.
+
+\bibitem{Magnetismb}
+W.~Opechowski and R.~Guccione.
+\newblock Introduction to the theory of normal metals.
+\newblock In G.~T. Rado and H.~Suhl, editors, {\em Magnetism}, volume IIa, page
+  105, New York, 1965. Academic Press.
+
+\bibitem{proceedings-full}
+Wizard~V. Oz and Mihalis Yannakakis, editors.
+\newblock {\em Proc. Fifteenth Annual}, number~17 in All ACM Conferences,
+  Boston, March 1983. ACM, Academic Press.
+\newblock A full PROCEEDINGS entry.
+
+\bibitem{phdthesis-full}
+F.~Phidias Phony-Baloney.
+\newblock {\em Fighting Fire with Fire: Festooning {F}rench Phrases}.
+\newblock {PhD} dissertation, Fanstord University, Department of French,
+  June-August 1988.
+\newblock A full PHDTHESIS entry.
+
+\bibitem{Quinn2001}
+B.~Quinn, editor.
+\newblock {\em {Proceedings of the 2003 Particle Accelerator Conference,
+  Portland, OR, 12-16 May 2005}}, New York, 2001. Wiley.
+\newblock Albeit the conference was held in 2005, it was the 2003 conference,
+  and the proceedings were published in 2001; go figure.
+
+\bibitem{Smith2007a}
+J.~Smith.
+\newblock {\em Proc. SPIE}, 124:367, 2007.
+\newblock Required title is missing.
+
+\bibitem{Smith2007}
+J.~Smith, editor.
+\newblock {\em AIP Conf. Proc.}, volume 841, 2007.
+
+\bibitem{Smith80a}
+J.~M. Smith.
+\newblock In C.~Brown, editor, {\em Molecular Dynamics}. Academic, New York,
+  1980.
+
+\bibitem{Smith80}
+J.~M. Smith.
+\newblock {\em Molecular Dynamics}.
+\newblock Academic, New York, 1980.
+
+\bibitem{Smith2005}
+J.~S. Smith and G.~W. Johnson.
+\newblock {\em Philos. Trans. R. Soc. London, Ser. B}, 777:1395, 2005.
+
+\bibitem{SmithDA01}
+R.~Smith.
+\newblock Hummingbirds are our friends.
+\newblock {\em J. Appl. Phys. (these proceedings)}, 2001.
+\newblock Abstract No. DA-01.
+
+\bibitem{Smith2003}
+S.~M. Smith.
+\newblock {Ph.D.} thesis, Massachusetts Institute of Technology, 2003.
+
+\bibitem{Smith2010a}
+V.~K. Smith, K.~Johnson, and M.~O. Klein.
+\newblock Surface chemistry and preferential crystal orientation on a silicon
+  surface.
+\newblock {J. Appl. Phys.} (submitted), 2010.
+
+\bibitem{Smith2010}
+W.~J. Smith, T.~J. Johnson, and B.~G. Miller.
+\newblock Surface chemistry and preferential crystal orientation on a silicon
+  surface.
+\newblock {J. Appl. Phys.} (unpublished), 2010.
+
+\bibitem{techreport-full}
+Tom T{\'{e}}rrific.
+\newblock An {$O(n \log n / \! \log\log n)$} sorting algorithm.
+\newblock Wishful Research Result~7, Fanstord University, Computer Science
+  Department, Fanstord, California, October 1988.
+\newblock A full TECHREPORT entry.
+
+\bibitem{unpublished-full}
+Ulrich {\"{U}}nderwood, Ned {\~N}et, and Paul {\={P}}ot.
+\newblock Lower bounds for wishful research results.
+\newblock Talk at Fanstord University (A full UNPUBLISHED entry), November,
+  December 1988.
+
+\bibitem{witten2001}
+Edward Witten, 2001.
+
+\bibitem{ZS71}
+V.~E. Zakharov and A.~B. Shabat.
+\newblock Exact theory of two-dimensional self-focusing and one-dimensional
+  self-modulation of waves in nonlinear media.
+\newblock {\em Zh. Eksp. Teor. Fiz.}, 61:118--134, 1971.
+
+\bibitem{Zalkins2008}
+Y.~M. Zalkins.
+\newblock e-print arXiv:cond-mat/040426, 2008.
+
+\end{thebibliography}

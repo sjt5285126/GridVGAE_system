@@ -1,0 +1,75 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: document.aux
+Reallocating 'name_of_file' (item size: 1) to 14 items.
+Reallocating 'name_of_file' (item size: 1) to 8 items.
+Reallocating 'name_of_file' (item size: 1) to 6 items.
+The style file: plain.bst
+Database file #1: documentNotes.bib
+Warning--entry type for "Note1" isn't style-file defined
+--line 1 of file documentNotes.bib
+Database file #2: apssamp.bib
+Warning--can't use both author and editor fields in ballagh2000
+Warning--empty chapter and pages in ballagh2000
+Warning--can't use both author and editor fields in Beutler1994
+Warning--empty title in Beutler1994
+Warning--empty title in Beutler1994a
+Warning--empty title in epr
+Warning--empty title in feyn54
+Warning--empty title in Fields2005
+Warning--empty institution in Fields2005
+Warning--empty title in KawaLin2003
+Warning--empty title in inbook-full
+Warning--empty title in Nelson1999
+Warning--empty institution in Nelson1999
+Warning--empty title in Nelson1999a
+Warning--can't use both author and editor fields in Magnetism
+Warning--empty title in Smith2007a
+Warning--can't use both volume and number fields in Smith2007
+Warning--empty title in Smith80a
+Warning--can't use both author and editor fields in Smith80
+Warning--empty chapter and pages in Smith80
+Warning--empty title in Smith2005
+Warning--empty title in Smith2003
+You've used 45 entries,
+            2118 wiz_defined-function locations,
+            776 strings with 9009 characters,
+and the built_in function-call counts, 12610 in all, are:
+= -- 1235
+> -- 511
+< -- 26
++ -- 200
+- -- 152
+* -- 817
+:= -- 2139
+add.period$ -- 139
+call.type$ -- 45
+change.case$ -- 188
+chr.to.int$ -- 0
+cite$ -- 67
+duplicate$ -- 541
+empty$ -- 1035
+format.name$ -- 152
+if$ -- 2662
+int.to.chr$ -- 0
+int.to.str$ -- 45
+missing$ -- 31
+newline$ -- 224
+num.names$ -- 105
+pop$ -- 238
+preamble$ -- 2
+purify$ -- 159
+quote$ -- 0
+skip$ -- 358
+stack$ -- 0
+substring$ -- 523
+swap$ -- 124
+text.length$ -- 26
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 163
+warning$ -- 22
+while$ -- 124
+width$ -- 47
+write$ -- 510
+(There were 23 warnings)

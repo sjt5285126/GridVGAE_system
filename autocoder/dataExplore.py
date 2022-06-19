@@ -17,31 +17,13 @@ import re
 '''
 
 
-def explore_old(data):
-    '''
-    老版数据 data 并不包含温度信息，所以直接读取想要的属性就行
-    :param data:
-    :return:
-    '''
-
-
 def explore(dataPath):
-    '''
-
-    :param data: hdf5文件 将hdf5文件中的信息读取
-    :return: csv/dat文件
-    '''
     data = h5py.File(dataPath, 'r')
-    df = pd.DataFrame()
+    f = h5py.File('{}Features.hdf5'.format(dataPath[:-5]), 'w')
     for key in data.keys():
-        df[str(key)] = data[str(key)]
-    df.to_csv('{}.dat'.format(dataPath), sep=' ')
+        if re.search('T=(.*)_(.*)', str(key)):
+            f.create_dataset(str(key), data=data[key])
+    f.close()
 
 
-def explore_dir(datadir):
-    for item in os.scandir(datadir):
-        if item.is_file() and re.search('.*\.hdf5', item.path):
-            explore(item.path)
-
-
-explore_dir('.')
+explore('data/Ising/32_T_PTP.hdf5')

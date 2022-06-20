@@ -39,6 +39,7 @@ aps,
 %prstper,
 %floatfix,
 ]{revtex4-2}
+\usepackage{amsmath}
 \usepackage{subfigure}
 \usepackage{svg}
 \usepackage{graphicx}% Include figure files
@@ -100,12 +101,11 @@ aps,
 	
 	%\keywords{Suggested keywords}%Use showkeys class option if keyword
 	%display desired
-	\maketitle
+	%\maketitle
 	
 	%\tableofcontents
 	
-	\section{\label{sec:level1}
-		introduction}
+	\section{introduction}
 	
 	Over the past year, physicists have started to use deep learning techniques to study the field of condensed matter physics. Most of the tasks are done by supervised learning algorithms. In supervised learning, the algorithm is trained on data with labels, which are assigned to data points. After successful training, high precision predictions can be made for labels of previously unseen data. In addition to supervised learning, there are unsupervised learning algorithms that can find structure in unlabeled data. It has become possible to use unsupervised learning techniques to reproduce the Monte Carlo sampling state of the Ising model, and discovering phase transitions in an unsupervised manner has become mainstream. Restricted Boltzmann machines, variational self-coding, and generative adversarial networks have been widely used for the simulation of Ising models with good results. However, none of these models can take into account the molecule-molecule interactions and the influence of the edges between molecules in the physical model during training. Also, the microstructure of many physical models is irregular, and the generated models are poorly generalized and can generally only accommodate one size at one temperature. This requires a deep neural network that can consider unstructured data and can take into account node-to-node and node-to-edge relationships.
 
@@ -154,96 +154,97 @@ aps,
 	\end{equation}
 	where $deg(v)$ is denoted as the degree of node $v$
 	\subsubsection{Graph Convolutional Network}
-	Giving a \verb+\label{#1}+ command directly after the \verb+\begin{subequations}+, 
-		allows you to reference all the equations in the \texttt{subequations} environment. 
-		For example, the equations in the preceding subequations environment were
-		Eqs.~(\ref{eq:whole}).
-		
-		\subsubsection{Wide equations}
-		The equation that follows is set in a wide format, i.e., it spans the full page. 
-		The wide format is reserved for long equations
-		that cannot easily be set in a single column:
-		\begin{widetext}
-			\begin{equation}
-				{\cal R}^{(\text{d})}=
-				g_{\sigma_2}^e
-				\left(
-				\frac{[\Gamma^Z(3,21)]_{\sigma_1}}{Q_{12}^2-M_W^2}
-				+\frac{[\Gamma^Z(13,2)]_{\sigma_1}}{Q_{13}^2-M_W^2}
-				\right)
-				+ x_WQ_e
-				\left(
-				\frac{[\Gamma^\gamma(3,21)]_{\sigma_1}}{Q_{12}^2-M_W^2}
-				+\frac{[\Gamma^\gamma(13,2)]_{\sigma_1}}{Q_{13}^2-M_W^2}
-				\right)\;. 
-				\label{eq:wideeq}
-			\end{equation}
-		\end{widetext}
-		This is typed to show how the output appears in wide format.
-		(Incidentally, since there is no blank line between the \texttt{equation} environment above 
-		and the start of this paragraph, this paragraph is not indented.)
-		
-		\section{Cross-referencing}
-		REV\TeX{} will automatically number such things as
-		sections, footnotes, equations, figure captions, and table captions. 
-		In order to reference them in text, use the
-		\verb+\label{#1}+ and \verb+\ref{#1}+ commands. 
-		To reference a particular page, use the \verb+\pageref{#1}+ command.
-		
-		The \verb+\label{#1}+ should appear 
-		within the section heading, 
-		within the footnote text, 
-		within the equation, or 
-		within the table or figure caption. 
-		The \verb+\ref{#1}+ command
-		is used in text at the point where the reference is to be displayed.  
-		Some examples: Section~\ref{sec:level1} on page~\pageref{sec:level1},
-		Table~\ref{tab:table1},%
-		\begin{table}[b]%The best place to locate the table environment is directly after its first reference in text
-			\caption{\label{tab:table1}%
-				A table that fits into a single column of a two-column layout. 
-				Note that REV\TeX~4 adjusts the intercolumn spacing so that the table fills the
-				entire width of the column. Table captions are numbered
-				automatically. 
-				This table illustrates left-, center-, decimal- and right-aligned columns,
-				along with the use of the \texttt{ruledtabular} environment which sets the 
-				Scotch (double) rules above and below the alignment, per APS style.
-			}
-			\begin{ruledtabular}
-				\begin{tabular}{lcdr}
-					\textrm{Left\footnote{Note a.}}&
-					\textrm{Centered\footnote{Note b.}}&
-					\multicolumn{1}{c}{\textrm{Decimal}}&
-					\textrm{Right}\\
-					\colrule
-					1 & 2 & 3.001 & 4\\
-					10 & 20 & 30 & 40\\
-					100 & 200 & 300.0 & 400\\
-				\end{tabular}
-			\end{ruledtabular}
-		\end{table}
-		and Fig.~\ref{fig:epsart}.%
-\begin{figure}[b]
-	\includegraphics[scale=0.3]{vae}
-	\caption{\label{fig:epsart} A figure caption. The figure captions are automatically numbered.}
-	\label{fig:vae}
-\end{figure}
-		
-		\section{Floats: Figures, Tables, Videos, etc.}
-		Figures and tables are usually allowed to ``float'', which means that their
-		placement is determined by \LaTeX, while the document is being typeset. 
-		
-		Use the \texttt{figure} environment for a figure, the \texttt{table} environment for a table.
-		In each case, use the \verb+\caption+ command within to give the text of the
-		figure or table caption along with the \verb+\label+ command to provide
-		a key for referring to this figure or table.
-		The typical content of a figure is an image of some kind; 
-		that of a table is an alignment.%
-\begin{figure*}
-	\includegraphics[scale=0.2]{spin_vgae2}
-	\caption{\label{fig:wide}Use the figure* environment to get a wide figure that spans the page in \texttt{twocolumn} formatting.}
-	\label{fig:spinvgae2}
-\end{figure*}
+	A graph convolution network is  derived from the traditional convolutional neural network. Graph convolution can be of two kinds, spectrum-based approach and space-based approach. The spectrum-based approach defines graph convolution from the perspective of graph signal processing by introducing filters, so the spectrum-based graph convolution can be understood as removing noise from the graph signal. The space-based graph convolution method constructs the graph convolution by pooling information from neighboring nodes.
+	
+	Before understanding graph convolution, we need to have a basic concept of convolution operation. Convolutional networks are first applied to images, where we use the pixel points on the image as features to perform the convolution operation to extract features. The random shared convolution sum is used to obtain a weighted sum of pixel points to extract a particular feature, and then back propagation is used to optimize the convolution kernel parameters to automatically extract features, which is the cornerstone of convolutional neural network to extract features. The convolution operation is equivalent to aggregating the information of surrounding pixels to the central pixel of the convolution kernel and extracting the features of that part.
+	
+	So we want to use convolution in the graph domain to use a general paradigm for graph feature extraction, similar to image, when we want to get the feature representation of a node, we can aggregate the information of neighboring nodes, which can be understood in this way, each node in the graph is changing its state all the time until the final balance because of the influence of the more distant points of the neighboring node kernel, the closer the neighbor The closer the neighbor, the greater the influence.
+	\subsubsection{Graph Convolutional Generalization}	
+	For a graph convolutional network, we want to learn its feature representation for each node, and any graph convolution can be written as a nonlinear function such that
+	\begin{equation}\label{key}
+		H^{l+1} = f(H^l,A)
+	\end{equation}
+	$H^0 = X$ is the input to the first layer, $l$ represents the number of layers of the neural network, and A represents the adjacency matrix.
+
+	The traditional graph convolutional network approach is to add information from neighboring nodes to this node:
+	\begin{equation}\label{key}
+		f(H^l,A) = \sigma(A H^l W^l)
+	\end{equation}
+	$W^l$ represents the parameter matrix of the lth layer, and $\sigma$ represents the activation function. According to the matrix multiplication it can be seen that each node in the above equation combines the information of the neighboring nodes, but since only the adjacency matrix is used, the diagonal of the adjacency matrix is 0, which cannot reflect the information of the nodes themselves, so we use the Laplacian matrix instead of the adjacency matrix
+	\begin{equation}\label{key_w}
+		f(H^l,A) = \sigma(L H^l W^l)
+	\end{equation}
+	The Laplace matrix is introduced in the above equation\eqref{key_w}, thus solving the problem of not considering the information self-transfer of its own nodes, but since it is not normalized, we regularize the Laplace matrix to obtain the graph convolution
+	\begin{equation}\label{LapalceMatrix}
+	f(H^l,A) = \sigma(L^{sym} H^l W^l)	
+	\end{equation}
+	The above description is in matrix form, we can also look at the formula from the perspective of a single node, for the node feature $h^{l+1}_i$ in the $l+1$ layer, for his neighboring nodes $j \in N$, $N$ is the set of neighboring nodes used by node $i$, so the update formula of the graph neural network can also be depicted as
+	\begin{equation}\label{formulaNode}
+		h^{l+1}_i = f(h^{l}_i) = \sigma(h^{l}_i \bullet W_1^{l+1} + \sum_j h^{l}_j \bullet W^{l+1}_2)
+	\end{equation}
+	\subsubsection{Variational auto-encoder}
+	A variational self-encoder is a generative model of variational inference, consisting of a network of encoders and decoders, which is a model with hidden variables. In a variational self-encoder, we base on the following assumptions:
+	Our sample x is generated by some latent variable z through some mapping, and z is not a fixed value, but obeys a distribution: $z \sim P_{\theta}(z)$, then $x \sim p_{\theta}(x|z)$, where P is a family of distributions determined by the parameter $\theta$, and $ \theta$ is the true distribution that we need to find. So our fundamental goal is to determine the values of $z$ and $\theta$ so that we can obtain the sample x. In order to infer $p_{\theta}(x|z)$, we need to maximize the marginal log likelihood $log(p_{\theta}(x))$ We can rewrite the equation:
+	\begin{equation}\label{vae}
+		\begin{aligned}
+			log(p_{\theta}(x)) &= log \int p_{\theta}(x|z)dz = log \int p_{\theta}(x|z)p(z)dz \\
+			&= log \int p_{\theta}(x|z)p(z)\frac{q_{\phi}(z|x)}{q{\phi}(z|x)}dz\\
+			&\ge \mathbb E_{z \sim q_{\phi}(z|x)}[log(p_{\theta}(x|z)] - D_{KL}[q_{\phi}(z|x)||p(z)]\\
+			&:= \varepsilon(x,\theta,\phi)
+		\end{aligned}
+	\end{equation}
+	We apply Jensen's inequality in the fourth step. Integrating the potential variable z in the second step is usually tricky, so we introduce an approximate posterior distribution $q_{\phi}(z|x)$ with the parameter set $\phi$ and use the variational inference principle to obtain an easy-to-handle bound on the marginal log-likelihood, i.e., the evidence lower bound (ELBO). We use $p(z)=N(1,0)$ as the latent variable prior. ELBO is an easy-to-process lower bound on the log-likelihood, and thus maximizes the inference $p_{\theta}(x|z)$. $\mathbb E_{z \sim q_{\phi}(z|x)[log(p_{\phi}(x|z))]}$ can be interpreted as the reconstruction error, since maximizing it will make the output of the decoder similar to the input of the encoder, and $D_{KL}[q_{\phi}(z|x)||p(z)]$ is the KL scatter (see *** for details), a value that measures the similarity of two distributions and that ensures that the latent representation is Gaussian, such that data points with similar characteristics have similar Gaussian representations.
+
+	We have outlined the general idea behind latent variable models, but we still need to specify the approximate (variational) posterior $q_{\phi}(z|x)$ and the model likelihood $log(p_{\theta}(x|z))$. A common choice for approximating the posterior is to decompose the Gaussian distribution
+	\begin{equation}\label{prop}
+		q_{\phi}(z|x) = \prod^d_{j=1} N(z_j|\mu_j,\sigma_j^2)
+	\end{equation}
+	where $\mu$ and $\sigma$ denote the mean and standard deviation of the model.
+	
+	In summary, VAE is an encoder network based on extracting the mean and variance of a potential Gaussian representation $q_{\phi}(z|x)$ of $p(z|x)$. The decoder in VAE, which uses a Gaussian $q_{\phi}(z|x)$ sample as input, generates new samples according to the distribution $p_{\theta}(x|z)$. We compute all parameters by maximizing ELBO using backpropagation, but the Gaussian distribution is random and non-integrable. Therefore a deterministic and differentiable mapping between the output of the encoder and the input of the decoder needs to be established. We need to represent the random variable $z$ as a differentiable and invertible variation $g$ of another auxiliary random variable $\epsilon$ (i.e., $z = g(\mu,\sigma,\epsilon)$). We employ a re-referencing trick such that $g(\mu,\sigma,\epsilon) = \mu + \sigma \odot \epsilon$ i.e.
+	\begin{equation}\label{reparam}
+		z  = \mu + \sigma \odot \epsilon
+	\end{equation}
+	where $\epsilon \sim N(0,1)$ and $\odot$ is the product of elements.
+	
+	\begin{figure}[b]
+		\includegraphics[scale=0.3]{vae}
+		\caption{\label{fig:epsart} A figure caption. The figure captions are automatically numbered.}
+		\label{fig:vae}
+	\end{figure}
+	
+	\section{spin Variational graph auto-encoder}
+	We want to construct a graph variational self-encoder that applies the idea of VAE to graph structure data. We want our graph variational self-encoder to generate new Ising configurations of different sizes in steady state. However, we cannot use VAE directly because traditional convolution can only be applied to Ising configurations of the same size, and different Ising configurations are equivalent to different graph structures with different numbers of nodes resulting in the inability to use convolution directly. At this point, we can use the graph convolution mentioned above, which can effectively describe different graph structures, train different sized configurations in the same neural network, and get the generation effect we want, i.e., generate steady-state Ising configurations of different sizes.	
+	\subsection{Encoder}
+	The first two GCN layers generate a high-dimensional feature matrix, while we consider the edge information in the graph structure, the edge features are involved in the convolutional aggregation, refer to the previous update formula of the graph convolution can get our new update formula.
+	\begin{equation}\label{upgradeFormula}
+		\mathbf{x}^{\prime}_i = \mathbf{W}_1 \mathbf{x}_i + \mathbf{W}_2\sum_{j \in \mathcal{N}(i)} e_{j,i} \cdot \mathbf{x}_j
+	\end{equation}
+
+	$e_{j,i}$ denotes the edge weights from source node $j$ to target node $i$.
+	The result of the upper convolution in the convolution operation is used as the input to the lower convolution to perform the stacking of convolutions.The third convolutional layer we use two different convolutional networks to obtain $\mu,\log{\sigma^2}$ respectively
+	\begin{equation}\label{mu}
+		\mu = GCN_{\mu}(\hat X,A) \\
+	\end{equation}	
+	\begin{equation}\label{log}
+		\log{\sigma^2} = GCN_{\log{\sigma^2}}(\hat X,A)
+	\end{equation}
+	Then we can sample Z by eqs.~\ref{reparam}. from the distribution.
+	\begin{figure*}
+		\includegraphics[scale=0.2]{spin_vgae2}
+		\caption{\label{fig:wide}Use the figure* environment to get a wide figure that spans the page in \texttt{twocolumn} formatting.}
+		\label{fig:spinvgae2}
+	\end{figure*}
+	\subsection{Decoder}
+	Our sampling result z is a high-dimensional representation of the nodes. In the decoder part, since the connection between the nodes of the Ising model is fixed, we can ignore the edge properties of the Ising model in the decoder part and use a fully connected neural network for each node in the potential variable z to reduce its dimensionality to 1. At this point we can think of the reconstruction problem as classifying each node, Using the sigmod activation function, we then classify them by value. We obtain our generated reconstruction model
+	\begin{equation}\label{x_i}
+		\overline x_i = MLP(z_i)
+	\end{equation}
+	$z_i$ represents the high-dimensional representation of the nodes, which are transformed into the reconstructed nodes we need by the fully-connected neural network. Since we perform the fully-connected neural network for each high-dimensional node and finally downscale to 1 dimension, our model can adapt to various sizes of configurations. We realize that one model can generate multiple configurations of various sizes, Meanwhile, because of the mixed training of multiple models, some noise is added to the training, which enhances the robustness of the model and the model generation is better.
+	
+	After several iterations, we can consider the model training successful when the value of the loss function is less than the threshold, and then we can save the model and the trained $\mu$ and $\sigma$ and use the decoder to generate the configuration we want. Our model can generate multiple sizes of configurations, just let the sizes you need to train together, and after the training is finished, we can use the configurations under the size to fix the model to the size we need, then we can generate the configurations under the size we want.
+
+	\section{SIMULATION RESULTS AND ANALYSIS}
 		\begin{table*}
 			\caption{\label{tab:table3}This is a wide table that spans the full page
 				width in a two-column layout. It is formatted using the

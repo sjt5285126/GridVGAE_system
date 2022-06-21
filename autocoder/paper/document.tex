@@ -40,7 +40,7 @@ aps,
 %floatfix,
 ]{revtex4-2}
 \usepackage{amsmath}
-\usepackage{subfigure}
+\usepackage{subcaption}
 \usepackage{svg}
 \usepackage{graphicx}% Include figure files
 \usepackage{dcolumn}% Align table columns on decimal point
@@ -121,7 +121,7 @@ aps,
 	\subsection{Ising model}
 	
 	In statistical physics, the Ising model is described as the set of binary spins with coupling interactions in some lattice. Considering that N spins s={$s_i$} can take the value $\pm$ 1, where the index i marks the position of the spin $s_i$, the standard Hamiltonian of the Ising system includes only the nearest-neighbor interactions, and each spin direction may be "up" (+1) or "down" (-1), although the generalized model may include long-range interactions and more spin-selective directions. The standard Hamiltonian quantities are:
-    \begin{equation}
+    \begin{equation}\label{H}
     H = -J\sum_{neighbors}S_i*S_j
 	\end{equation}
 	\subsection{Graph neural network}
@@ -160,7 +160,7 @@ aps,
 	
 	So we want to use convolution in the graph domain to use a general paradigm for graph feature extraction, similar to image, when we want to get the feature representation of a node, we can aggregate the information of neighboring nodes, which can be understood in this way, each node in the graph is changing its state all the time until the final balance because of the influence of the more distant points of the neighboring node kernel, the closer the neighbor The closer the neighbor, the greater the influence.
 	\subsubsection{Graph Convolutional Generalization}	
-	For a graph convolutional network, we want to learn its feature representation for each node, and any graph convolution can be written as a nonlinear function such that
+	For a graph convolutional network, we want to learn its feature representation for each node, and any graph convolution can be written as a nonlinear function such that:
 	\begin{equation}\label{key}
 		H^{l+1} = f(H^l,A)
 	\end{equation}
@@ -171,6 +171,12 @@ aps,
 		f(H^l,A) = \sigma(A H^l W^l)
 	\end{equation}
 	$W^l$ represents the parameter matrix of the lth layer, and $\sigma$ represents the activation function. According to the matrix multiplication it can be seen that each node in the above equation combines the information of the neighboring nodes, but since only the adjacency matrix is used, the diagonal of the adjacency matrix is 0, which cannot reflect the information of the nodes themselves, so we use the Laplacian matrix instead of the adjacency matrix
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.5]{GNN}
+		\caption{This is figure 1}
+		\label{fig:gnn}
+	\end{figure}
 	\begin{equation}\label{key_w}
 		f(H^l,A) = \sigma(L H^l W^l)
 	\end{equation}
@@ -245,6 +251,8 @@ aps,
 	After several iterations, we can consider the model training successful when the value of the loss function is less than the threshold, and then we can save the model and the trained $\mu$ and $\sigma$ and use the decoder to generate the configuration we want. Our model can generate multiple sizes of configurations, just let the sizes you need to train together, and after the training is finished, we can use the configurations under the size to fix the model to the size we need, then we can generate the configurations under the size we want.
 
 	\section{SIMULATION RESULTS AND ANALYSIS}
+	To verify the effectiveness of the network described above, we build an Ising simulator that produces Ising states in a 32 × 32 lattice near its critical temperature. The model we are simulating is descried by a Hamiltonian of the eqs.\ref{H}
+	
 		\begin{table*}
 			\caption{\label{tab:table3}This is a wide table that spans the full page
 				width in a two-column layout. It is formatted using the
@@ -399,13 +407,38 @@ aps,
 		illustrates several features new with REV\TeX4.2,
 		starting with the \texttt{video} environment, which is in the same category with
 		\texttt{figure} and \texttt{table}.%
-		\begin{figure}	
-			\centering
-			\includegraphics[scale=0.15]{16mix_32_T_3}
-			\includegraphics[scale=0.15]{16mix32_32_T_3}
-			\caption{name of the figure} %  %大图名称
-		%\label{fig:1}  %图片引用标记
-		\end{figure}
+	\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[scale=0.1]{16mix32_32_T_3_E}
+		\caption{chutian3}
+		\label{chutian3}%文中引用该图片代号
+	\end{subfigure}
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[scale=0.1]{16mix32_32_T_3_M}
+		\caption{chutian3}
+		\label{chutian3}%文中引用该图片代号
+	\end{subfigure}
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[scale=0.1]{16mix32_16_T_3_E}
+		\caption{chutian3}
+		\label{chutian3}%文中引用该图片代号
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[scale=0.1]{16mix32_16_M}
+		\caption{chutian3}
+		\label{chutian3}%文中引用该图片代号
+	\end{subfigure}
+
+	\caption{mother of chutian}
+	\label{da_chutian}
+	\end{figure}
 		The \verb+\setfloatlink+ command causes the title of the video to be a hyperlink to the
 		indicated URL; it may be used with any environment that takes the \verb+\caption+
 		command.

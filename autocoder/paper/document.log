@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.6.18)  21 JUN 2022 15:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.6.18)  21 JUN 2022 15:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -183,6 +183,26 @@ LaTeX Info: Redefining \frak on input line 104.
 LaTeX Info: Redefining \Bbb on input line 120.
 LaTeX Info: Redefining \REV@mathfrak on input line 128.
 ))
+(D:\MikTex\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen147
+\lightrulewidth=\dimen148
+\cmidrulewidth=\dimen149
+\belowrulesep=\dimen150
+\belowbottomsep=\dimen151
+\aboverulesep=\dimen152
+\abovetopsep=\dimen153
+\cmidrulesep=\dimen154
+\cmidrulekern=\dimen155
+\defaultaddspace=\dimen156
+\@cmidla=\count279
+\@cmidlb=\count280
+\@aboverulesep=\dimen157
+\@belowrulesep=\dimen158
+\@thisruleclass=\count281
+\@lastruleclass=\count282
+\@thisrulewidth=\dimen159
+)
 (D:\MikTex\tex/latex/caption\subcaption.sty
 Package: subcaption 2022/01/07 v1.5 Sub-captions (AR)
 
@@ -196,14 +216,14 @@ Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks24
 )
-\caption@tempdima=\dimen147
-\captionmargin=\dimen148
-\caption@leftmargin=\dimen149
-\caption@rightmargin=\dimen150
-\caption@width=\dimen151
-\caption@indent=\dimen152
-\caption@parindent=\dimen153
-\caption@hangindent=\dimen154
+\caption@tempdima=\dimen160
+\captionmargin=\dimen161
+\caption@leftmargin=\dimen162
+\caption@rightmargin=\dimen163
+\caption@width=\dimen164
+\caption@indent=\dimen165
+\caption@parindent=\dimen166
+\caption@hangindent=\dimen167
 Package caption Info: Unknown document class (or package),
 (caption)             standard defaults will be used.
 Package caption Info: \@makecaption = \long macro:#1#2->\par \vskip \abovecapti
@@ -218,11 +238,11 @@ Package caption Warning: Unknown document class (or package),
 (caption)                standard defaults will be used.
 See the caption package documentation for explanation.
 
-\c@caption@flags=\count279
-\c@continuedfloat=\count280
+\c@caption@flags=\count283
+\c@continuedfloat=\count284
 )
-\c@subfigure=\count281
-\c@subtable=\count282
+\c@subfigure=\count285
+\c@subtable=\count286
 ) (D:\MikTex\tex/latex/svg\svg.sty
 Package: svg 2020/11/26 v2.02k (include SVG pictures)
  (D:\MikTex\tex/generic/iftex\iftex.sty
@@ -280,16 +300,16 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 (D:\MikTex\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen155
-\Gin@req@width=\dimen156
+\Gin@req@height=\dimen168
+\Gin@req@width=\dimen169
 )
 (D:\MikTex\tex/latex/tools\shellesc.sty
 Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
 Package shellesc Info: Restricted shell escape enabled on input line 77.
 )
-\c@svg@param@lastpage=\count283
+\c@svg@param@lastpage=\count287
 \svg@box=\box68
-\c@svg@param@currpage=\count284
+\c@svg@param@currpage=\count288
 )
 (D:\MikTex\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
@@ -319,8 +339,8 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 (D:\MikTex\tex/latex/pgf/utilities\pgfrcs.sty
 (D:\MikTex\tex/generic/pgf/utilities\pgfutil-common.tex
 \pgfutil@everybye=\toks25
-\pgfutil@tempdima=\dimen157
-\pgfutil@tempdimb=\dimen158
+\pgfutil@tempdima=\dimen170
+\pgfutil@tempdimb=\dimen171
 
 (D:\MikTex\tex/generic/pgf/utilities\pgfutil-common-lists.tex))
 (D:\MikTex\tex/generic/pgf/utilities\pgfutil-latex.def
@@ -340,26 +360,26 @@ Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
 (D:\MikTex\tex/generic/pgf/utilities\pgfkeysfiltered.code.tex
 \pgfkeys@tmptoks=\toks28
 ))
-\pgf@x=\dimen159
-\pgf@y=\dimen160
-\pgf@xa=\dimen161
-\pgf@ya=\dimen162
-\pgf@xb=\dimen163
-\pgf@yb=\dimen164
-\pgf@xc=\dimen165
-\pgf@yc=\dimen166
-\pgf@xd=\dimen167
-\pgf@yd=\dimen168
+\pgf@x=\dimen172
+\pgf@y=\dimen173
+\pgf@xa=\dimen174
+\pgf@ya=\dimen175
+\pgf@xb=\dimen176
+\pgf@yb=\dimen177
+\pgf@xc=\dimen178
+\pgf@yc=\dimen179
+\pgf@xd=\dimen180
+\pgf@yd=\dimen181
 \w@pgf@writea=\write4
 \r@pgf@reada=\read2
-\c@pgf@counta=\count285
-\c@pgf@countb=\count286
-\c@pgf@countc=\count287
-\c@pgf@countd=\count288
+\c@pgf@counta=\count289
+\c@pgf@countb=\count290
+\c@pgf@countc=\count291
+\c@pgf@countd=\count292
 \t@pgf@toka=\toks29
 \t@pgf@tokb=\toks30
 \t@pgf@tokc=\toks31
-\pgf@sys@id@count=\count289
+\pgf@sys@id@count=\count293
 
 (D:\MikTex\tex/generic/pgf/systemlayer\pgf.cfg
 File: pgf.cfg 2021/05/15 v3.1.9a (3.1.9a)
@@ -374,8 +394,8 @@ File: pgfsys-common-pdf.def 2021/05/15 v3.1.9a (3.1.9a)
 )))
 (D:\MikTex\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-\pgfsyssoftpath@smallbuffer@items=\count290
-\pgfsyssoftpath@bigbuffer@items=\count291
+\pgfsyssoftpath@smallbuffer@items=\count294
+\pgfsyssoftpath@bigbuffer@items=\count295
 )
 (D:\MikTex\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2021/05/15 v3.1.9a (3.1.9a)
@@ -384,9 +404,9 @@ File: pgfsysprotocol.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
  (D:\MikTex\tex/latex/tools\array.sty
 Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen169
+\col@sep=\dimen182
 \ar@mcellbox=\box70
-\extrarowheight=\dimen170
+\extrarowheight=\dimen183
 \NC@list=\toks32
 \extratabsurround=\skip54
 \backup@length=\skip55
@@ -404,14 +424,14 @@ LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 LaTeX Info: Redefining \bm on input line 218.
 )
 Class revtex4-2 Info: Unrecognized array package. Please update this document c
-lass! (Proceeding with fingers crossed.) on input line 60.
-Class revtex4-2 Info: cite was not loaded (OK!) on input line 60.
-Class revtex4-2 Info: mcite was not loaded (OK!) on input line 60.
-Class revtex4-2 Info: multicol was not loaded (OK!) on input line 60.
+lass! (Proceeding with fingers crossed.) on input line 61.
+Class revtex4-2 Info: cite was not loaded (OK!) on input line 61.
+Class revtex4-2 Info: mcite was not loaded (OK!) on input line 61.
+Class revtex4-2 Info: multicol was not loaded (OK!) on input line 61.
 
 (D:\MikTex\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count292
+\l__color_backend_stack_int=\count296
 \l__pdf_internal_box=\box72
 ) (document.aux
 
@@ -438,34 +458,34 @@ LaTeX Warning: Label `sub@chutian3' multiply defined.
 )
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  (D:\MikTex\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count293
-\scratchdimen=\dimen171
+\scratchcounter=\count297
+\scratchdimen=\dimen184
 \scratchbox=\box73
-\nofMPsegments=\count294
-\nofMParguments=\count295
+\nofMPsegments=\count298
+\nofMParguments=\count299
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count296
-\MPscratchDim=\dimen172
-\MPnumerator=\count297
-\makeMPintoPDFobject=\count298
+\MPscratchCnt=\count300
+\MPscratchDim=\dimen185
+\MPnumerator=\count301
+\makeMPintoPDFobject=\count302
 \everyMPtoPDFconversion=\toks34
 ) (D:\MikTex\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -477,13 +497,13 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \openout3 = `documentNotes.bib'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 123
+LaTeX Font Info:    Trying to load font information for U+msa on input line 124
 .
 
 (D:\MikTex\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 123
+LaTeX Font Info:    Trying to load font information for U+msb on input line 124
 .
  (D:\MikTex\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -492,28 +512,28 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <GNN.pdf, id=17, 447.17062pt x 411.03563pt>
 File: GNN.pdf Graphic file (type pdf)
 <use GNN.pdf>
-Package pdftex.def Info: GNN.pdf  used on input line 176.
+Package pdftex.def Info: GNN.pdf  used on input line 177.
 (pdftex.def)             Requested size: 223.58476pt x 205.5173pt.
 
 [2]
 
 LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 194.
+ on input line 195.
 
 
-Overfull \hbox (1.84001pt too wide) detected at line 201
+Overfull \hbox (1.84001pt too wide) detected at line 202
 [][][]
  []
 
 <vae_style2.pdf, id=24, 957.07562pt x 795.47188pt>
 File: vae_style2.pdf Graphic file (type pdf)
 <use vae_style2.pdf>
-Package pdftex.def Info: vae_style2.pdf  used on input line 218.
+Package pdftex.def Info: vae_style2.pdf  used on input line 219.
 (pdftex.def)             Requested size: 239.26831pt x 198.86748pt.
 <vae.pdf, id=25, 814.54312pt x 450.18187pt>
 File: vae.pdf Graphic file (type pdf)
 <use vae.pdf>
-Package pdftex.def Info: vae.pdf  used on input line 225.
+Package pdftex.def Info: vae.pdf  used on input line 226.
 (pdftex.def)             Requested size: 244.36482pt x 135.0556pt.
 [3 <./GNN.pdf> <./vae_style2.pdf
 
@@ -522,35 +542,30 @@ dfs with page group included in a single page
 >]
 
 LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 232.
+ on input line 233.
 
 <spin_vgae2.pdf, id=45, 2276.00313pt x 1043.39813pt>
 File: spin_vgae2.pdf Graphic file (type pdf)
 <use spin_vgae2.pdf>
-Package pdftex.def Info: spin_vgae2.pdf  used on input line 248.
+Package pdftex.def Info: spin_vgae2.pdf  used on input line 249.
 (pdftex.def)             Requested size: 455.19257pt x 208.67592pt.
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-69.
+70.
 (D:\MikTex\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 269.
- [4 <./vae.pdf>]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 270.
+ [4 <./vae.pdf>] [5 <./spin_vgae2.pdf>]
 
-LaTeX Warning: Reference `tab:table1' on page 5 undefined on input line 345.
-
-[5 <./spin_vgae2.pdf>]
-
-LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 397.
+LaTeX Warning: Reference `tab:table1' on page 6 undefined on input line 358.
 
 
-LaTeX Warning: Reference `tab:table1' on page 6 undefined on input line 411.
+LaTeX Warning: Reference `tab:table1' on page 6 undefined on input line 424.
 
 
 LaTeX Warning: Reference `vid:PRSTPER.4.010101' on page 6 undefined on input li
-ne 414.
+ne 427.
 
 Package epstopdf Info: Source file: <16mix32_32_T_3_E.eps>
 (epstopdf)                    date: 2022-06-21 09:56:09
@@ -560,7 +575,7 @@ Package epstopdf Info: Source file: <16mix32_32_T_3_E.eps>
 (epstopdf)                    size: 36581 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=16mix32_32_T_3_E-eps
 -converted-to.pdf 16mix32_32_T_3_E.eps>
-(epstopdf)             \includegraphics on input line 422.
+(epstopdf)             \includegraphics on input line 435.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -570,7 +585,7 @@ F inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: 16mix32_32_T_3_E-eps-converted-to.pdf Graphic file (type pdf)
 <use 16mix32_32_T_3_E-eps-converted-to.pdf>
 Package pdftex.def Info: 16mix32_32_T_3_E-eps-converted-to.pdf  used on input l
-ine 422.
+ine 435.
 (pdftex.def)             Requested size: 77.09251pt x 59.02396pt.
 Package epstopdf Info: Source file: <16mix32_32_T_3_M.eps>
 (epstopdf)                    date: 2022-06-21 09:55:01
@@ -580,7 +595,7 @@ Package epstopdf Info: Source file: <16mix32_32_T_3_M.eps>
 (epstopdf)                    size: 32502 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=16mix32_32_T_3_M-eps
 -converted-to.pdf 16mix32_32_T_3_M.eps>
-(epstopdf)             \includegraphics on input line 429.
+(epstopdf)             \includegraphics on input line 442.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -590,7 +605,7 @@ F inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: 16mix32_32_T_3_M-eps-converted-to.pdf Graphic file (type pdf)
 <use 16mix32_32_T_3_M-eps-converted-to.pdf>
 Package pdftex.def Info: 16mix32_32_T_3_M-eps-converted-to.pdf  used on input l
-ine 429.
+ine 442.
 (pdftex.def)             Requested size: 77.09251pt x 59.02396pt.
 Package epstopdf Info: Source file: <16mix32_16_T_3_E.eps>
 (epstopdf)                    date: 2022-06-21 15:13:14
@@ -600,7 +615,7 @@ Package epstopdf Info: Source file: <16mix32_16_T_3_E.eps>
 (epstopdf)                    size: 31821 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=16mix32_16_T_3_E-eps
 -converted-to.pdf 16mix32_16_T_3_E.eps>
-(epstopdf)             \includegraphics on input line 436.
+(epstopdf)             \includegraphics on input line 449.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -610,7 +625,7 @@ F inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: 16mix32_16_T_3_E-eps-converted-to.pdf Graphic file (type pdf)
 <use 16mix32_16_T_3_E-eps-converted-to.pdf>
 Package pdftex.def Info: 16mix32_16_T_3_E-eps-converted-to.pdf  used on input l
-ine 436.
+ine 449.
 (pdftex.def)             Requested size: 77.09251pt x 59.02396pt.
 Package epstopdf Info: Source file: <16mix32_16_M.eps>
 (epstopdf)                    date: 2022-06-21 15:12:40
@@ -620,7 +635,7 @@ Package epstopdf Info: Source file: <16mix32_16_M.eps>
 (epstopdf)                    size: 31478 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=16mix32_16_M-eps-con
 verted-to.pdf 16mix32_16_M.eps>
-(epstopdf)             \includegraphics on input line 442.
+(epstopdf)             \includegraphics on input line 455.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -630,7 +645,7 @@ clusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: 16mix32_16_M-eps-converted-to.pdf Graphic file (type pdf)
 <use 16mix32_16_M-eps-converted-to.pdf>
 Package pdftex.def Info: 16mix32_16_M-eps-converted-to.pdf  used on input line 
-442.
+455.
 (pdftex.def)             Requested size: 77.09251pt x 59.02396pt.
 Package epstopdf Info: Source file: <16mix32_32_T_3_E_sactter.eps>
 (epstopdf)                    date: 2022-06-21 15:17:08
@@ -641,7 +656,7 @@ pdf>
 (epstopdf)                    size: 58680 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=16mix32_32_T_3_E_sac
 tter-eps-converted-to.pdf 16mix32_32_T_3_E_sactter.eps>
-(epstopdf)             \includegraphics on input line 452.
+(epstopdf)             \includegraphics on input line 465.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -653,7 +668,7 @@ t>
 File: 16mix32_32_T_3_E_sactter-eps-converted-to.pdf Graphic file (type pdf)
 <use 16mix32_32_T_3_E_sactter-eps-converted-to.pdf>
 Package pdftex.def Info: 16mix32_32_T_3_E_sactter-eps-converted-to.pdf  used on
- input line 452.
+ input line 465.
 (pdftex.def)             Requested size: 172.19925pt x 131.82048pt.
 Package epstopdf Info: Source file: <32_T_3_M_scatter.eps>
 (epstopdf)                    date: 2022-06-21 15:15:45
@@ -663,7 +678,7 @@ Package epstopdf Info: Source file: <32_T_3_M_scatter.eps>
 (epstopdf)                    size: 59271 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=32_T_3_M_scatter-eps
 -converted-to.pdf 32_T_3_M_scatter.eps>
-(epstopdf)             \includegraphics on input line 458.
+(epstopdf)             \includegraphics on input line 471.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -673,7 +688,7 @@ F inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: 32_T_3_M_scatter-eps-converted-to.pdf Graphic file (type pdf)
 <use 32_T_3_M_scatter-eps-converted-to.pdf>
 Package pdftex.def Info: 32_T_3_M_scatter-eps-converted-to.pdf  used on input l
-ine 458.
+ine 471.
 (pdftex.def)             Requested size: 172.19925pt x 131.82048pt.
 Package epstopdf Info: Source file: <16mix32_32_T_3_M_scatter.eps>
 (epstopdf)                    date: 2022-06-21 15:16:14
@@ -684,7 +699,7 @@ pdf>
 (epstopdf)                    size: 58690 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=16mix32_32_T_3_M_sca
 tter-eps-converted-to.pdf 16mix32_32_T_3_M_scatter.eps>
-(epstopdf)             \includegraphics on input line 464.
+(epstopdf)             \includegraphics on input line 477.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -696,10 +711,10 @@ t>
 File: 16mix32_32_T_3_M_scatter-eps-converted-to.pdf Graphic file (type pdf)
 <use 16mix32_32_T_3_M_scatter-eps-converted-to.pdf>
 Package pdftex.def Info: 16mix32_32_T_3_M_scatter-eps-converted-to.pdf  used on
- input line 464.
+ input line 477.
 (pdftex.def)             Requested size: 172.19925pt x 131.82048pt.
 
-Underfull \hbox (badness 4859) in paragraph at lines 414--468
+Underfull \hbox (badness 4859) in paragraph at lines 427--481
 []\OT1/cmr/m/n/10 Video [] il-lus-trates sev-eral fea-tures new with
  []
 
@@ -708,16 +723,16 @@ to.pdf> <./16mix32_16_T_3_E-eps-converted-to.pdf> <./16mix32_16_M-eps-converted
 -to.pdf> <./16mix32_32_T_3_E_sactter-eps-converted-to.pdf>]
 
 LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 507.
+ on input line 509.
 
-(document.bbl
+(document.bbl [7 <./32_T_3_M_scatter-eps-converted-to.pdf> <./16mix32_32_T_3_M_
+scatter-eps-converted-to.pdf>]
 Underfull \hbox (badness 3417) in paragraph at lines 72--75
  []\OT1/cmr/m/n/9 S. R. Kawa and S.-J. Lin.  \OT1/cmr/m/it/9 J. Geo-phys. Res.\
 OT1/cmr/m/n/9 ,
  []
 
-[7 <./32_T_3_M_scatter-eps-converted-to.pdf> <./16mix32_32_T_3_M_scatter-eps-co
-nverted-to.pdf>]) [8] (document.aux)
+) [8] (document.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -726,10 +741,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9608 strings out of 478354
- 164520 string characters out of 2853521
- 508015 words of memory out of 3000000
- 27840 multiletter control sequences out of 15000+600000
+ 9679 strings out of 478354
+ 165724 string characters out of 2853521
+ 515680 words of memory out of 3000000
+ 27907 multiletter control sequences out of 15000+600000
  482324 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  94i,16n,92p,1628b,532s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -750,7 +765,7 @@ D:/MikTex/fonts/type1/public/amsfonts/cm/cmti10.pfb><D:/MikTex/fonts/type1/publ
 ic/amsfonts/cm/cmti9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
 D:/MikTex/fonts/type1/public/amsfonts/symbols/msam10.pfb><D:/MikTex/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on document.pdf (8 pages, 2844859 bytes).
+Output written on document.pdf (8 pages, 2845284 bytes).
 PDF statistics:
  2678 PDF objects out of 2984 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

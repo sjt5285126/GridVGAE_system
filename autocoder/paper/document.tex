@@ -39,6 +39,7 @@ aps,
 %prstper,
 %floatfix,
 ]{revtex4-2}
+\usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{subcaption}
 \usepackage{svg}
@@ -301,6 +302,18 @@ aps,
 		Fig.~\ref{fig:wide}
 		has content that is too wide for a single column,
 		so the \texttt{figure*} environment has been used.%
+		\begin{table}
+			\caption{acc table}
+			\begin{ruledtabular}
+			\begin{tabular}{ccc}
+				size & EdgeGcn & Gcn \\
+				\midrule
+				16      & 100\%   & 79\% \\
+				32      & 99.99\% & 75.77\% \\
+				16mix32 & 99.98\% & 74.3\% \\
+			\end{tabular}
+			\end{ruledtabular}
+		\end{table}
 		\begin{table}[b]
 			\caption{\label{tab:table4}%
 				Numbers in columns Three--Five are aligned with the ``d'' column specifier 

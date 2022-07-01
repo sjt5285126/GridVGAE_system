@@ -130,10 +130,6 @@ J.~Nelson.
 J.~K. Nelson.
 \newblock M.{S}. thesis, New York University, 1999.
 
-\bibitem{Note1}
-Automatically placing footnotes into the bibliography requires using BibTeX to
-  compile the bibliography.
-
 \bibitem{inproceedings-full}
 Alfred~V. Oaho, Jeffrey~D. Ullman, and Mihalis Yannakakis.
 \newblock On notions of information transfer in {VLSI} circuits.

@@ -7,12 +7,13 @@ import torch_geometric.loader as gloader
 import time
 
 # 定义设备
-device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:3' if torch.cuda.is_available() else 'cpu')
 
 # 再次小批量训练一组数据
+
 datafile = open('data/IsingGraph/data_32_T_PTP.pkl', 'rb')
 data = pickle.load(datafile)
-batch_size = 50
+batch_size = 500
 data = data[:batch_size]
 data_train_batchs = gloader.DataLoader(data, batch_size=batch_size)
 
@@ -31,7 +32,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 
 
 # 模型地址
-PATH = 'model_pre2_mix128_32_16_PTP_0618.pkl'
+PATH = 'model_pre2_16mix32_PTP_0617.pkl'
 
 # 加载模型
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
@@ -65,19 +66,44 @@ def reparametrize(mu, log):
     # 返回重采样的z
     return mu + torch.randn_like(log) + torch.exp(log)
 
-
+def initData(path,epochs):
+    TotalM = []
+    TotalE = []
+    AvrM = []
+    AvrE = []
+    model.eval()
+    for e in range(epochs):
+        z = reparametrize(mu,log)
+        x_ = model.decode(z)
+        configs = reshapeIsing_MSE(x_,batch_size)
+        print(configs.shape)
+        evalTotalM, evalTotalE, evalAvrM, evalAvrE = calculate(configs)
+        TotalE.extend(list(evalTotalE))
+        TotalM.extend(list(evalTotalM))
+        AvrE.extend(list(evalAvrE))
+        AvrM.extend(list(evalAvrM))
+    f_gen = h5py.File(path,'w')
+    print(len(AvrM))
+    f_gen['TotalM'] = TotalM
+    f_gen['TotalE'] = TotalE
+    f_gen['AvrM'] = AvrM
+    f_gen['AvrE'] = AvrE
+    f_gen.close()
+    print("complete")
 # 生成数据
-f_gen = h5py.File('T_PTP_mix64_32_16_32.hdf5', 'w')
-model.eval()
-z = reparametrize(mu, log)
-x_ = model.decode(z)
-configs = reshapeIsing_MSE(x_, batch_size)
-print(configs.shape)
-evalTotalM, evalTotalE, evalAvrM, evalAvrE = calculate(configs)
-f_gen['TotalM'] = evalTotalM
-f_gen['TotalE'] = evalTotalE
-f_gen['AvrM'] = evalAvrM
-f_gen['AvrE'] = evalAvrE
-f_gen.close()
+# f_gen = h5py.File('T_PTP_mix64_32_16_64.hdf5', 'w')
+# model.eval()
+# z = reparametrize(mu, log)
+# x_ = model.decode(z)
+# configs = reshapeIsing_MSE(x_, batch_size)
+# print(configs.shape)
+# evalTotalM, evalTotalE, evalAvrM, evalAvrE = calculate(configs)
+# f_gen['TotalM'] = evalTotalM
+# f_gen['TotalE'] = evalTotalE
+# f_gen['AvrM'] = evalAvrM
+# f_gen['AvrE'] = evalAvrE
+# f_gen.close()
+#
+# print('complete')
 
-print('complete')
+initData('16mix32_32_PTP_0617.hdf5',1)

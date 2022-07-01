@@ -61,40 +61,41 @@ aps,
 \begin{document}
 	
 	\preprint{APS/123-QED}
-	
+
 	\title{Manuscript Title:\\with Forced Linebreak}% Force line breaks with \\
 	\thanks{A footnote to the article title}%
-	
+
 	\author{Ann Author}
 	\altaffiliation[Also at ]{Physics Department, XYZ University.}%Lines break automatically or can be forced with \\
 	\author{Second Author}%
 	\email{Second.Author@institution.edu}
 	\affiliation{%
-		Authors' institution and/or address\\
-		This line break forced with \textbackslash\textbackslash
+	Authors' institution and/or address\\
+	This line break forced with \textbackslash\textbackslash
 	}%
-	
+
 	\collaboration{MUSO Collaboration}%\noaffiliation
-	
+
 	\author{Charlie Author}
 	\homepage{http://www.Second.institution.edu/~Charlie.Author}
 	\affiliation{
-		Second institution and/or address\\
-		This line break forced% with \\
+	Second institution and/or address\\
+	This line break forced% with \\
 	}%
 	\affiliation{
-		Third institution, the second for Charlie Author
+	Third institution, the second for Charlie Author
 	}%
 	\author{Delta Author}
 	\affiliation{%
-		Authors' institution and/or address\\
-		This line break forced with \textbackslash\textbackslash
+	Authors' institution and/or address\\
+	This line break forced with \textbackslash\textbackslash
 	}%
-	
+
 	\collaboration{CLEO Collaboration}%\noaffiliation
-	
+
 	\date{\today}% It is always \today, today,
 	%  but any date may be explicitly specified
+
 	
 	\begin{abstract}
 		Because of its powerful ability to extract fundamental features from complex systems, deep learning has a wide range of applications in areas such as image recognition, speech processing, and biological systems. In particular, in the field of condensed matter physics, deep learning has demonstrated the unique ability to accurately approximate complex physical systems. In the past few years, traditional neural networks have achieved good results in condensed matter physics both in terms of feature extraction and model generation. However, the limitation of configuration size has led to the generation of only single-size configurations, which limits the generalizability of neural networks. Traditional deep learning algorithms assume that data samples are independent of each other, but in real physical configurations, each spin node is associated with other nodes and edges in the configuration. This problem is solved by the emergence of graph neural networks, which are irregular, can adapt to arbitrary size configurations, and can capture the interdependencies between different nodes. Variational self-coding is an unsupervised learning algorithm that can effectively model the distribution of training data. In this paper, we use this feature of graph neural networks in combination with variational self-coding to construct Ising model simulators, and the generated Ising models are very similar to the data simulated by traditional Monte Carlo methods. The results show that graph neural networks are a promising computational tool in the field of condensed matter physics.
@@ -105,7 +106,7 @@ aps,
 	%\maketitle
 	
 	%\tableofcontents
-	
+	\maketitle
 	\section{introduction}
 	
 	Over the past year, physicists have started to use deep learning techniques to study the field of condensed matter physics. Most of the tasks are done by supervised learning algorithms. In supervised learning, the algorithm is trained on data with labels, which are assigned to data points. After successful training, high precision predictions can be made for labels of previously unseen data. In addition to supervised learning, there are unsupervised learning algorithms that can find structure in unlabeled data. It has become possible to use unsupervised learning techniques to reproduce the Monte Carlo sampling state of the Ising model, and discovering phase transitions in an unsupervised manner has become mainstream. Restricted Boltzmann machines, variational self-coding, and generative adversarial networks have been widely used for the simulation of Ising models with good results. However, none of these models can take into account the molecule-molecule interactions and the influence of the edges between molecules in the physical model during training. Also, the microstructure of many physical models is irregular, and the generated models are poorly generalized and can generally only accommodate one size at one temperature. This requires a deep neural network that can consider unstructured data and can take into account node-to-node and node-to-edge relationships.
@@ -159,7 +160,7 @@ aps,
 	
 	Before understanding graph convolution, we need to have a basic concept of convolution operation. Convolutional networks are first applied to images, where we use the pixel points on the image as features to perform the convolution operation to extract features. The random shared convolution sum is used to obtain a weighted sum of pixel points to extract a particular feature, and then back propagation is used to optimize the convolution kernel parameters to automatically extract features, which is the cornerstone of convolutional neural network to extract features. The convolution operation is equivalent to aggregating the information of surrounding pixels to the central pixel of the convolution kernel and extracting the features of that part.
 	
-	So we want to use convolution in the graph domain to use a general paradigm for graph feature extraction, similar to image, when we want to get the feature representation of a node, we can aggregate the information of neighboring nodes, which can be understood in this way, each node in the graph is changing its state all the time until the final balance because of the influence of the more distant points of the neighboring node kernel, the closer the neighbor The closer the neighbor, the greater the influence.
+	So we want to use convolution in the graph domain to use a general paradigm for graph feature extractionm, As shown in FIG. \ref{fig:gnn}, when we want to get the feature representation of a node, we can aggregate the information of neighboring nodes, which can be understood in this way, each node in the graph is changing its state all the time until the final balance because of the influence of the more distant points of the neighboring node kernel, the closer the neighbor The closer the neighbor, the greater the influence.
 	\subsubsection{Graph Convolutional Generalization}	
 	For a graph convolutional network, we want to learn its feature representation for each node, and any graph convolution can be written as a nonlinear function such that:
 	\begin{equation}\label{key}
@@ -175,7 +176,7 @@ aps,
 	\begin{figure}
 		\centering
 		\includegraphics[scale=0.5]{GNN}
-		\caption{This is figure 1}
+		\caption{Schematic diagram of a graph convolutional network aggregating neighboring nodes. The red node in the center aggregates the nearest blue node, and the blue node in turn aggregates the nearest green node, allowing the nodes to gain longer-range influence through multiple sets of convolutional operations.}
 		\label{fig:gnn}
 	\end{figure}
 	\begin{equation}\label{key_w}
@@ -208,23 +209,25 @@ aps,
 	\end{equation}
 	where $\mu$ and $\sigma$ denote the mean and standard deviation of the model.
 	
-	In summary, VAE is an encoder network based on extracting the mean and variance of a potential Gaussian representation $q_{\phi}(z|x)$ of $p(z|x)$. The decoder in VAE, which uses a Gaussian $q_{\phi}(z|x)$ sample as input, generates new samples according to the distribution $p_{\theta}(x|z)$. We compute all parameters by maximizing ELBO using backpropagation, but the Gaussian distribution is random and non-integrable. Therefore a deterministic and differentiable mapping between the output of the encoder and the input of the decoder needs to be established. We need to represent the random variable $z$ as a differentiable and invertible variation $g$ of another auxiliary random variable $\epsilon$ (i.e., $z = g(\mu,\sigma,\epsilon)$). We employ a re-referencing trick such that $g(\mu,\sigma,\epsilon) = \mu + \sigma \odot \epsilon$ i.e.
+	In summary, VAE is an encoder network based on extracting the mean and variance of a potential Gaussian representation $q_{\phi}(z|x)$ of $p(z|x)$. The decoder in VAE, which uses a Gaussian $q_{\phi}(z|x)$ sample as input, generates new samples according to the distribution $p_{\theta}(x|z)$(see FIG.\ref{fig:vae} ). We compute all parameters by maximizing ELBO using backpropagation, but the Gaussian distribution is random and non-integrable. Therefore a deterministic and differentiable mapping between the output of the encoder and the input of the decoder needs to be established As shown in the FIG.\ref{fig:simplevae}. We need to represent the random variable $z$ as a differentiable and invertible variation $g$ of another auxiliary random variable $\epsilon$ (i.e., $z = g(\mu,\sigma,\epsilon)$). We employ a re-referencing trick such that $g(\mu,\sigma,\epsilon) = \mu + \sigma \odot \epsilon$ i.e.
 	\begin{equation}\label{reparam}
 		z  = \mu + \sigma \odot \epsilon
 	\end{equation}
 	where $\epsilon \sim N(0,1)$ and $\odot$ is the product of elements.
 	
-	\begin{figure}
-		\centering
-		\includegraphics[scale=0.25]{vae_style2}
-		\caption{}
-		\label{fig:vaestyle2}
-	\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{simpleVAE}
+			\caption{An example of a variational self-encoder, in which each network consists of an input layer, a hidden layer and an output layer. The dashed arrows indicate the mean $\mu$ and variance $\sigma$ for the reparametric Eq.\ref{reparam}. Each cell in the output layer of the decoder requires the corresponding $\mu$ and $\sigma$}
+	% 一个关于变分自编码器的例子,在这个例子中,每个网络都由一个输入层,一个隐藏层和一个输出层组成.虚线箭头表示均值$\mu$和方差$\sigma$进行重参化Eq.\ref{reparam}.解码器输出层中的每个单元都需要相应的$\mu$和$\sigma$
+	\label{fig:simplevae}
+\end{figure}
 	
 	
 	\begin{figure}[b]
 		\includegraphics[scale=0.3]{vae}
-		\caption{\label{fig:epsart} A figure caption. The figure captions are automatically numbered.}
+		\caption{Variational autoencoder, a VAE is consist of two parts, encoder and decoder, and two neural networks are used in the output stage of the encoder to obtain the mean $\mu$ and variance $\sigma$ respectively. The input $z$ to the decoder requires $\mu$ and $\sigma$ obtained by the reparameterization trick [see Eq.\ref{reparam}]}
+		%变分自编码器,一个VAE由编码器与解码器两部分组成,在编码器的输出阶段分别使用两个神经网络得到均值$\mu$和方差$\sigma$.解码器的输入$z$需要$\mu$和$\sigma$通过重新参数化技巧得到[see Eq.\ref{reparam}]
 		\label{fig:vae}
 	\end{figure}
 	
@@ -262,302 +265,88 @@ aps,
 	\section{SIMULATION RESULTS AND ANALYSIS}
 	To verify the effectiveness of the network described above, we build an Ising simulator that produces Ising states in a 32 × 32 lattice near its critical temperature. The model we are simulating is descried by a Hamiltonian of the eqs.\ref{H}
 	
-		\begin{table*}
-			\caption{\label{tab:table3}This is a wide table that spans the full page
-				width in a two-column layout. It is formatted using the
-				\texttt{table*} environment. It also demonstates the use of
-				\textbackslash\texttt{multicolumn} in rows with entries that span
-				more than one column.}
-			\begin{ruledtabular}
-				\begin{tabular}{ccccc}
-					&\multicolumn{2}{c}{$D_{4h}^1$}&\multicolumn{2}{c}{$D_{4h}^5$}\\
-					Ion&1st alternative&2nd alternative&lst alternative
-					&2nd alternative\\ \hline
-					K&$(2e)+(2f)$&$(4i)$ &$(2c)+(2d)$&$(4f)$ \\
-					Mn&$(2g)$\footnote{The $z$ parameter of these positions is $z\sim\frac{1}{4}$.}
-					&$(a)+(b)+(c)+(d)$&$(4e)$&$(2a)+(2b)$\\
-					Cl&$(a)+(b)+(c)+(d)$&$(2g)$\footnotemark[1]
-					&$(4e)^{\text{a}}$\\
-					He&$(8r)^{\text{a}}$&$(4j)^{\text{a}}$&$(4g)^{\text{a}}$\\
-					Ag& &$(4k)^{\text{a}}$& &$(4h)^{\text{a}}$\\
-				\end{tabular}
-			\end{ruledtabular}
-		\end{table*}
-		
-		Insert an image using either the \texttt{graphics} or
-		\texttt{graphix} packages, which define the \verb+\includegraphics{#1}+ command.
-		(The two packages differ in respect of the optional arguments 
-		used to specify the orientation, scaling, and translation of the image.) 
-		To create an alignment, use the \texttt{tabular} environment. 
-		
-		The best place to locate the \texttt{figure} or \texttt{table} environment
-		is immediately following its first reference in text; this sample document
-		illustrates this practice for Fig.~\ref{fig:epsart}, which
-		shows a figure that is small enough to fit in a single column. 
-		
-		In exceptional cases, you will need to move the float earlier in the document, as was done
-		with Table~\ref{tab:table3}: \LaTeX's float placement algorithms need to know
-		about a full-page-width float earlier. 
-		
-		Fig.~\ref{fig:wide}
-		has content that is too wide for a single column,
-		so the \texttt{figure*} environment has been used.%
-		\begin{table}
-			\caption{acc table}
-			\begin{ruledtabular}
-			\begin{tabular}{ccc}
-				size & EdgeGcn & Gcn \\
-				\midrule
-				16      & 100\%   & 79\% \\
-				32      & 99.99\% & 75.77\% \\
-				16mix32 & 99.98\% & 74.3\% \\
-			\end{tabular}
-			\end{ruledtabular}
-		\end{table}
-		\begin{table}[b]
-			\caption{\label{tab:table4}%
-				Numbers in columns Three--Five are aligned with the ``d'' column specifier 
-				(requires the \texttt{dcolumn} package). 
-				Non-numeric entries (those entries without a ``.'') in a ``d'' column are aligned on the decimal point. 
-				Use the ``D'' specifier for more complex layouts. }
-			\begin{ruledtabular}
-				\begin{tabular}{ccddd}
-					One&Two&
-					\multicolumn{1}{c}{\textrm{Three}}&
-					\multicolumn{1}{c}{\textrm{Four}}&
-					\multicolumn{1}{c}{\textrm{Five}}\\
-					%\mbox{Three}&\mbox{Four}&\mbox{Five}\\
-					\hline
-					one&two&\mbox{three}&\mbox{four}&\mbox{five}\\
-					He&2& 2.77234 & 45672. & 0.69 \\
-					C\footnote{Some tables require footnotes.}
-					&C\footnote{Some tables need more than one footnote.}
-					& 12537.64 & 37.66345 & 86.37 \\
-				\end{tabular}
-			\end{ruledtabular}
-		\end{table}
-		
-		The content of a table is typically a \texttt{tabular} environment, 
-		giving rows of type in aligned columns. 
-		Column entries separated by \verb+&+'s, and 
-		each row ends with \textbackslash\textbackslash. 
-		The required argument for the \texttt{tabular} environment
-		specifies how data are aligned in the columns. 
-		For instance, entries may be centered, left-justified, right-justified, aligned on a decimal
-		point. 
-		Extra column-spacing may be be specified as well, 
-		although REV\TeX~4 sets this spacing so that the columns fill the width of the
-		table. Horizontal rules are typeset using the \verb+\hline+
-		command. The doubled (or Scotch) rules that appear at the top and
-		bottom of a table can be achieved enclosing the \texttt{tabular}
-		environment within a \texttt{ruledtabular} environment. Rows whose
-		columns span multiple columns can be typeset using the
-		\verb+\multicolumn{#1}{#2}{#3}+ command (for example, see the first
-		row of Table~\ref{tab:table3}).%
-		
-		Tables~\ref{tab:table1}, \ref{tab:table3}, \ref{tab:table4}, and \ref{tab:table2}%
-		\begin{table}[b]
-			\caption{\label{tab:table2}
-				A table with numerous columns that still fits into a single column. 
-				Here, several entries share the same footnote. 
-				Inspect the \LaTeX\ input for this table to see exactly how it is done.}
-			\begin{ruledtabular}
-				\begin{tabular}{cccccccc}
-					&$r_c$ (\AA)&$r_0$ (\AA)&$\kappa r_0$&
-					&$r_c$ (\AA) &$r_0$ (\AA)&$\kappa r_0$\\
-					\hline
-					Cu& 0.800 & 14.10 & 2.550 &Sn\footnotemark[1]
-					& 0.680 & 1.870 & 3.700 \\
-					Ag& 0.990 & 15.90 & 2.710 &Pb\footnotemark[2]
-					& 0.450 & 1.930 & 3.760 \\
-					Au& 1.150 & 15.90 & 2.710 &Ca\footnotemark[3]
-					& 0.750 & 2.170 & 3.560 \\
-					Mg& 0.490 & 17.60 & 3.200 &Sr\footnotemark[4]
-					& 0.900 & 2.370 & 3.720 \\
-					Zn& 0.300 & 15.20 & 2.970 &Li\footnotemark[2]
-					& 0.380 & 1.730 & 2.830 \\
-					Cd& 0.530 & 17.10 & 3.160 &Na\footnotemark[5]
-					& 0.760 & 2.110 & 3.120 \\
-					Hg& 0.550 & 17.80 & 3.220 &K\footnotemark[5]
-					&  1.120 & 2.620 & 3.480 \\
-					Al& 0.230 & 15.80 & 3.240 &Rb\footnotemark[3]
-					& 1.330 & 2.800 & 3.590 \\
-					Ga& 0.310 & 16.70 & 3.330 &Cs\footnotemark[4]
-					& 1.420 & 3.030 & 3.740 \\
-					In& 0.460 & 18.40 & 3.500 &Ba\footnotemark[5]
-					& 0.960 & 2.460 & 3.780 \\
-					Tl& 0.480 & 18.90 & 3.550 & & & & \\
-				\end{tabular}
-			\end{ruledtabular}
-			\footnotetext[1]{Here's the first, from Ref.~\onlinecite{feyn54}.}
-			\footnotetext[2]{Here's the second.}
-			\footnotetext[3]{Here's the third.}
-			\footnotetext[4]{Here's the fourth.}
-			\footnotetext[5]{And etc.}
-		\end{table}
-		show various effects.
-		A table that fits in a single column employs the \texttt{table}
-		environment. 
-		Table~\ref{tab:table3} is a wide table, set with the \texttt{table*} environment. 
-		Long tables may need to break across pages. 
-		The most straightforward way to accomplish this is to specify
-		the \verb+[H]+ float placement on the \texttt{table} or
-		\texttt{table*} environment. 
-		However, the \LaTeXe\ package \texttt{longtable} allows headers and footers to be specified for each page of the table. 
-		A simple example of the use of \texttt{longtable} can be found
-		in the file \texttt{summary.tex} that is included with the REV\TeX~4
-		distribution.
-		
-		There are two methods for setting footnotes within a table (these
-		footnotes will be displayed directly below the table rather than at
-		the bottom of the page or in the bibliography). The easiest
-		and preferred method is just to use the \verb+\footnote{#1}+
-		command. This will automatically enumerate the footnotes with
-		lowercase roman letters. However, it is sometimes necessary to have
-		multiple entries in the table share the same footnote. In this case,
-		there is no choice but to manually create the footnotes using
-		\verb+\footnotemark[#1]+ and \verb+\footnotetext[#1]{#2}+.
-		\texttt{\#1} is a numeric value. Each time the same value for
-		\texttt{\#1} is used, the same mark is produced in the table. The
-		\verb+\footnotetext[#1]{#2}+ commands are placed after the \texttt{tabular}
-		environment. Examine the \LaTeX\ source and output for
-		Tables~\ref{tab:table1} and \ref{tab:table2}
-		for examples.
-		
-		Video~\ref{vid:PRSTPER.4.010101} 
-		illustrates several features new with REV\TeX4.2,
-		starting with the \texttt{video} environment, which is in the same category with
-		\texttt{figure} and \texttt{table}.%
 	\begin{figure}[htbp]
 	\centering
-	\begin{subfigure}{0.4\linewidth}
+	\begin{subfigure}{0.49\linewidth}
 		\centering
-		\includegraphics[scale=0.1]{16mix32_32_T_3_E}
+			\includegraphics[width=0.9\linewidth]{16_T_PTP_E}
 		\caption{chutian3}
 		\label{chutian3}%文中引用该图片代号
 	\end{subfigure}
 	\centering
-	\begin{subfigure}{0.4\linewidth}
+	\begin{subfigure}{0.49\linewidth}
 		\centering
-		\includegraphics[scale=0.1]{16mix32_32_T_3_M}
+		\includegraphics[width=0.9\linewidth]{16_T_PTP_E}
 		\caption{chutian3}
 		\label{chutian3}%文中引用该图片代号
 	\end{subfigure}
 	\centering
-	\begin{subfigure}{0.4\linewidth}
+	\begin{subfigure}{0.49\linewidth}
 		\centering
-		\includegraphics[scale=0.1]{16mix32_16_T_3_E}
+		\includegraphics[width=0.9\linewidth]{16_T_PTP_E}
 		\caption{chutian3}
 		\label{chutian3}%文中引用该图片代号
 	\end{subfigure}
-	\begin{subfigure}{0.4\linewidth}
+	\begin{subfigure}{0.49\linewidth}
 		\centering
-		\includegraphics[scale=0.1]{16mix32_16_M}
-		\caption{chutian3}
+		\includegraphics[width=0.9\linewidth]{16_T_PTP_E}
+		\caption{chutian3}		
 		\label{chutian3}%文中引用该图片代号
 	\end{subfigure}
 
 	\caption{mother of chutian}
 	\label{da_chutian}
 	\end{figure}
+	\begin{figure*}
+		\centering
+		\includegraphics[width=0.7\linewidth]{myId2}
+		\caption{}
+		\label{fig:myid1}
+	\end{figure*}
+	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.7\linewidth]{16mix32_32_T_3_E_sactter}
+		\includegraphics[width=0.7\linewidth]{128mix32_32_T_PTP_E}
 		\caption{Comparison of energy scatter diagrams generated by the hybrid model of 16 and 32 sizes for 32 sizes at T=3 temperature with those generated by the MCMC method}
 		\label{fig:16mix3232t3esactter}
 	\end{figure}
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.7\linewidth]{32_T_3_M_scatter}
+		\includegraphics[width=0.7\linewidth]{128mix32_32_T_PTP_M}
 		\caption{Comparison of Magnetization scatter diagrams generated by a separate 32-size model at T=3 temperature with those generated by conventional methods}
 		\label{fig:32t3mscatter}
 	\end{figure}
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.7\linewidth]{16mix32_32_T_3_M_scatter}
+		\includegraphics[width=0.7\linewidth]{128mix32_128_T_PTP_E}
 		\caption{Comparison of Magnetization scatter diagrams generated by the hybrid model of 16 and 32 sizes for 32 sizes at T=3 temperature with those generated by the MCMC method}
 		\label{fig:16mix3232t3mscatter}
 	\end{figure}
-	
-		The \verb+\setfloatlink+ command causes the title of the video to be a hyperlink to the
-		indicated URL; it may be used with any environment that takes the \verb+\caption+
-		command.
-		The \verb+\href+ command has the same significance as it does in the context of
-		the \texttt{hyperref} package: the second argument is a piece of text to be 
-		typeset in your document; the first is its hyperlink, a URL.
-		
-		\textit{Physical Review} style requires that the initial citation of
-		figures or tables be in numerical order in text, so don't cite
-		Fig.~\ref{fig:wide} until Fig.~\ref{fig:epsart} has been cited.
-		
-		\begin{acknowledgments}
-			We wish to acknowledge the support of the author community in using
-			REV\TeX{}, offering suggestions and encouragement, testing new versions,
-			\dots.
-		\end{acknowledgments}
-		
-		\appendix
-		
-		\section{Appendixes}
-		
-		To start the appendixes, use the \verb+\appendix+ command.
-		This signals that all following section commands refer to appendixes
-		instead of regular sections. Therefore, the \verb+\appendix+ command
-		should be used only once---to setup the section commands to act as
-		appendixes. Thereafter normal section commands are used. The heading
-		for a section can be left empty. For example,
-		\begin{verbatim}
-			\appendix
-			\section{}
-		\end{verbatim}
-		will produce an appendix heading that says ``APPENDIX A'' and
-		\begin{verbatim}
-			\appendix
-			\section{Background}
-		\end{verbatim}
-		will produce an appendix heading that says ``APPENDIX A: BACKGROUND''
-		(note that the colon is set automatically).
-		
-		If there is only one appendix, then the letter ``A'' should not
-		appear. This is suppressed by using the star version of the appendix
-		command (\verb+\appendix*+ in the place of \verb+\appendix+).
-		
-		\section{A little more on appendixes}
-		
-		Observe that this appendix was started by using
-		\begin{verbatim}
-			\section{A little more on appendixes}
-		\end{verbatim}
-		
-		Note the equation number in an appendix:
-		\begin{equation}
-			E=mc^2.
-		\end{equation}
-		
-		\subsection{\label{app:subsec}A subsection in an appendix}
-		
-		You can use a subsection or subsubsection in an appendix. Note the
-		numbering: we are now in Appendix~\ref{app:subsec}.
-		
-		Note the equation numbers in this appendix, produced with the
-		subequations environment:
-		\begin{subequations}
-			\begin{eqnarray}
-				E&=&mc, \label{appa}
-				\\
-				E&=&mc^2, \label{appb}
-				\\
-				E&\agt& mc^3. \label{appc}
-			\end{eqnarray}
-		\end{subequations}
-		They turn out to be Eqs.~(\ref{appa}), (\ref{appb}), and (\ref{appc}).
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{128mix32_128_T_PTP_M}
+		\caption{Comparison of energy diagrams generated by the hybrid model of 32 and 128 sizes for 128 sizes at T=2.269 temperature with those generated by the MCMC method}
+		\label{fig:128mix32128tptpe}
+	\end{figure}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{16_T_PTP_E_normal}
+		\caption{omparison of energy scatter diagrams generated by the hybrid model of 16 sizes for 16 sizes at T=PTP temperature with those generated by the MCMC method}
+		\label{fig:16tptpe}
+	\end{figure}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{16_T_PTP_M}
+		\caption{omparison of energy scatter diagrams generated by the hybrid model of 16 sizes for 16 sizes at T=PTP temperature with those generated by the MCMC method}
+		\label{fig:16tptpm}
+	\end{figure}
 		
 		% The \nocite command causes all entries in a bibliography to be printed out
 		% whether or not they are actually referenced in the text. This is appropriate
 		% for the sample file to show the different styles of references, but authors
 		% most likely will not want to use it.
-		\nocite{*}
-		\bibliographystyle{plain}
-		\bibliography{apssamp}% Produces the bibliography via BibTeX.
+		%\nocite{*}
+		%\bibliographystyle{plain}
+		%\bibliography{apssamp}% Produces the bibliography via BibTeX.
 		
 	\end{document}

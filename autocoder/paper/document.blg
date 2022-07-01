@@ -6,8 +6,6 @@ Reallocating 'name_of_file' (item size: 1) to 8 items.
 Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: plain.bst
 Database file #1: documentNotes.bib
-Warning--entry type for "Note1" isn't style-file defined
---line 1 of file documentNotes.bib
 Database file #2: apssamp.bib
 Warning--can't use both author and editor fields in ballagh2000
 Warning--empty chapter and pages in ballagh2000
@@ -31,45 +29,45 @@ Warning--can't use both author and editor fields in Smith80
 Warning--empty chapter and pages in Smith80
 Warning--empty title in Smith2005
 Warning--empty title in Smith2003
-You've used 45 entries,
+You've used 44 entries,
             2118 wiz_defined-function locations,
-            776 strings with 9009 characters,
-and the built_in function-call counts, 12610 in all, are:
-= -- 1235
-> -- 511
+            773 strings with 8895 characters,
+and the built_in function-call counts, 12466 in all, are:
+= -- 1224
+> -- 510
 < -- 26
-+ -- 200
++ -- 199
 - -- 152
-* -- 817
-:= -- 2139
-add.period$ -- 139
-call.type$ -- 45
-change.case$ -- 188
+* -- 813
+:= -- 2126
+add.period$ -- 138
+call.type$ -- 44
+change.case$ -- 185
 chr.to.int$ -- 0
-cite$ -- 67
-duplicate$ -- 541
-empty$ -- 1035
+cite$ -- 66
+duplicate$ -- 534
+empty$ -- 1012
 format.name$ -- 152
-if$ -- 2662
+if$ -- 2626
 int.to.chr$ -- 0
-int.to.str$ -- 45
+int.to.str$ -- 44
 missing$ -- 31
-newline$ -- 224
+newline$ -- 221
 num.names$ -- 105
-pop$ -- 238
+pop$ -- 227
 preamble$ -- 2
-purify$ -- 159
+purify$ -- 156
 quote$ -- 0
-skip$ -- 358
+skip$ -- 350
 stack$ -- 0
-substring$ -- 523
-swap$ -- 124
+substring$ -- 518
+swap$ -- 123
 text.length$ -- 26
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 163
+type$ -- 159
 warning$ -- 22
 while$ -- 124
-width$ -- 47
-write$ -- 510
-(There were 23 warnings)
+width$ -- 46
+write$ -- 505
+(There were 22 warnings)

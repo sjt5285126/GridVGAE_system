@@ -48,8 +48,8 @@ class EncoderSpin(nn.Module):
         # 加入图归一化操作
         x = self.graph_norm3(x, batch)
         x = self.dropout(x)
-        mu = self.conv_mu(x, edge_index, edge_weight)
-        logVar = self.conv_logVar(x, edge_index, edge_weight)
+        mu = self.relu(self.conv_mu(x, edge_index, edge_weight))
+        logVar = self.relu(self.conv_logVar(x, edge_index, edge_weight))
 
         return mu, logVar
 

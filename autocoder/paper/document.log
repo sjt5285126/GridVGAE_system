@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.6.18)  30 JUN 2022 16:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.6.18)  6 JUL 2022 09:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -70,10 +70,12 @@ File: aps4-2 2020/10/03 4.2e (https://journals.aps.org/revtex/ for documentatio
 n)
 Class revtex4-2 Info: RevTeX society APS selected on input line 40.
 )
+Class revtex4-2 Info: Selecting journal prb on input line 7660.
+Class revtex4-2 Info: APS journal PRB selected on input line 7661.
 
-Class revtex4-2 Warning: No journal specified, using default pra.
 
-Class revtex4-2 Info: APS journal PRA selected on input line 7661.
+Class revtex4-2 Warning: No type size specified, using default 10.
+
 (D:\MikTex\tex/latex/revtex\aps10pt4-2.rtx
 File: aps10pt4-2 2020/10/03 4.2e (https://journals.aps.org/revtex/ for document
 ation)
@@ -81,190 +83,36 @@ Class revtex4-2 Info: RevTeX pointsize 10pt selected on input line 39.
 )
 (D:\MikTex\tex/latex/textcase\textcase.sty
 Package: textcase 2019/09/14 v1.00 Text only upper/lower case changing (DPC)
-)
-(D:\MikTex\tex/latex/amsfonts\amssymb.sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(D:\MikTex\tex/latex/amsfonts\amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks18
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(D:\MikTex\tex/latex/amsmath\amsmath.sty
-Package: amsmath 2022/04/08 v2.17n AMS math features
-\@mathmargin=\skip49
-
-For additional information on amsmath, use the `?' option.
-(D:\MikTex\tex/latex/amsmath\amstext.sty
-Package: amstext 2021/08/26 v2.01 AMS text
-
-(D:\MikTex\tex/latex/amsmath\amsgen.sty
-File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks19
-\ex@=\dimen138
-)
-LaTeX Info: Redefining \text on input line 28.
-)
-(D:\MikTex\tex/latex/amsmath\amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen139
-)
-(D:\MikTex\tex/latex/amsmath\amsopn.sty
-Package: amsopn 2022/04/08 v2.04 operator names
-)
-\inf@bad=\count266
-LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count267
-\leftroot@=\count268
-LaTeX Info: Redefining \overline on input line 399.
-LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count269
-\DOTSCASE@=\count270
-LaTeX Info: Redefining \ldots on input line 496.
-LaTeX Info: Redefining \dots on input line 499.
-LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box66
-\strutbox@=\box67
-LaTeX Info: Redefining \big on input line 722.
-LaTeX Info: Redefining \Big on input line 723.
-LaTeX Info: Redefining \bigg on input line 724.
-LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen140
-LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count271
-LaTeX Info: Redefining \bmod on input line 905.
-LaTeX Info: Redefining \pmod on input line 910.
-LaTeX Info: Redefining \smash on input line 940.
-LaTeX Info: Redefining \relbar on input line 970.
-LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count272
-\dotsspace@=\muskip16
-\c@parentequation=\count273
-\dspbrk@lvl=\count274
-\tag@help=\toks20
-\row@=\count275
-\column@=\count276
-\maxfields@=\count277
-\andhelp@=\toks21
-\eqnshift@=\dimen141
-\alignsep@=\dimen142
-\tagshift@=\dimen143
-\tagwidth@=\dimen144
-\totwidth@=\dimen145
-\lineht@=\dimen146
-\@envbody=\toks22
-\multlinegap=\skip50
-\multlinetaggap=\skip51
-\mathdisplay@stack=\toks23
-LaTeX Info: Redefining \[ on input line 2953.
-LaTeX Info: Redefining \] on input line 2954.
 ) (D:\MikTex\tex/latex/url\url.sty
-\Urlmuskip=\muskip17
+\Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 (D:\MikTex\tex/latex/natbib\natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip52
-\bibsep=\skip53
+\bibhang=\skip49
+\bibsep=\skip50
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count278
+\c@NAT@ctr=\count266
 )
 Class revtex4-2 Info: Repairing natbib's \BibitemShut on input line 7665.
 
 (D:\MikTex\tex/latex/revtex\revsymb4-2.sty
 Package: revsymb4-2 2020/10/03 4.2e (https://journals.aps.org/revtex/ for docum
 entation)
-LaTeX Info: Redefining \frak on input line 104.
-LaTeX Info: Redefining \Bbb on input line 120.
 LaTeX Info: Redefining \REV@mathfrak on input line 128.
 ))
-(D:\MikTex\tex/latex/booktabs\booktabs.sty
-Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen147
-\lightrulewidth=\dimen148
-\cmidrulewidth=\dimen149
-\belowrulesep=\dimen150
-\belowbottomsep=\dimen151
-\aboverulesep=\dimen152
-\abovetopsep=\dimen153
-\cmidrulesep=\dimen154
-\cmidrulekern=\dimen155
-\defaultaddspace=\dimen156
-\@cmidla=\count279
-\@cmidlb=\count280
-\@aboverulesep=\dimen157
-\@belowrulesep=\dimen158
-\@thisruleclass=\count281
-\@lastruleclass=\count282
-\@thisrulewidth=\dimen159
+(D:\MikTex\tex/latex/jknappen\mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup4
 )
-(D:\MikTex\tex/latex/caption\subcaption.sty
-Package: subcaption 2022/01/07 v1.5 Sub-captions (AR)
+(D:\MikTex\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2022-05-17 v7.00q Hypertext links for LaTeX
 
-(D:\MikTex\tex/latex/caption\caption.sty
-Package: caption 2022/03/01 v3.6b Customizing captions (AR)
-
-(D:\MikTex\tex/latex/caption\caption3.sty
-Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
-
-(D:\MikTex\tex/latex/graphics\keyval.sty
-Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks24
+(D:\MikTex\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
-\caption@tempdima=\dimen160
-\captionmargin=\dimen161
-\caption@leftmargin=\dimen162
-\caption@rightmargin=\dimen163
-\caption@width=\dimen164
-\caption@indent=\dimen165
-\caption@parindent=\dimen166
-\caption@hangindent=\dimen167
-Package caption Info: Unknown document class (or package),
-(caption)             standard defaults will be used.
-Package caption Info: \@makecaption = \long macro:#1#2->\par \vskip \abovecapti
-onskip \begingroup \small \rmfamily \sbox \@tempboxa {\let \\\heading@cr \@make
-@capt@title {#1}{#2}}\@ifdim {\wd \@tempboxa >\hsize }{\begingroup \samepage \f
-lushing \let \footnote \@footnotemark@gobble \@make@capt@title {#1}{#2}\par \en
-dgroup }{\global \@minipagefalse \hb@xt@ \hsize {\hfil \unhbox \@tempboxa \hfil
- }}\endgroup \vskip \belowcaptionskip  on input line 1176.
-)
-
-Package caption Warning: Unknown document class (or package),
-(caption)                standard defaults will be used.
-See the caption package documentation for explanation.
-
-\c@caption@flags=\count283
-\c@continuedfloat=\count284
-)
-\c@subfigure=\count285
-\c@subtable=\count286
-) (D:\MikTex\tex/latex/svg\svg.sty
-Package: svg 2020/11/26 v2.02k (include SVG pictures)
- (D:\MikTex\tex/generic/iftex\iftex.sty
+(D:\MikTex\tex/generic/iftex\iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
-)
-(D:\MikTex\tex/latex/koma-script\scrbase.sty
-Package: scrbase 2022/05/01 v3.36 KOMA-Script package (KOMA-Script-independent 
-basics and keyval usage)
-
-(D:\MikTex\tex/latex/koma-script\scrlfile.sty
-Package: scrlfile 2022/05/01 v3.36 KOMA-Script package (file load hooks)
-
-(D:\MikTex\tex/latex/koma-script\scrlfile-hook.sty
-Package: scrlfile-hook 2022/05/01 v3.36 KOMA-Script package (using LaTeX hooks)
-
-
-(D:\MikTex\tex/latex/koma-script\scrlogo.sty
-Package: scrlogo 2022/05/01 v3.36 KOMA-Script package (logo)
-)))
-Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
-Already applied: [0000/00/00] Usage of raw or classic option list on input line
- 368.
 )
 (D:\MikTex\tex/generic/pdftexcmds\pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
@@ -273,15 +121,130 @@ Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 (D:\MikTex\tex/generic/infwarerr\infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
-(D:\MikTex\tex/generic/ltxcmds\ltxcmds.sty
-Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(D:\MikTex\tex/latex/trimspaces\trimspaces.sty
-Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+(D:\MikTex\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(D:\MikTex\tex/generic/kvsetkeys\kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(D:\MikTex\tex/generic/kvdefinekeys\kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(D:\MikTex\tex/generic/pdfescape\pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(D:\MikTex\tex/latex/hycolor\hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(D:\MikTex\tex/latex/letltxmacro\letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(D:\MikTex\tex/latex/auxhook\auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(D:\MikTex\tex/latex/hyperref\nameref.sty
+Package: nameref 2022-05-17 v2.50 Cross-referencing by name of section
+
+(D:\MikTex\tex/latex/refcount\refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(D:\MikTex\tex/generic/gettitlestring\gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(D:\MikTex\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+))
+\c@section@level=\count267
+)
+\@linkdim=\dimen138
+\Hy@linkcounter=\count268
+\Hy@pagecounter=\count269
+
+(D:\MikTex\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2022-05-17 v7.00q Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(D:\MikTex\tex/generic/intcalc\intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(D:\MikTex\tex/generic/etexcmds\etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count270
+
+(D:\MikTex\tex/latex/hyperref\puenc.def
+File: puenc.def 2022-05-17 v7.00q Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4020.
+Package hyperref Info: Hyper figures OFF on input line 4139.
+Package hyperref Info: Link nesting OFF on input line 4144.
+Package hyperref Info: Hyper index ON on input line 4147.
+Package hyperref Info: Plain pages OFF on input line 4154.
+Package hyperref Info: Backreferencing OFF on input line 4159.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4385.
+LaTeX Info: Redefining \href on input line 4634.
+\c@Hy@tempcnt=\count271
+LaTeX Info: Redefining \url on input line 4723.
+\XeTeXLinkMargin=\dimen139
+
+(D:\MikTex\tex/generic/bitset\bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(D:\MikTex\tex/generic/bigintcalc\bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count272
+\Field@Width=\dimen140
+\Fld@charsize=\dimen141
+Package hyperref Info: Hyper figures OFF on input line 6001.
+Package hyperref Info: Link nesting OFF on input line 6006.
+Package hyperref Info: Hyper index ON on input line 6009.
+Package hyperref Info: backreferencing OFF on input line 6016.
+Package hyperref Info: Link coloring ON on input line 6019.
+Package hyperref Info: Link coloring with OCG OFF on input line 6026.
+Package hyperref Info: PDF/A mode OFF on input line 6031.
+
+(D:\MikTex\tex/latex/base\atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count273
+\c@Item=\count274
+\c@Hfootnote=\count275
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(D:\MikTex\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2022-05-17 v7.00q Hyperref driver for pdfTeX
+
+(D:\MikTex\tex/latex/base\atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+\Fld@listcount=\count276
+\c@bookmark@seq@number=\count277
+
+(D:\MikTex\tex/latex/rerunfilecheck\rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(D:\MikTex\tex/generic/uniquecounter\uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip51
 )
 (D:\MikTex\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
@@ -300,17 +263,122 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 (D:\MikTex\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen168
-\Gin@req@width=\dimen169
+\Gin@req@height=\dimen142
+\Gin@req@width=\dimen143
 )
-(D:\MikTex\tex/latex/tools\shellesc.sty
-Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
-Package shellesc Info: Restricted shell escape enabled on input line 77.
+(D:\MikTex\tex/latex/tools\bm.sty
+Package: bm 2021/04/25 v1.2e Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup5
+\symboldletters=\mathgroup6
+\symboldsymbols=\mathgroup7
+Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
+Package bm Info: No bold for \U/rsfs/m/n, using \pmb.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
+LaTeX Info: Redefining \bm on input line 218.
+) (D:\MikTex\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2022/04/08 v2.17n AMS math features
+\@mathmargin=\skip52
+
+For additional information on amsmath, use the `?' option.
+(D:\MikTex\tex/latex/amsmath\amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(D:\MikTex\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen144
 )
-\c@svg@param@lastpage=\count287
-\svg@box=\box68
-\c@svg@param@currpage=\count288
+LaTeX Info: Redefining \text on input line 28.
 )
+(D:\MikTex\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+LaTeX Info: Redefining \boldsymbol on input line 28.
+\pmbraise@=\dimen145
+)
+(D:\MikTex\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count278
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count279
+\leftroot@=\count280
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count281
+\DOTSCASE@=\count282
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box66
+\strutbox@=\box67
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen146
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count283
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count284
+\dotsspace@=\muskip17
+\c@parentequation=\count285
+\dspbrk@lvl=\count286
+\tag@help=\toks20
+\row@=\count287
+\column@=\count288
+\maxfields@=\count289
+\andhelp@=\toks21
+\eqnshift@=\dimen147
+\alignsep@=\dimen148
+\tagshift@=\dimen149
+\tagwidth@=\dimen150
+\totwidth@=\dimen151
+\lineht@=\dimen152
+\@envbody=\toks22
+\multlinegap=\skip53
+\multlinetaggap=\skip54
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+(D:\MikTex\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(D:\MikTex\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup8
+\symAMSb=\mathgroup9
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+LaTeX Info: Redefining \frak on input line 111.
+LaTeX Info: Redefining \Bbb on input line 113.
+))
+(D:\MikTex\tex/latex/accents\accents.sty
+Package: accents 2006/05/12 v1.4 Math Accent Tools
+\cc@skew=\dimen153
+\cc@wd=\dimen154
+\cc@code=\count290
+\cc@group=\count291
+\cc@skewchar=\count292
+)
+(D:\MikTex\tex/latex/tools\dcolumn.sty
+Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
+ (D:\MikTex\tex/latex/tools\array.sty
+Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
+\col@sep=\dimen155
+\ar@mcellbox=\box68
+\extrarowheight=\dimen156
+\NC@list=\toks24
+\extratabsurround=\skip55
+\backup@length=\skip56
+\ar@cellbox=\box69
+))
 (D:\MikTex\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
 
@@ -328,165 +396,95 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
 )
-(D:\MikTex\tex/latex/transparent\transparent.sty
-Package: transparent 2019/11/29 v1.4 Transparency via pdfTeX's color stack (HO)
+(D:\MikTex\tex/latex/algorithms\algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
 
-
-(D:\MikTex\tex/latex/auxhook\auxhook.sty
-Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
-))
-(D:\MikTex\tex/latex/pgf/systemlayer\pgfsys.sty
-(D:\MikTex\tex/latex/pgf/utilities\pgfrcs.sty
-(D:\MikTex\tex/generic/pgf/utilities\pgfutil-common.tex
-\pgfutil@everybye=\toks25
-\pgfutil@tempdima=\dimen170
-\pgfutil@tempdimb=\dimen171
-
-(D:\MikTex\tex/generic/pgf/utilities\pgfutil-common-lists.tex))
-(D:\MikTex\tex/generic/pgf/utilities\pgfutil-latex.def
-\pgfutil@abb=\box69
+(D:\MikTex\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count293
+\float@exts=\toks25
+\float@box=\box70
+\@float@everytoks=\toks26
+\@floatcapt=\box71
+) (D:\MikTex\tex/latex/base\ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-(D:\MikTex\tex/generic/pgf/utilities\pgfrcs.code.tex
-(D:\MikTex\tex/generic/pgf\pgf.revision.tex)
-Package: pgfrcs 2021/05/15 v3.1.9a (3.1.9a)
-))
-(D:\MikTex\tex/generic/pgf/systemlayer\pgfsys.code.tex
-Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
-
-(D:\MikTex\tex/generic/pgf/utilities\pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks26
-\pgfkeys@temptoks=\toks27
-
-(D:\MikTex\tex/generic/pgf/utilities\pgfkeysfiltered.code.tex
-\pgfkeys@tmptoks=\toks28
-))
-\pgf@x=\dimen172
-\pgf@y=\dimen173
-\pgf@xa=\dimen174
-\pgf@ya=\dimen175
-\pgf@xb=\dimen176
-\pgf@yb=\dimen177
-\pgf@xc=\dimen178
-\pgf@yc=\dimen179
-\pgf@xd=\dimen180
-\pgf@yd=\dimen181
-\w@pgf@writea=\write4
-\r@pgf@reada=\read2
-\c@pgf@counta=\count289
-\c@pgf@countb=\count290
-\c@pgf@countc=\count291
-\c@pgf@countd=\count292
-\t@pgf@toka=\toks29
-\t@pgf@tokb=\toks30
-\t@pgf@tokc=\toks31
-\pgf@sys@id@count=\count293
-
-(D:\MikTex\tex/generic/pgf/systemlayer\pgf.cfg
-File: pgf.cfg 2021/05/15 v3.1.9a (3.1.9a)
+\@float@every@algorithm=\toks27
+\c@algorithm=\count294
 )
-Driver file for pgf: pgfsys-pdftex.def
+(D:\MikTex\tex/latex/algorithmicx\algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
-(D:\MikTex\tex/generic/pgf/systemlayer\pgfsys-pdftex.def
-File: pgfsys-pdftex.def 2021/05/15 v3.1.9a (3.1.9a)
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count295
+\c@ALG@rem=\count296
+\c@ALG@nested=\count297
+\ALG@tlm=\skip57
+\ALG@thistlm=\skip58
+\c@ALG@Lnr=\count298
+\c@ALG@blocknr=\count299
+\c@ALG@storecount=\count300
+\c@ALG@tmpcounter=\count301
+\ALG@tmplength=\skip59
+) (D:\MikTex\tex/latex/algorithmicx\algpseudocode.sty
+Package: algpseudocode 
 
-(D:\MikTex\tex/generic/pgf/systemlayer\pgfsys-common-pdf.def
-File: pgfsys-common-pdf.def 2021/05/15 v3.1.9a (3.1.9a)
-)))
-(D:\MikTex\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
-File: pgfsyssoftpath.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-\pgfsyssoftpath@smallbuffer@items=\count294
-\pgfsyssoftpath@bigbuffer@items=\count295
-)
-(D:\MikTex\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
-File: pgfsysprotocol.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-))
-(D:\MikTex\tex/latex/tools\dcolumn.sty
-Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
- (D:\MikTex\tex/latex/tools\array.sty
-Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen182
-\ar@mcellbox=\box70
-\extrarowheight=\dimen183
-\NC@list=\toks32
-\extratabsurround=\skip54
-\backup@length=\skip55
-\ar@cellbox=\box71
-))
-(D:\MikTex\tex/latex/tools\bm.sty
-Package: bm 2021/04/25 v1.2e Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup6
-\symboldletters=\mathgroup7
-\symboldsymbols=\mathgroup8
-Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
-Package bm Info: No bold for \U/msa/m/n, using \pmb.
-Package bm Info: No bold for \U/msb/m/n, using \pmb.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
-LaTeX Info: Redefining \bm on input line 218.
+Document Style - pseudocode environments for use with the `algorithmicx' style
 )
 Class revtex4-2 Info: Unrecognized array package. Please update this document c
-lass! (Proceeding with fingers crossed.) on input line 61.
-Class revtex4-2 Info: cite was not loaded (OK!) on input line 61.
-Class revtex4-2 Info: mcite was not loaded (OK!) on input line 61.
-Class revtex4-2 Info: multicol was not loaded (OK!) on input line 61.
+lass! (Proceeding with fingers crossed.) on input line 25.
 
+
+Class revtex4-2 Warning: Repair the float package.
+
+Class revtex4-2 Info: cite was not loaded (OK!) on input line 25.
+Class revtex4-2 Info: mcite was not loaded (OK!) on input line 25.
+Class revtex4-2 Info: multicol was not loaded (OK!) on input line 25.
 (D:\MikTex\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count296
+\l__color_backend_stack_int=\count302
 \l__pdf_internal_box=\box72
-) (document.aux
-
-LaTeX Warning: Label `key' multiply defined.
-
-
-LaTeX Warning: Label `chutian3' multiply defined.
-
-
-LaTeX Warning: Label `sub@chutian3' multiply defined.
-
-
-LaTeX Warning: Label `chutian3' multiply defined.
-
-
-LaTeX Warning: Label `sub@chutian3' multiply defined.
-
-
-LaTeX Warning: Label `chutian3' multiply defined.
-
-
-LaTeX Warning: Label `sub@chutian3' multiply defined.
-
-)
+) (document.aux)
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+Package hyperref Info: Link coloring ON on input line 25.
+
+(document.out) (document.out)
+\@outlinefile=\write4
+\openout4 = `document.out'.
+
  (D:\MikTex\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count297
-\scratchdimen=\dimen184
+\scratchcounter=\count303
+\scratchdimen=\dimen157
 \scratchbox=\box73
-\nofMPsegments=\count298
-\nofMParguments=\count299
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count300
-\MPscratchDim=\dimen185
-\MPnumerator=\count301
-\makeMPintoPDFobject=\count302
-\everyMPtoPDFconversion=\toks34
+\nofMPsegments=\count304
+\nofMParguments=\count305
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count306
+\MPscratchDim=\dimen158
+\MPnumerator=\count307
+\makeMPintoPDFobject=\count308
+\everyMPtoPDFconversion=\toks29
 ) (D:\MikTex\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -495,313 +493,553 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 (D:\MikTex\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
+Class revtex4-2 Info: Taking \maketitle back from hyperref on input line 25.
 \openout3 = `documentNotes.bib'.
 
-
-
-Class revtex4-2 Warning: Assuming \noaffiliation for collaboration.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 109
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 75
 .
-(D:\MikTex\tex/latex/amsfonts\umsa.fd
+
+(D:\MikTex\tex/latex/jknappen\ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 75.
+
+ (D:\MikTex\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 109
-.
- (D:\MikTex\tex/latex/amsfonts\umsb.fd
+LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
+
+
+(D:\MikTex\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-09.
 
-(D:\MikTex\tex/latex/base\omscmr.fd
-File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 109.
- [1{C:/Users/SHIYUEHUA/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-<GNN.pdf, id=29, 447.17062pt x 411.03563pt>
-File: GNN.pdf Graphic file (type pdf)
-<use GNN.pdf>
-Package pdftex.def Info: GNN.pdf  used on input line 178.
-(pdftex.def)             Requested size: 223.58476pt x 205.5173pt.
- [3 <./GNN.pdf>]
-Overfull \hbox (1.84001pt too wide) detected at line 203
-[][][]
- []
+Package natbib Warning: Citation `carrasquilla2017machine' on page 1 undefined 
+on input line 78.
 
-<simpleVAE.pdf, id=35, 565.61313pt x 578.66188pt>
-File: simpleVAE.pdf Graphic file (type pdf)
-<use simpleVAE.pdf>
-Package pdftex.def Info: simpleVAE.pdf  used on input line 220.
-(pdftex.def)             Requested size: 226.24124pt x 231.46065pt.
-<vae.pdf, id=36, 814.54312pt x 488.82625pt>
+
+Package natbib Warning: Citation `carleo2017solving' on page 1 undefined on inp
+ut line 78.
+
+
+Package natbib Warning: Citation `RevModPhys.91.045002' on page 1 undefined on 
+input line 78.
+
+
+Package natbib Warning: Citation `carrasquilla2017machine' on page 1 undefined 
+on input line 78.
+
+
+Package natbib Warning: Citation `pca1' on page 1 undefined on input line 80.
+
+
+Package natbib Warning: Citation `pca2' on page 1 undefined on input line 80.
+
+
+Package natbib Warning: Citation `pca3' on page 1 undefined on input line 80.
+
+
+Package natbib Warning: Citation `tsne' on page 1 undefined on input line 80.
+
+
+Package natbib Warning: Citation `df1' on page 1 undefined on input line 80.
+
+
+Package natbib Warning: Citation `df2' on page 1 undefined on input line 80.
+
+
+Package natbib Warning: Citation `df3' on page 1 undefined on input line 80.
+
+
+Package natbib Warning: Citation `df4' on page 1 undefined on input line 80.
+
+
+Package natbib Warning: Citation `confusion' on page 1 undefined on input line 
+80.
+
+
+Package natbib Warning: Citation `vae_creator' on page 1 undefined on input lin
+e 83.
+
+
+Package natbib Warning: Citation `vae_propose' on page 1 undefined on input lin
+e 83.
+
+
+Package natbib Warning: Citation `vaeisingxy' on page 1 undefined on input line
+ 84.
+
+
+Package natbib Warning: Citation `Yevick2022' on page 1 undefined on input line
+ 84.
+
+
+Package natbib Warning: Citation `vae_temperature' on page 1 undefined on input
+ line 85.
+
+
+Package natbib Warning: Citation `vaedynamics' on page 1 undefined on input lin
+e 86.
+
+
+Package natbib Warning: Citation `dark_matter' on page 1 undefined on input lin
+e 86.
+
+
+Package natbib Warning: Citation `vaeisingxy' on page 1 undefined on input line
+ 91.
+
+
+Package natbib Warning: Citation `Yevick2022' on page 1 undefined on input line
+ 91.
+
+
+Package natbib Warning: Citation `vae_temperature' on page 1 undefined on input
+ line 91.
+
+
+Package natbib Warning: Citation `diluted' on page 1 undefined on input line 91
+.
+
+
+Package natbib Warning: Citation `Shi2018' on page 1 undefined on input line 91
+.
+
+
+Package natbib Warning: Citation `gnn_1' on page 1 undefined on input line 92.
+
+
+Package natbib Warning: Citation `gnn_2' on page 1 undefined on input line 92.
+
+
+Package natbib Warning: Citation `wuli1' on page 1 undefined on input line 94.
+
+
+Package natbib Warning: Citation `gnn_bio' on page 1 undefined on input line 94
+.
+
+
+Package natbib Warning: Citation `gnn_chemi' on page 1 undefined on input line 
+94.
+
+
+Package natbib Warning: Citation `gvae2016' on page 1 undefined on input line 9
+6.
+
+<myId2.pdf, id=52, 1296.845pt x 894.34125pt>
+File: myId2.pdf Graphic file (type pdf)
+<use myId2.pdf>
+Package pdftex.def Info: myId2.pdf  used on input line 102.
+(pdftex.def)             Requested size: 356.99844pt x 246.19707pt.
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.109 	
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[1{C:/Users/SHIYUEHUA/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+
+Package natbib Warning: Citation `gnn.GCNConv' on page 2 undefined on input lin
+e 142.
+
+<GCN.pdf, id=72, 975.645pt x 454.69875pt>
+File: GCN.pdf Graphic file (type pdf)
+<use GCN.pdf>
+Package pdftex.def Info: GCN.pdf  used on input line 152.
+(pdftex.def)             Requested size: 221.3985pt x 103.177pt.
+[2
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.157 	\begin{equation}
+                       \label{LapalceMatrix} <./myId2.pdf>]
+! Extra }, or forgotten $.
+l.178 ...is $||{C}-{\hat{C}}||_2 $, and  $\hat{C}}
+                                                  $ can be obtained by 	$\ma...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+! LaTeX Error: Unicode character ， (U+FF0C)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.180 ...l{ \mathcal{D}}\longrightarrow \hat{C}，
+                                                  
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+<vae.pdf, id=436, 814.54312pt x 488.82625pt>
 File: vae.pdf Graphic file (type pdf)
 <use vae.pdf>
-Package pdftex.def Info: vae.pdf  used on input line 228.
+Package pdftex.def Info: vae.pdf  used on input line 208.
 (pdftex.def)             Requested size: 244.36482pt x 146.649pt.
-[4 <./simpleVAE.pdf> <./vae.pdf
+Package epstopdf Info: Source file: <PTP16E_3.eps>
+(epstopdf)                    date: 2022-07-05 15:26:56
+(epstopdf)                    size: 70258 bytes
+(epstopdf)             Output file: <PTP16E_3-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 15:28:13
+(epstopdf)                    size: 27225 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=PTP16E_3-eps-convert
+ed-to.pdf PTP16E_3.eps>
+(epstopdf)             \includegraphics on input line 255.
+Package epstopdf Info: Output file is already uptodate.
 
-pdfTeX warning: pdflatex.exe (file ./vae.pdf): PDF inclusion: multiple pdfs wit
-h page group included in a single page
->]
-<spin_vgae2.pdf, id=120, 2276.00313pt x 1043.39813pt>
-File: spin_vgae2.pdf Graphic file (type pdf)
-<use spin_vgae2.pdf>
-Package pdftex.def Info: spin_vgae2.pdf  used on input line 252.
-(pdftex.def)             Requested size: 455.19257pt x 208.67592pt.
-Package epstopdf Info: Source file: <16_T_PTP_E.eps>
-(epstopdf)                    date: 2022-06-29 10:08:59
-(epstopdf)                    size: 67514 bytes
-(epstopdf)             Output file: <16_T_PTP_E-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-06-29 10:09:08
-(epstopdf)                    size: 25800 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=16_T_PTP_E-eps-conve
-rted-to.pdf 16_T_PTP_E.eps>
+
+pdfTeX warning: pdflatex.exe (file ./PTP16E_3-eps-converted-to.pdf): PDF inclus
+ion: found PDF version <1.7>, but at most version <1.5> allowed
+<PTP16E_3-eps-converted-to.pdf, id=437, 845.1575pt x 598.235pt>
+File: PTP16E_3-eps-converted-to.pdf Graphic file (type pdf)
+<use PTP16E_3-eps-converted-to.pdf>
+Package pdftex.def Info: PTP16E_3-eps-converted-to.pdf  used on input line 255.
+
+(pdftex.def)             Requested size: 101.99844pt x 72.19588pt.
+Package epstopdf Info: Source file: <PTP16M.eps>
+(epstopdf)                    date: 2022-07-05 15:30:35
+(epstopdf)                    size: 48862 bytes
+(epstopdf)             Output file: <PTP16M-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 15:31:32
+(epstopdf)                    size: 19601 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=PTP16M-eps-converted
+-to.pdf PTP16M.eps>
+(epstopdf)             \includegraphics on input line 256.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./PTP16M-eps-converted-to.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+<PTP16M-eps-converted-to.pdf, id=438, 771.88374pt x 590.205pt>
+File: PTP16M-eps-converted-to.pdf Graphic file (type pdf)
+<use PTP16M-eps-converted-to.pdf>
+Package pdftex.def Info: PTP16M-eps-converted-to.pdf  used on input line 256.
+(pdftex.def)             Requested size: 101.99844pt x 77.99014pt.
+Package epstopdf Info: Source file: <PTP32E.eps>
+(epstopdf)                    date: 2022-07-05 15:30:38
+(epstopdf)                    size: 62960 bytes
+(epstopdf)             Output file: <PTP32E-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 15:31:33
+(epstopdf)                    size: 23425 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=PTP32E-eps-converted
+-to.pdf PTP32E.eps>
+(epstopdf)             \includegraphics on input line 257.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./PTP32E-eps-converted-to.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+<PTP32E-eps-converted-to.pdf, id=439, 770.88pt x 590.205pt>
+File: PTP32E-eps-converted-to.pdf Graphic file (type pdf)
+<use PTP32E-eps-converted-to.pdf>
+Package pdftex.def Info: PTP32E-eps-converted-to.pdf  used on input line 257.
+(pdftex.def)             Requested size: 101.99844pt x 78.08922pt.
+Package epstopdf Info: Source file: <PTP32M.eps>
+(epstopdf)                    date: 2022-07-05 15:30:38
+(epstopdf)                    size: 54512 bytes
+(epstopdf)             Output file: <PTP32M-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 15:31:34
+(epstopdf)                    size: 20902 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=PTP32M-eps-converted
+-to.pdf PTP32M.eps>
+(epstopdf)             \includegraphics on input line 258.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./PTP32M-eps-converted-to.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+<PTP32M-eps-converted-to.pdf, id=440, 770.88pt x 590.205pt>
+File: PTP32M-eps-converted-to.pdf Graphic file (type pdf)
+<use PTP32M-eps-converted-to.pdf>
+Package pdftex.def Info: PTP32M-eps-converted-to.pdf  used on input line 258.
+(pdftex.def)             Requested size: 101.99844pt x 78.08922pt.
+Package epstopdf Info: Source file: <16mix32PTP16E.eps>
+(epstopdf)                    date: 2022-07-05 15:30:36
+(epstopdf)                    size: 75994 bytes
+(epstopdf)             Output file: <16mix32PTP16E-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 15:31:35
+(epstopdf)                    size: 27100 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=16mix32PTP16E-eps-co
+nverted-to.pdf 16mix32PTP16E.eps>
+(epstopdf)             \includegraphics on input line 259.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./16mix32PTP16E-eps-converted-to.pdf): PDF i
+nclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<16mix32PTP16E-eps-converted-to.pdf, id=441, 770.88pt x 590.205pt>
+File: 16mix32PTP16E-eps-converted-to.pdf Graphic file (type pdf)
+<use 16mix32PTP16E-eps-converted-to.pdf>
+Package pdftex.def Info: 16mix32PTP16E-eps-converted-to.pdf  used on input line
+ 259.
+(pdftex.def)             Requested size: 101.99844pt x 78.08922pt.
+Package epstopdf Info: Source file: <16mix32IN16.eps>
+(epstopdf)                    date: 2022-07-05 15:30:35
+(epstopdf)                    size: 53526 bytes
+(epstopdf)             Output file: <16mix32IN16-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 15:31:36
+(epstopdf)                    size: 20492 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=16mix32IN16-eps-conv
+erted-to.pdf 16mix32IN16.eps>
+(epstopdf)             \includegraphics on input line 260.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./16mix32IN16-eps-converted-to.pdf): PDF inc
+lusion: found PDF version <1.7>, but at most version <1.5> allowed
+<16mix32IN16-eps-converted-to.pdf, id=442, 770.88pt x 590.205pt>
+File: 16mix32IN16-eps-converted-to.pdf Graphic file (type pdf)
+<use 16mix32IN16-eps-converted-to.pdf>
+Package pdftex.def Info: 16mix32IN16-eps-converted-to.pdf  used on input line 2
+60.
+(pdftex.def)             Requested size: 101.99844pt x 78.08922pt.
+Package epstopdf Info: Source file: <16mix32PTP32E.eps>
+(epstopdf)                    date: 2022-07-05 15:30:36
+(epstopdf)                    size: 74550 bytes
+(epstopdf)             Output file: <16mix32PTP32E-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 15:31:37
+(epstopdf)                    size: 26600 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=16mix32PTP32E-eps-co
+nverted-to.pdf 16mix32PTP32E.eps>
+(epstopdf)             \includegraphics on input line 261.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./16mix32PTP32E-eps-converted-to.pdf): PDF i
+nclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<16mix32PTP32E-eps-converted-to.pdf, id=443, 770.88pt x 590.205pt>
+File: 16mix32PTP32E-eps-converted-to.pdf Graphic file (type pdf)
+<use 16mix32PTP32E-eps-converted-to.pdf>
+Package pdftex.def Info: 16mix32PTP32E-eps-converted-to.pdf  used on input line
+ 261.
+(pdftex.def)             Requested size: 101.99844pt x 78.08922pt.
+Package epstopdf Info: Source file: <16mix32PTP32M.eps>
+(epstopdf)                    date: 2022-07-05 15:30:37
+(epstopdf)                    size: 59029 bytes
+(epstopdf)             Output file: <16mix32PTP32M-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 15:31:39
+(epstopdf)                    size: 22239 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=16mix32PTP32M-eps-co
+nverted-to.pdf 16mix32PTP32M.eps>
+(epstopdf)             \includegraphics on input line 262.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./16mix32PTP32M-eps-converted-to.pdf): PDF i
+nclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<16mix32PTP32M-eps-converted-to.pdf, id=444, 770.88pt x 590.205pt>
+File: 16mix32PTP32M-eps-converted-to.pdf Graphic file (type pdf)
+<use 16mix32PTP32M-eps-converted-to.pdf>
+Package pdftex.def Info: 16mix32PTP32M-eps-converted-to.pdf  used on input line
+ 262.
+(pdftex.def)             Requested size: 101.99844pt x 78.08922pt.
+Package epstopdf Info: Source file: <32MIX128IN32E.eps>
+(epstopdf)                    date: 2022-07-05 15:33:17
+(epstopdf)                    size: 76826 bytes
+(epstopdf)             Output file: <32MIX128IN32E-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 15:34:44
+(epstopdf)                    size: 28839 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=32MIX128IN32E-eps-co
+nverted-to.pdf 32MIX128IN32E.eps>
+(epstopdf)             \includegraphics on input line 269.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./32MIX128IN32E-eps-converted-to.pdf): PDF i
+nclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<32MIX128IN32E-eps-converted-to.pdf, id=445, 845.1575pt x 598.235pt>
+File: 32MIX128IN32E-eps-converted-to.pdf Graphic file (type pdf)
+<use 32MIX128IN32E-eps-converted-to.pdf>
+Package pdftex.def Info: 32MIX128IN32E-eps-converted-to.pdf  used on input line
+ 269.
+(pdftex.def)             Requested size: 110.69925pt x 78.35748pt.
+Package epstopdf Info: Source file: <32MIX128IN32M.eps>
+(epstopdf)                    date: 2022-07-05 18:03:10
+(epstopdf)                    size: 52853 bytes
+(epstopdf)             Output file: <32MIX128IN32M-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 18:03:21
+(epstopdf)                    size: 20333 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=32MIX128IN32M-eps-co
+nverted-to.pdf 32MIX128IN32M.eps>
+(epstopdf)             \includegraphics on input line 270.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./32MIX128IN32M-eps-converted-to.pdf): PDF i
+nclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<32MIX128IN32M-eps-converted-to.pdf, id=446, 845.1575pt x 598.235pt>
+File: 32MIX128IN32M-eps-converted-to.pdf Graphic file (type pdf)
+<use 32MIX128IN32M-eps-converted-to.pdf>
+Package pdftex.def Info: 32MIX128IN32M-eps-converted-to.pdf  used on input line
+ 270.
+(pdftex.def)             Requested size: 110.69925pt x 78.35748pt.
+Package epstopdf Info: Source file: <32MIX128IN128E.eps>
+(epstopdf)                    date: 2022-07-05 18:05:35
+(epstopdf)                    size: 69329 bytes
+(epstopdf)             Output file: <32MIX128IN128E-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 18:05:41
+(epstopdf)                    size: 26469 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=32MIX128IN128E-eps-c
+onverted-to.pdf 32MIX128IN128E.eps>
+(epstopdf)             \includegraphics on input line 271.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex.exe (file ./32MIX128IN128E-eps-converted-to.pdf): PDF 
+inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<32MIX128IN128E-eps-converted-to.pdf, id=447, 845.1575pt x 598.235pt>
+File: 32MIX128IN128E-eps-converted-to.pdf Graphic file (type pdf)
+<use 32MIX128IN128E-eps-converted-to.pdf>
+Package pdftex.def Info: 32MIX128IN128E-eps-converted-to.pdf  used on input lin
+e 271.
+(pdftex.def)             Requested size: 110.69925pt x 78.35748pt.
+Package epstopdf Info: Source file: <32MIX128IN128M.eps>
+(epstopdf)                    date: 2022-07-05 18:05:36
+(epstopdf)                    size: 47472 bytes
+(epstopdf)             Output file: <32MIX128IN128M-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-07-05 18:05:43
+(epstopdf)                    size: 18308 bytes
+(epstopdf)             Command: <miktex-epstopdf --outfile=32MIX128IN128M-eps-c
+onverted-to.pdf 32MIX128IN128M.eps>
 (epstopdf)             \includegraphics on input line 272.
 Package epstopdf Info: Output file is already uptodate.
 
 
-pdfTeX warning: pdflatex.exe (file ./16_T_PTP_E-eps-converted-to.pdf): PDF incl
-usion: found PDF version <1.7>, but at most version <1.5> allowed
-<16_T_PTP_E-eps-converted-to.pdf, id=121, 845.1575pt x 598.235pt>
-File: 16_T_PTP_E-eps-converted-to.pdf Graphic file (type pdf)
-<use 16_T_PTP_E-eps-converted-to.pdf>
-Package pdftex.def Info: 16_T_PTP_E-eps-converted-to.pdf  used on input line 27
-2.
-(pdftex.def)             Requested size: 108.48647pt x 76.78741pt.
-Package epstopdf Info: Source file: <16_T_PTP_E.eps>
-(epstopdf)                    date: 2022-06-29 10:08:59
-(epstopdf)                    size: 67514 bytes
-(epstopdf)             Output file: <16_T_PTP_E-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-06-29 10:09:08
-(epstopdf)                    size: 25800 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=16_T_PTP_E-eps-conve
-rted-to.pdf 16_T_PTP_E.eps>
-(epstopdf)             \includegraphics on input line 279.
-Package epstopdf Info: Output file is already uptodate.
-File: 16_T_PTP_E-eps-converted-to.pdf Graphic file (type pdf)
-<use 16_T_PTP_E-eps-converted-to.pdf>
-Package pdftex.def Info: 16_T_PTP_E-eps-converted-to.pdf  used on input line 27
-9.
-(pdftex.def)             Requested size: 108.48647pt x 76.78741pt.
-Package epstopdf Info: Source file: <16_T_PTP_E.eps>
-(epstopdf)                    date: 2022-06-29 10:08:59
-(epstopdf)                    size: 67514 bytes
-(epstopdf)             Output file: <16_T_PTP_E-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-06-29 10:09:08
-(epstopdf)                    size: 25800 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=16_T_PTP_E-eps-conve
-rted-to.pdf 16_T_PTP_E.eps>
-(epstopdf)             \includegraphics on input line 286.
-Package epstopdf Info: Output file is already uptodate.
-File: 16_T_PTP_E-eps-converted-to.pdf Graphic file (type pdf)
-<use 16_T_PTP_E-eps-converted-to.pdf>
-Package pdftex.def Info: 16_T_PTP_E-eps-converted-to.pdf  used on input line 28
-6.
-(pdftex.def)             Requested size: 108.48647pt x 76.78741pt.
-Package epstopdf Info: Source file: <16_T_PTP_E.eps>
-(epstopdf)                    date: 2022-06-29 10:08:59
-(epstopdf)                    size: 67514 bytes
-(epstopdf)             Output file: <16_T_PTP_E-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-06-29 10:09:08
-(epstopdf)                    size: 25800 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=16_T_PTP_E-eps-conve
-rted-to.pdf 16_T_PTP_E.eps>
-(epstopdf)             \includegraphics on input line 292.
-Package epstopdf Info: Output file is already uptodate.
-File: 16_T_PTP_E-eps-converted-to.pdf Graphic file (type pdf)
-<use 16_T_PTP_E-eps-converted-to.pdf>
-Package pdftex.def Info: 16_T_PTP_E-eps-converted-to.pdf  used on input line 29
-2.
-(pdftex.def)             Requested size: 108.48647pt x 76.78741pt.
-<myId2.pdf, id=122, 1296.845pt x 894.34125pt>
-File: myId2.pdf Graphic file (type pdf)
-<use myId2.pdf>
-Package pdftex.def Info: myId2.pdf  used on input line 302.
-(pdftex.def)             Requested size: 356.99844pt x 246.19707pt.
-Package epstopdf Info: Source file: <128mix32_32_T_PTP_E.eps>
-(epstopdf)                    date: 2022-06-28 09:55:41
-(epstopdf)                    size: 281680 bytes
-(epstopdf)             Output file: <128mix32_32_T_PTP_E-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-06-28 09:58:17
-(epstopdf)                    size: 139758 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=128mix32_32_T_PTP_E-
-eps-converted-to.pdf 128mix32_32_T_PTP_E.eps>
-(epstopdf)             \includegraphics on input line 309.
-Package epstopdf Info: Output file is already uptodate.
+pdfTeX warning: pdflatex.exe (file ./32MIX128IN128M-eps-converted-to.pdf): PDF 
+inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<32MIX128IN128M-eps-converted-to.pdf, id=448, 845.1575pt x 598.235pt>
+File: 32MIX128IN128M-eps-converted-to.pdf Graphic file (type pdf)
+<use 32MIX128IN128M-eps-converted-to.pdf>
+Package pdftex.def Info: 32MIX128IN128M-eps-converted-to.pdf  used on input lin
+e 272.
+(pdftex.def)             Requested size: 110.69925pt x 78.35748pt.
+[3
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.285 \end{equation}
+                    
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.285 \end{equation}
+                     <./GCN.pdf> <./vae.pdf
+
+pdfTeX warning: pdflatex.exe (file ./vae.pdf): PDF inclusion: multiple pdfs wit
+h page group included in a single page
+>]
+
+LaTeX Warning: Reference `fig:single_mixed' on page 4 undefined on input line 2
+88.
 
 
-pdfTeX warning: pdflatex.exe (file ./128mix32_32_T_PTP_E-eps-converted-to.pdf):
- PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<128mix32_32_T_PTP_E-eps-converted-to.pdf, id=123, 770.88pt x 590.205pt>
-File: 128mix32_32_T_PTP_E-eps-converted-to.pdf Graphic file (type pdf)
-<use 128mix32_32_T_PTP_E-eps-converted-to.pdf>
-Package pdftex.def Info: 128mix32_32_T_PTP_E-eps-converted-to.pdf  used on inpu
-t line 309.
-(pdftex.def)             Requested size: 172.19925pt x 131.83577pt.
-Package epstopdf Info: Source file: <128mix32_32_T_PTP_M.eps>
-(epstopdf)                    date: 2022-06-28 09:56:16
-(epstopdf)                    size: 264441 bytes
-(epstopdf)             Output file: <128mix32_32_T_PTP_M-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-06-28 09:58:19
-(epstopdf)                    size: 125854 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=128mix32_32_T_PTP_M-
-eps-converted-to.pdf 128mix32_32_T_PTP_M.eps>
-(epstopdf)             \includegraphics on input line 315.
-Package epstopdf Info: Output file is already uptodate.
+LaTeX Warning: Reference `fig:single_mixed' on page 4 undefined on input line 2
+98.
 
 
-pdfTeX warning: pdflatex.exe (file ./128mix32_32_T_PTP_M-eps-converted-to.pdf):
- PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<128mix32_32_T_PTP_M-eps-converted-to.pdf, id=124, 770.88pt x 590.205pt>
-File: 128mix32_32_T_PTP_M-eps-converted-to.pdf Graphic file (type pdf)
-<use 128mix32_32_T_PTP_M-eps-converted-to.pdf>
-Package pdftex.def Info: 128mix32_32_T_PTP_M-eps-converted-to.pdf  used on inpu
-t line 315.
-(pdftex.def)             Requested size: 172.19925pt x 131.83577pt.
-Package epstopdf Info: Source file: <128mix32_128_T_PTP_E.eps>
-(epstopdf)                    date: 2022-06-28 10:11:12
-(epstopdf)                    size: 298540 bytes
-(epstopdf)             Output file: <128mix32_128_T_PTP_E-eps-converted-to.pdf>
-
-(epstopdf)                    date: 2022-06-28 10:11:38
-(epstopdf)                    size: 153699 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=128mix32_128_T_PTP_E
--eps-converted-to.pdf 128mix32_128_T_PTP_E.eps>
-(epstopdf)             \includegraphics on input line 321.
-Package epstopdf Info: Output file is already uptodate.
+LaTeX Warning: Reference `fig:single_mixed' on page 4 undefined on input line 3
+06.
 
 
-pdfTeX warning: pdflatex.exe (file ./128mix32_128_T_PTP_E-eps-converted-to.pdf)
-: PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<128mix32_128_T_PTP_E-eps-converted-to.pdf, id=125, 770.88pt x 590.205pt>
-File: 128mix32_128_T_PTP_E-eps-converted-to.pdf Graphic file (type pdf)
-<use 128mix32_128_T_PTP_E-eps-converted-to.pdf>
-Package pdftex.def Info: 128mix32_128_T_PTP_E-eps-converted-to.pdf  used on inp
-ut line 321.
-(pdftex.def)             Requested size: 172.19925pt x 131.83577pt.
-Package epstopdf Info: Source file: <128mix32_128_T_PTP_M.eps>
-(epstopdf)                    date: 2022-06-28 10:10:51
-(epstopdf)                    size: 317389 bytes
-(epstopdf)             Output file: <128mix32_128_T_PTP_M-eps-converted-to.pdf>
-
-(epstopdf)                    date: 2022-06-28 10:11:40
-(epstopdf)                    size: 152032 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=128mix32_128_T_PTP_M
--eps-converted-to.pdf 128mix32_128_T_PTP_M.eps>
-(epstopdf)             \includegraphics on input line 327.
-Package epstopdf Info: Output file is already uptodate.
+Package natbib Warning: Citation `gvae2016' on page 4 undefined on input line 3
+46.
 
 
-pdfTeX warning: pdflatex.exe (file ./128mix32_128_T_PTP_M-eps-converted-to.pdf)
-: PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<128mix32_128_T_PTP_M-eps-converted-to.pdf, id=126, 770.88pt x 590.205pt>
-File: 128mix32_128_T_PTP_M-eps-converted-to.pdf Graphic file (type pdf)
-<use 128mix32_128_T_PTP_M-eps-converted-to.pdf>
-Package pdftex.def Info: 128mix32_128_T_PTP_M-eps-converted-to.pdf  used on inp
-ut line 327.
-(pdftex.def)             Requested size: 172.19925pt x 131.83577pt.
-Package epstopdf Info: Source file: <16_T_PTP_E_normal.eps>
-(epstopdf)                    date: 2022-06-29 10:03:53
-(epstopdf)                    size: 67413 bytes
-(epstopdf)             Output file: <16_T_PTP_E_normal-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-06-29 10:04:58
-(epstopdf)                    size: 26004 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=16_T_PTP_E_normal-ep
-s-converted-to.pdf 16_T_PTP_E_normal.eps>
-(epstopdf)             \includegraphics on input line 333.
-Package epstopdf Info: Output file is already uptodate.
+Package natbib Warning: Citation `graphconv2018' on page 4 undefined on input l
+ine 347.
 
 
-pdfTeX warning: pdflatex.exe (file ./16_T_PTP_E_normal-eps-converted-to.pdf): P
-DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<16_T_PTP_E_normal-eps-converted-to.pdf, id=127, 845.1575pt x 598.235pt>
-File: 16_T_PTP_E_normal-eps-converted-to.pdf Graphic file (type pdf)
-<use 16_T_PTP_E_normal-eps-converted-to.pdf>
-Package pdftex.def Info: 16_T_PTP_E_normal-eps-converted-to.pdf  used on input 
-line 333.
-(pdftex.def)             Requested size: 172.19925pt x 121.89044pt.
-Package epstopdf Info: Source file: <16_T_PTP_M.eps>
-(epstopdf)                    date: 2022-06-28 10:20:30
-(epstopdf)                    size: 378070 bytes
-(epstopdf)             Output file: <16_T_PTP_M-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-06-28 10:21:24
-(epstopdf)                    size: 159555 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=16_T_PTP_M-eps-conve
-rted-to.pdf 16_T_PTP_M.eps>
-(epstopdf)             \includegraphics on input line 339.
-Package epstopdf Info: Output file is already uptodate.
+LaTeX Warning: Reference `reparam' on page 4 undefined on input line 353.
 
-
-pdfTeX warning: pdflatex.exe (file ./16_T_PTP_M-eps-converted-to.pdf): PDF incl
-usion: found PDF version <1.7>, but at most version <1.5> allowed
-<16_T_PTP_M-eps-converted-to.pdf, id=128, 770.88pt x 590.205pt>
-File: 16_T_PTP_M-eps-converted-to.pdf Graphic file (type pdf)
-<use 16_T_PTP_M-eps-converted-to.pdf>
-Package pdftex.def Info: 16_T_PTP_M-eps-converted-to.pdf  used on input line 33
-9.
-(pdftex.def)             Requested size: 172.19925pt x 131.83577pt.
-(document.bbl
-! Undefined control sequence.
-l.81   \noopsort
-                {1973b}1973.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.89   \noopsort
-                {1973c}1981.
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Underfull \hbox (badness 1454) in paragraph at lines 159--164
-[]\OT1/cmr/m/n/10 proceedings-full Wiz-ard V. Oz and Mi-halis Yan-
+[4
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.364 
+       <./PTP16E_3-eps-converted-to.pdf> <./PTP16M-eps-converted-to.pdf> <./PTP
+32E-eps-converted-to.pdf> <./PTP32M-eps-converted-to.pdf> <./16mix32PTP16E-eps-
+converted-to.pdf> <./16mix32IN16-eps-converted-to.pdf> <./16mix32PTP32E-eps-con
+verted-to.pdf> <./16mix32PTP32M-eps-converted-to.pdf> <./32MIX128IN32E-eps-conv
+erted-to.pdf> <./32MIX128IN32M-eps-converted-to.pdf> <./32MIX128IN128E-eps-conv
+erted-to.pdf> <./32MIX128IN128M-eps-converted-to.pdf>]
+Overfull \hbox (1.84001pt too wide) detected at line 376
+[][][][]
  []
 
-) [5] [6 <./spin_vgae2.pdf> <./16_T_PTP_E-eps-converted-to.pdf>] [7 <./myId2.pd
-f> <./128mix32_32_T_PTP_E-eps-converted-to.pdf> <./128mix32_32_T_PTP_M-eps-conv
-erted-to.pdf>] [8 <./128mix32_128_T_PTP_E-eps-converted-to.pdf> <./128mix32_128
-_T_PTP_M-eps-converted-to.pdf> <./16_T_PTP_E_normal-eps-converted-to.pdf>]
-[9 <./16_T_PTP_M-eps-converted-to.pdf>] (document.aux)
+(document.bbl
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Reference `LastBibItem' on page 5 undefined on input line 9.
 
+
+Package natbib Warning: Empty `thebibliography' environment on input line 53.
+
+)
+
+Package natbib Warning: There were undefined citations.
+
+[5] (document.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `document.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `document.out':
+(rerunfilecheck)             Before: C7A91CA1929DF35C023E47D02A144DC2;1758
+(rerunfilecheck)             After:  8F0920EFAB450C78BC62ACAB2473A085;1702.
  ) 
 Here is how much of TeX's memory you used:
- 9539 strings out of 478354
- 162900 string characters out of 2853521
- 519837 words of memory out of 3000000
- 27768 multiletter control sequences out of 15000+600000
- 483185 words of font info for 79 fonts, out of 8000000 for 9000
+ 12889 strings out of 478354
+ 192491 string characters out of 2853521
+ 523788 words of memory out of 3000000
+ 31055 multiletter control sequences out of 15000+600000
+ 483415 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,12n,92p,1628b,530s stack positions out of 10000i,1000n,20000p,200000b,80000s
- <C:\Users\SHIYUEHUA\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
-tcrm1000.pk><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/MikTex/fon
-ts/type1/public/amsfonts/cm/cmbx12.pfb><D:/MikTex/fonts/type1/public/amsfonts/c
-m/cmbx9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MikTex/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb><D:/MikTex/fonts/type1/public/amsfonts/c
-m/cmmi5.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/MikTex/font
-s/type1/public/amsfonts/cm/cmr10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/
-cmr5.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/MikTex/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.
-pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/MikTex/fonts/type1
-/public/amsfonts/cm/cmsy6.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.p
-fb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/MikTex/fonts/type1/p
-ublic/amsfonts/cm/cmsy9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmti10.pf
-b><D:/MikTex/fonts/type1/public/amsfonts/cm/cmti9.pfb><D:/MikTex/fonts/type1/pu
-blic/amsfonts/cm/cmtt10.pfb><D:/MikTex/fonts/type1/public/amsfonts/symbols/msbm
-10.pfb>
-Output written on document.pdf (9 pages, 3602727 bytes).
+ 72i,12n,77p,1637b,514s stack positions out of 10000i,1000n,20000p,200000b,80000s
+<D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/MikTex/fonts/type1/p
+ublic/amsfonts/cm/cmbx12.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx9.pf
+b><D:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MikTex/fonts/type1/p
+ublic/amsfonts/cm/cmmi10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi5.pf
+b><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><D:/MikTex/fonts/type1/pu
+blic/amsfonts/cm/cmmi7.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi9.pfb>
+<D:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MikTex/fonts/type1/publ
+ic/amsfonts/cm/cmr5.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/
+MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/MikTex/fonts/type1/public/am
+sfonts/cm/cmr8.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.pfb><D:/MikTe
+x/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/MikTex/fonts/type1/public/amsfo
+nts/cm/cmsy5.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy6.pfb><D:/MikTex
+/fonts/type1/public/amsfonts/cm/cmsy7.pfb><D:/MikTex/fonts/type1/public/amsfont
+s/cm/cmti10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmti9.pfb><D:/MikTex/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on document.pdf (5 pages, 1182610 bytes).
 PDF statistics:
- 3087 PDF objects out of 3580 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1068 PDF objects out of 1200 (max. 8388607)
+ 39 named destinations out of 1000 (max. 500000)
+ 172 words of extra memory for PDF output out of 10000 (max. 10000000)
 

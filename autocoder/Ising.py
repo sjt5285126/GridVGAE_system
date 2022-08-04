@@ -9,11 +9,11 @@ class Config():
         self.nums = nums
         self.tensor = tensor
         if self.tensor is True:
-            self.canvas =  None
+            self.canvas = None
         else:
             self.canvas = np.random.randint(0, 2, [self.nums,self.size, self.size]) * 2 - 1
     def choiceGPU(self):
-        self.canvas = self.canvas.to('cuda' if torch.cuda.is_available() else 'cpu')
+        self.canvas = self.canvas.to('cuda:3' if torch.cuda.is_available() else 'cpu')
 
     def setCanvans(self,config):
         self.canvas = config
@@ -61,7 +61,8 @@ class Config():
             # While stack is not empty, pop and flip a spin
 
             [currentx, currenty] = stack.pop()
-            self.canvas[currentx, currenty] = -sign
+            # error!!!!!
+            canvas[currentx, currenty] = -sign
 
             # Append neighbor spins
 

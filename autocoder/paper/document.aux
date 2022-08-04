@@ -1,70 +1,74 @@
 \relax 
-\providecommand{\transparent@use}[1]{}
-\newlabel{FirstPage}{{}{1}{}{}{}}
-\@writefile{toc}{\contentsline {title}{Manuscript Title:\\with Forced Linebreak}{1}{}}
-\@writefile{toc}{\contentsline {abstract}{Abstract}{1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {I}introduction}{1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {II}Ising model and Graph neural networks}{2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A}Ising model}{2}{}}
-\newlabel{H}{{1}{2}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B}Graph neural network}{2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1}Graph Convolutional Network}{3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2}Graph Convolutional Generalization}{3}{}}
-\newlabel{key}{{5}{3}{}{}{}}
-\newlabel{key}{{6}{3}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Schematic diagram of a graph convolutional network aggregating neighboring nodes. The red node in the center aggregates the nearest blue node, and the blue node in turn aggregates the nearest green node, allowing the nodes to gain longer-range influence through multiple sets of convolutional operations.\relax }}{3}{}}
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:gnn}{{1}{3}{}{}{}}
-\newlabel{key_w}{{7}{3}{}{}{}}
-\newlabel{LapalceMatrix}{{8}{3}{}{}{}}
-\newlabel{formulaNode}{{9}{3}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3}Variational auto-encoder}{3}{}}
-\newlabel{vae}{{10}{4}{}{}{}}
-\newlabel{prop}{{11}{4}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces An example of a variational self-encoder, in which each network consists of an input layer, a hidden layer and an output layer. The dashed arrows indicate the mean $\mu $ and variance $\sigma $ for the reparametric Eq.\ref {reparam}. Each cell in the output layer of the decoder requires the corresponding $\mu $ and $\sigma $\relax }}{4}{}}
-\newlabel{fig:simplevae}{{2}{4}{}{}{}}
-\newlabel{reparam}{{12}{4}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Variational autoencoder, a VAE is consist of two parts, encoder and decoder, and two neural networks are used in the output stage of the encoder to obtain the mean $\mu $ and variance $\sigma $ respectively. The input $z$ to the decoder requires $\mu $ and $\sigma $ obtained by the reparameterization trick [see Eq.\ref {reparam}]\relax }}{4}{}}
-\newlabel{fig:vae}{{3}{4}{}{}{}}
-\bibdata{documentNotes}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{carrasquilla2017machine,carleo2017solving,RevModPhys.91.045002}
+\citation{carrasquilla2017machine}
+\citation{pca1,pca2,pca3,tsne,df1,df2,df3,df4,confusion}
+\citation{vae_creator,vae_propose}
+\citation{vaeisingxy,Yevick2022}
+\citation{vae_temperature}
+\citation{vaedynamics}
+\citation{dark_matter}
+\citation{vaeisingxy,Yevick2022,vae_temperature}
+\citation{diluted}
+\citation{Shi2018}
+\citation{gnn_1,gnn_2}
+\citation{wuli1}
+\citation{gnn_bio}
+\citation{gnn_chemi}
+\citation{gvae2016}
+\newlabel{FirstPage}{{}{1}{}{section*.1}{}}
+\@writefile{toc}{\contentsline {title}{Graph neural network for generating the configurations with different conditions}{1}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {abstract}{Abstract}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction.}{1}{section*.3}\protected@file@percent }
+\citation{gnn.GCNConv}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The GVAE consists of (a) Encoder (b)Decoder and (c) Generator.}}{2}{figure.1}\protected@file@percent }
+\newlabel{fig:mainidea}{{1}{2}{The GVAE consists of (a) Encoder (b)Decoder and (c) Generator}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Method}{2}{section*.4}\protected@file@percent }
+\newlabel{sec:main}{{II}{2}{}{section*.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}main idea}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Graph convolution}{2}{section*.6}\protected@file@percent }
+\newlabel{formulaNode}{{1}{2}{}{equation.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  The node $v_i$ in red aggregates feature from its neighboring node $v_j$ in yellow. (a) $l=1$ (b) $l=2$. The small squares denote the feature vectors of the nodes.}}{3}{figure.2}\protected@file@percent }
+\newlabel{fig:gnn}{{2}{3}{The node $v_i$ in red aggregates feature from its neighboring node $v_j$ in yellow. (a) $l=1$ (b) $l=2$. The small squares denote the feature vectors of the nodes}{figure.2}{}}
+\newlabel{LapalceMatrix}{{2}{3}{}{equation.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {C}AE, VAE}{3}{section*.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces An example of a VAE, in which each network consists of an input layer, a hidden layer and an output layer. The dashed arrows indicate the mean $\mu $ and variance $\sigma $ for the re-parametric. }}{3}{figure.3}\protected@file@percent }
+\newlabel{fig:simplevae}{{3}{3}{An example of a VAE, in which each network consists of an input layer, a hidden layer and an output layer. The dashed arrows indicate the mean $\mu $ and variance $\sigma $ for the re-parametric}{figure.3}{}}
+\newlabel{prop}{{8}{3}{}{equation.2.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {D}GVAE}{3}{section*.8}\protected@file@percent }
+\newlabel{mu}{{II\,D}{3}{}{equation.2.11}{}}
+\newlabel{x_i}{{12}{3}{}{equation.2.12}{}}
+\citation{gvae2016}
+\citation{graphconv2018}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces chutian3}}{4}{figure.4}\protected@file@percent }
+\newlabel{fig:single_mixed}{{4}{4}{chutian3}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparison of energy scatter diagrams generated by the hybrid model of 16 and 32 sizes for 32 sizes at $T=3$ temperature with those generated by the MCMC method}}{4}{figure.5}\protected@file@percent }
+\newlabel{fig:16mix3232t3esactter}{{5}{4}{Comparison of energy scatter diagrams generated by the hybrid model of 16 and 32 sizes for 32 sizes at $T=3$ temperature with those generated by the MCMC method}{figure.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Results}{4}{section*.9}\protected@file@percent }
+\newlabel{H}{{13}{4}{}{equation.3.13}{}}
+\newlabel{upgradeFormula}{{14}{4}{}{equation.3.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Conclusion and Discussion}{4}{section*.10}\protected@file@percent }
+\newlabel{x_i}{{15}{4}{}{equation.4.15}{}}
+\bibdata{documentNotes,ref.bib}
 \bibstyle{apsrev4-2}
 \citation{REVTEX42Control}
 \citation{apsrev42Control}
-\@writefile{toc}{\contentsline {section}{\numberline {III}spin Variational graph auto-encoder}{5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A}Encoder}{5}{}}
-\newlabel{upgradeFormula}{{13}{5}{}{}{}}
-\newlabel{mu}{{14}{5}{}{}{}}
-\newlabel{log}{{15}{5}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B}Decoder}{5}{}}
-\newlabel{x_i}{{16}{5}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}SIMULATION RESULTS AND ANALYSIS}{5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Use the figure* environment to get a wide figure that spans the page in \texttt  {twocolumn} formatting.\relax }}{6}{}}
-\newlabel{fig:wide}{{4}{6}{}{}{}}
-\newlabel{fig:spinvgae2}{{4}{6}{}{}{}}
-\newlabel{chutian3}{{5a}{6}{}{}{}}
-\newlabel{sub@chutian3}{{a}{6}{}{}{}}
-\newlabel{chutian3}{{5b}{6}{}{}{}}
-\newlabel{sub@chutian3}{{b}{6}{}{}{}}
-\newlabel{chutian3}{{5c}{6}{}{}{}}
-\newlabel{sub@chutian3}{{c}{6}{}{}{}}
-\newlabel{chutian3}{{5d}{6}{}{}{}}
-\newlabel{sub@chutian3}{{d}{6}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces mother of chutian\relax }}{6}{}}
-\newlabel{da_chutian}{{5}{6}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \relax }}{7}{}}
-\newlabel{fig:myid1}{{6}{7}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Comparison of energy scatter diagrams generated by the hybrid model of 16 and 32 sizes for 32 sizes at T=3 temperature with those generated by the MCMC method\relax }}{7}{}}
-\newlabel{fig:16mix3232t3esactter}{{7}{7}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Comparison of Magnetization scatter diagrams generated by a separate 32-size model at T=3 temperature with those generated by conventional methods\relax }}{7}{}}
-\newlabel{fig:32t3mscatter}{{8}{7}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Comparison of Magnetization scatter diagrams generated by the hybrid model of 16 and 32 sizes for 32 sizes at T=3 temperature with those generated by the MCMC method\relax }}{8}{}}
-\newlabel{fig:16mix3232t3mscatter}{{9}{8}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Comparison of energy diagrams generated by the hybrid model of 32 and 128 sizes for 128 sizes at T=2.269 temperature with those generated by the MCMC method\relax }}{8}{}}
-\newlabel{fig:128mix32128tptpe}{{10}{8}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces omparison of energy scatter diagrams generated by the hybrid model of 16 sizes for 16 sizes at T=PTP temperature with those generated by the MCMC method\relax }}{8}{}}
-\newlabel{fig:16tptpe}{{11}{8}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces omparison of energy scatter diagrams generated by the hybrid model of 16 sizes for 16 sizes at T=PTP temperature with those generated by the MCMC method\relax }}{9}{}}
-\newlabel{fig:16tptpm}{{12}{9}{}{}{}}
-\newlabel{LastPage}{{}{9}{}{}{}}
-\gdef\svg@ink@ver@settings{{\m@ne }{inkscape}{\m@ne }}
-\gdef \@abspage@last{9}
+\@writefile{toc}{\appendix }
+\@writefile{toc}{\contentsline {section}{\numberline {A} Some derivation}{5}{section*.11}\protected@file@percent }
+\newlabel{vae}{{A1}{5}{}{equation.A.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {}References}{5}{section*.12}\protected@file@percent }
+\newlabel{LastPage}{{}{5}{}{}{}}
+\gdef \@abspage@last{5}

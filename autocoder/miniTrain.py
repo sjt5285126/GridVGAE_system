@@ -106,4 +106,4 @@ def initData(path,epochs):
 #
 # print('complete')
 
-initData('16mix32_32_PTP_0617.hdf5',1)
+initData('16mix32_32_PTP_0701.hdf5',1)

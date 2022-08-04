@@ -5,13 +5,16 @@ import numpy
 import torch
 from torch_geometric.data import Data
 import numpy as np
-from IsingGrid_gpu import Grid_gpu
+from InitIsingXY import genIsingXY
 import IsingGrid
+from IsingGrid_gpu import Grid_gpu
+from IsingGrid import Grid
 import h5py
 import pickle
 import time
 from Ising import Config
 import matplotlib.pyplot as plt
+from sampleConfigs import Getsamples
 
 '''
 验证出 数据集在cpu上运行速度要大于在gpu上的运行速度，因为生成的构型非常小
@@ -328,6 +331,99 @@ IsingInit 为优化的生成数据集机器
 '''
 
 
+### 修改构型为双层 一层为Ising模型 一层为XY模型 同时最好能找到合适的能转换为[0,1]之间的标准化过程
+def IsingXY_IsingInit(size, path, name):
+    begin = time.time()
+    data = []
+    edge_nums = size * size * 4
+    edge_index = torch.zeros((2, edge_nums), dtype=torch.long)
+    location = 0
+    for x in range(size):
+        for y in range(size):
+            edge_index[0, location:location + 4] = x * size + y
+            edge_index[1][location] = (x - 1) % size * size + y
+            edge_index[1][location + 1] = x * size + (y + 1) % size
+            edge_index[1][location + 2] = (x + 1) % size * size + y
+            edge_index[1][location + 3] = x * size + (y - 1) % size
+            location += 4
+    configs = genIsingXY(path, size)
+    Isings = configs[:, :, 0].reshape(configs.shape[0], configs.shape[1], 1)
+    XYs = configs[:, :, 1].reshape(configs.shape[0], configs.shape[1], 1)
+    count = 0
+    for canvans in Isings:
+        x = torch.tensor(canvans, dtype=torch.float)
+        # edge_attr_graph = torch.ones((edge_nums, 1))
+        # for i in range(edge_nums):
+        #     edge_1 = edge_index[0][i]
+        #     edge_2 = edge_index[1][i]
+        #     edge_attr_graph[i] = (A + B * x[edge_1][0] * x[edge_2][0]) * np.cos(x[edge_1][1] - x[edge_2][1]) + C * \
+        #                          x[edge_1][0] * x[edge_2][0]
+        # data.append(Data(x=x, edge_index=edge_index, edge_attr=edge_attr_graph))
+        data.append(Data(x=x, edge_index=edge_index))
+        if count % 100 == 0:
+            print('已存入{}个Ising构型'.format(count))
+        count += 1
+    print('存入构型')
+    file = open('data/IsingXYGraph/dataIsing_{}.pkl'.format(name), 'wb')
+    pickle.dump(data, file)
+    file.close()
+    count = 0
+    for canvans in XYs:
+        x = torch.tensor(canvans, dtype=torch.float)
+        data.append(Data(x=x, edge_index=edge_index))
+        if count % 100 == 0:
+            print('已存入{}个XY构型'.format(count))
+        count += 1
+    print('存入构型')
+    file = open('data/IsingXYGraph/dataXY_{}.pkl'.format(name), 'wb')
+    pickle.dump(data, file)
+    file.close()
+    end = time.time()
+    print(end - begin)
+
+
+# data=>[x,2,8,8]
+# A = 0.32 B = 0.32 C = 0.38
+def IsingXYInit(size, A, B, C, path, name):
+    begin = time.time()
+    data = []
+    edge_nums = size * size * 4
+    edge_index = torch.zeros((2, edge_nums), dtype=torch.long)
+    location = 0
+    for x in range(size):
+        for y in range(size):
+            edge_index[0, location:location + 4] = x * size + y
+            edge_index[1][location] = (x - 1) % size * size + y
+            edge_index[1][location + 1] = x * size + (y + 1) % size
+            edge_index[1][location + 2] = (x + 1) % size * size + y
+            edge_index[1][location + 3] = x * size + (y - 1) % size
+            location += 4
+    config, min, MaxSubMin = genIsingXY(path, size)
+    count = 0
+    for canvans in config:
+        x = torch.tensor(canvans, dtype=torch.float)
+        edge_attr_graph = torch.ones((edge_nums, 1))
+        for i in range(edge_nums):
+            edge_1 = edge_index[0][i]
+            edge_2 = edge_index[1][i]
+            edge_attr_graph[i] = (A + B * x[edge_1][0] * x[edge_2][0]) * np.cos(x[edge_1][1] - x[edge_2][1]) + C * \
+                                 x[edge_1][0] * x[edge_2][0]
+        data.append(Data(x=x, edge_index=edge_index, edge_attr=edge_attr_graph))
+        if count % 100 == 0:
+            print('已存入{}个构型'.format(count))
+        count += 1
+    print('存入构型')
+    file = open('data/IsingXYGraph/data_{}.pkl'.format(name), 'wb')
+    pickle.dump(data, file)
+    file.close()
+    Re = open('data/IsingXYGraph/data_{}RE.txt'.format(name), 'wb')
+    Re.write('{} '.format(min))
+    Re.write('{} '.format(MaxSubMin))
+    Re.close()
+    end = time.time()
+    print(end - begin)
+
+
 def IsingInit(size, T_list, nums, name):
     begin = time.time()
 
@@ -357,8 +453,9 @@ def IsingInit(size, T_list, nums, name):
     count = 0
     for T in T_list:
         # configs.shape:[nums,size,size]
-        configs = Config(size, 1, nums, False)
-        configs.wollfAll(T)
+        samples = Getsamples(size, 1, T, nums, 400 * size)
+        configs = Config(size, 1, nums)
+        configs.setCanvans(np.array(samples))
         TotalM = configs.calculateTotalM()
         TotalE = configs.calculateTotalE()
         AvrM = configs.calculateAvrM()
@@ -473,11 +570,49 @@ def reshapeIsingHdf5(config, batch_size):
     return config
 
 
+def reshapeIsingXY(config, min, MaxsubMin, batch_size):
+    config[:, 0] = torch.where(config[:, 0] > 0.5, 1, -1)
+    config[:, 1] = config[:, 1] * MaxsubMin + min
+    size = int(math.sqrt(config.shape[0] / batch_size))
+    config = config.reshape(batch_size, size, size, 2)
+    # config = np.transpose(config.numpy, axes=(0, 2, 1))
+    return config
+
+
 def reshapeIsing_MSE(config, batch_size):
     config = torch.where(config > 0.5, 1, -1)  # 概率可以进行调整
     size = int(math.sqrt(config.shape[0] / batch_size))
     config = config.reshape((batch_size, size, size))
     return config
+
+
+def reshapeXY_MSE(config, batch_size):
+    size = int(math.sqrt((config.shape[0]) / batch_size))
+    config = config.reshape((batch_size, size, size))
+    return config * 2 * np.pi
+
+
+def cacculateIsingXY(configs):
+    size = configs.shape[1]
+    M_Ising = torch.zeros([configs.shape[0], ])
+    M_XY = torch.zeros([configs.shape[0], ])
+    for i, config in enumerate(configs):
+        M_Ising[i] = torch.abs(config[:, :, 0].sum())
+        M_XY[i] = torch.abs(torch.cos(config[:, :, 1]).sum())
+
+    M_Ising = M_Ising / (size ** 2)
+    M_XY = M_XY / (size ** 2)
+
+    return M_Ising, M_XY, M_XY * (size ** 0.125)
+
+
+def calculateXY(configs):
+    nums = configs.shape[0]
+    size = configs.shape[1]
+    M_XY = torch.zeros([configs.shape[0], ])
+    for i, config in enumerate(configs):
+        M_XY[i] = torch.abs(torch.cos(config).sum())
+    return M_XY
 
 
 def calculate(configs):

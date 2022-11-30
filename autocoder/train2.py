@@ -35,7 +35,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 # 构建模型
 
 # 读取数据
-device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:3' if torch.cuda.is_available() else 'cpu')
 datafile = open('data/IsingGraph/data_16_T_PTPQuick.pkl', 'rb')
 data = pickle.load(datafile)
 test_batch = gloader.DataLoader(data, batch_size=200, shuffle=True)
@@ -45,7 +45,7 @@ optim = torch.optim.Adam(model.parameters(), lr=0.01)
 
 # PATH = argv[1]
 
-PATH = 'model_pre2_16_PTP_0706True2withPkl.pkl'
+PATH = 'model/model_16_PTPQuick.pkl'
 
 checkpoint = torch.load(PATH, map_location=device)
 # 模型的测试

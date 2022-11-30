@@ -40,14 +40,16 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 
 
 # 定义测试所需要的设备，模型，优化器
-device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:3' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
-PATH = 'model_pre2_32_PTP_0706True.pkl'
+PATH = 'model/model_16_PTPQuick_aplha_4.pkl'
+name = PATH.split('/')[-1][:-4]
 
 checkpoint = torch.load(PATH, map_location=device)
 model, optim, mu, log, batch_size = load_checkpoint(model, PATH, optim)
 print(batch_size)
+
 
 def reparametrize(mu, log):
     # 返回重采样的z
@@ -70,7 +72,7 @@ epochs = 1
 with torch.no_grad():
     model.eval()
     for epoch in range(epochs):
-        f_gen = h5py.File('pre2_32_0706PTPTrue.hdf5'.format(epoch), 'w')
+        f_gen = h5py.File('data/modelData/{}_config_{}.hdf5'.format(name, epoch), 'w')
         model.eval()
         z = reparametrize(mu, log)
         x_ = model.decode(z)

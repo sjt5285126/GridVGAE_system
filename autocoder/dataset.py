@@ -1,6 +1,6 @@
 import random
 import math
-
+from torch_geometric.utils import to_dense_adj
 import numpy
 import torch
 from torch_geometric.data import Data
@@ -635,6 +635,94 @@ def calculate(configs):
     AvrE = canvas.calculateAvrE()
 
     return TotalM, TotalE, AvrM, AvrE
+
+
+def init_Ising_diffpool(size, T_list, nums, name):
+    """
+    相较于 原始生成的Ising构型，添加了adj-邻接矩阵，同时因为所有Ising构型的邻接矩阵相似，
+    所以只需要仿照一个类似的邻接矩阵就可以
+
+    diffpool 仍能处理多种尺寸构型的图片
+
+    :param size: 尺寸大小
+    :param T_list: 温度列表
+    :param nums: 构型数量
+    :param name: 文件名称
+    :return:
+
+    """
+    begin = time.time()
+
+    # 数据存放位置
+    data = []
+    # 形成对应的边
+
+    edge_nums = size * size * 4
+    edge_index = torch.zeros((2, edge_nums), dtype=torch.long)
+    location = 0
+    for x in range(size):
+        for y in range(size):
+            edge_index[0, location:location + 4] = x * size + y
+            edge_index[1][location] = (x - 1) % size * size + y
+            edge_index[1][location + 1] = x * size + (y + 1) % size
+            edge_index[1][location + 2] = (x + 1) % size * size + y
+            edge_index[1][location + 3] = x * size + (y - 1) % size
+            location += 4
+    # 形成邻接矩阵adj
+    # adj = to_dense_adj(edge_index)
+    # 形成图的对应标签
+    y_list = torch.zeros((len(T_list) * nums, 1), dtype=torch.int8)
+    for id_t, t in enumerate(T_list):
+        for i in range(nums):
+            y_list[id_t * nums + i] = id_t
+
+    print(y_list)
+    # config_file = h5py.File('lili/data/Ising/{}.hdf5'.format(name), 'w')
+    count = 0
+    for T in T_list:
+        # configs.shape:[nums,size,size]
+        samples = Getsamples(size, 1, T, nums, 400 * size)
+        configs = Config(size, 1, nums)
+        configs.setCanvans(np.array(samples))
+        # TotalM = configs.calculateTotalM()
+        # TotalE = configs.calculateTotalE()
+        # AvrM = configs.calculateAvrM()
+        # AvrE = configs.calculateAvrE()
+        # 一个温度下的所有构型都产生完毕
+        config = configs.canvas.reshape((nums, size * size, 1))
+        del configs
+        config = np.where(np.sum(config) > 0, config, -config)
+        config = np.where(config > 0, config, 0)
+        # config_file.create_dataset('T={}'.format(T), data=config)
+        # config_file.create_dataset('T={}_TotalM'.format(T), data=TotalM)
+        # config_file.create_dataset('T={}_TotalE'.format(T), data=TotalE)
+        # config_file.create_dataset('T={}_AvrM'.format(T), data=AvrM)
+        # config_file.create_dataset('T={}_AvrE'.format(T), data=AvrE)
+        for canvas, y in zip(config, y_list[count * nums:(count + 1) * nums]):
+            x = torch.tensor(canvas, dtype=torch.float)  # 重大bug 导致数据类型出错
+            edge_attr_graph = torch.ones((edge_nums, 1))
+            for i in range(edge_nums):
+                edge_1 = edge_index[0][i]
+                edge_2 = edge_index[1][i]
+                if x[edge_1] == x[edge_2]:
+                    edge_attr_graph[i] = -1
+                else:
+                    edge_attr_graph[i] = 1
+            # 生成邻接矩阵 并且 使用了权值
+            adj = to_dense_adj(edge_index=edge_index, edge_attr=edge_attr_graph)
+            adj = adj.reshape(size * size, size * size)
+            data.append(Data(x=x, edge_index=edge_index, y=y, edge_attr=edge_attr_graph, adj=adj))
+        print('存入温度{}'.format(T))
+        count += 1
+    # config_file.close()
+    # 将数据打乱
+    random.shuffle(data)
+    file = open('lili/data/IsingGraph/data_{}.pkl'.format(name), 'wb')
+    pickle.dump(data, file)
+    file.close()
+    end = time.time()
+    print(end - begin)
+
 
 # 测试数据
 # init_ising(32, [1,2,3], 32)

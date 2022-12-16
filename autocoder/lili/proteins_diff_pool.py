@@ -105,20 +105,20 @@ class Net(torch.nn.Module):
         adj^(l+1) = s^(l^T) adj^l s^l 
         """
         x, adj, l1, e1 = dense_diff_pool(x, adj, s, mask)
-        # print('diffpool1\nx.shape{}'.format(x.shape))
+        print('diffpool1\nx.shape{}'.format(x.shape))
         s = self.gnn2_pool(x, adj)
         x = self.gnn2_embed(x, adj)
-        # print('pool2\ns.shape:{}\nx.shape:{}'.format(s.shape, x.shape))
+        print('pool2\ns.shape:{}\nx.shape:{}'.format(s.shape, x.shape))
         x, adj, l2, e2 = dense_diff_pool(x, adj, s)
-        # print('diffpoll2\nx.shape:{}'.format(x.shape))
+        print('diffpoll2\nx.shape:{}'.format(x.shape))
         x = self.gnn3_embed(x, adj)
-        # print('embed3\nx.shape:{}'.format(x.shape))
+        print('embed3\nx.shape:{}'.format(x.shape))
         x = x.mean(dim=1)
-        # print('mean\nx.shape:{}'.format(x.shape))
+        print('mean\nx.shape:{}'.format(x.shape))
         x = self.lin1(x).relu()
-        # print('lin1\nx.shape:{}'.format(x.shape))
+        print('lin1\nx.shape:{}'.format(x.shape))
         x = self.lin2(x)
-        # print('lin2\nx.shape:{}'.format(x.shape))
+        print('lin2\nx.shape:{}'.format(x.shape))
         return F.log_softmax(x, dim=-1), l1 + l2, e1 + e2
 
 
@@ -146,7 +146,7 @@ def train(epoch):
         loss.backward()
         loss_all += data.y.size(0) * float(loss)
         optimizer.step()
-        # exit()
+        exit()
     print("end------------")
     return loss_all / len(train_dataset)
 

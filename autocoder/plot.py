@@ -19,8 +19,8 @@ else:
 AvrM = f['AvrM'][:length]
 AvrE = f['AvrE'][:length]
 df1 = pd.DataFrame({"AvrM": AvrM, "AvrE": AvrE, "classfiy": "VGAE"})
-print("eval AvrM: mu:{},log:{}".format(np.mean(AvrM), np.std(AvrM) ** 2))
-print("eval AvrE: mu:{},log:{}".format(np.mean(AvrE), np.std(AvrE) ** 2))
+print("eval AvrM: mu:{},datalog:{}".format(np.mean(AvrM), np.std(AvrM) ** 2))
+print("eval AvrE: mu:{},datalog:{}".format(np.mean(AvrE), np.std(AvrE) ** 2))
 
 print(f1.keys())
 AvrM1 = f1['T=2.269_AvrM'][:length]

@@ -13,7 +13,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
         model_CKPT = torch.load(checkpoint_PATH,map_location=device)
         model.load_state_dict(model_CKPT['state_dict'], False)
         print("mu:\n{:.10f}".format(model_CKPT['mu']))
-        print("log:\n{:.10f}".format(model_CKPT['log']))
+        print("datalog:\n{:.10f}".format(model_CKPT['datalog']))
         print('loading checkpoint!')
         optimizer.load_state_dict(model_CKPT['optimizer'])
     # 返回模型，优化器

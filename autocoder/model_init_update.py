@@ -48,4 +48,4 @@ for epoch in range(epochs):
 # 保存模型
 mu, log = model.get_mu_logstd()
 torch.save({'epoch': epochs, 'state_dict': model.state_dict(), 'best_loss': lossMIN,
-            'optimizer': optim.state_dict(), 'batch_size': batch_size, 'mu': mu, 'log': log}, '{}.pkl'.format(name))
+            'optimizer': optim.state_dict(), 'batch_size': batch_size, 'mu': mu, 'datalog': log}, '{}.pkl'.format(name))

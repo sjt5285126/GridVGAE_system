@@ -4,11 +4,11 @@ import torch.nn.functional as F
 import torch_geometric.nn as gnn
 import pickle
 from torch_geometric.loader import DenseDataLoader
-from diffpool2 import GNN, Net
+from diffpool3 import GNN, Net
 
 from sys import argv
 
-if len(argv) < 3:
+if len(argv) < 4:
     print("please input:python diffpool_model.py epochs data_path name")
     exit()
 
@@ -22,21 +22,21 @@ data_file = open(path, 'rb')
 data = pickle.load(data_file)
 data_file.close()
 
-n = 2500
+n = 2000
 
-test_loader = DenseDataLoader(data[:n], batch_size=500)
-valid_loader = DenseDataLoader(data[n:2 * n], batch_size=500)
-train_loader = DenseDataLoader(data[2 * n:], batch_size=500)
+test_loader = DenseDataLoader(data[:n], batch_size=200)
+valid_loader = DenseDataLoader(data[n:2 * n], batch_size=200)
+train_loader = DenseDataLoader(data[2 * n:], batch_size=200)
 
 # 定义设备
 device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
 # 获取 nums_nodes 与 classes
-nums_nodes = 16
+nums_nodes = 64
 classes = 3
 features = 1
 model = Net(max_nodes=nums_nodes, features=features, classes=classes).to(device)
-optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
-
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=0.001)
+print(model )
 
 def train(loader):
     model.train()
@@ -74,7 +74,7 @@ def test(loader):
 best_val_acc = test_acc = 0
 for epoch in range(epochs):
     train_loss = train(train_loader)
-    val_acc = test(test_loader)
+    val_acc = test(valid_loader)
     if val_acc > best_val_acc:
         test_acc = test(test_loader)
         best_val_acc = val_acc
@@ -82,4 +82,4 @@ for epoch in range(epochs):
           f'Val Acc: {val_acc:.4f}, Test Acc: {test_acc:.4f}')
 
 torch.save({'epochs': epochs, 'state_dict': model.state_dict(), 'best_val_acc': best_val_acc,
-            'optimizer': optimizer.state_dict(), 'batch_size': 500}, 'model/{}.pkl'.format(name))
+            'optimizer': optimizer.state_dict(), 'batch_size': 200}, 'model/{}.pkl'.format(name))

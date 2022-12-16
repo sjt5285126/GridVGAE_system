@@ -24,7 +24,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
         model_CKPT = torch.load(checkpoint_PATH, map_location=device)
         model.load_state_dict(model_CKPT['state_dict'], False)
         print("mu:\n{}".format(model_CKPT['mu']))
-        print("log:\n{}".format(model_CKPT['log']))
+        print("datalog:\n{}".format(model_CKPT['datalog']))
         print('loading checkpoint!')
         optimizer.load_state_dict(model_CKPT['optimizer'])
     # 返回模型，优化器
@@ -93,7 +93,7 @@ def initData(path,epochs):
 # 生成数据
 # f_gen = h5py.File('T_PTP_mix64_32_16_64.hdf5', 'w')
 # model.eval()
-# z = reparametrize(mu, log)
+# z = reparametrize(mu, datalog)
 # x_ = model.decode(z)
 # configs = reshapeIsing_MSE(x_, batch_size)
 # print(configs.shape)

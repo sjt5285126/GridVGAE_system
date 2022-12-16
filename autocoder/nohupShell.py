@@ -11,7 +11,7 @@ name = argv[4]
 times = int(argv[5]) # 次数表示一共有多少个批次
 
 for i in range(1,times+1):
-    os.system('nohup python dataInit.py {0} {1} {2} {3}_{4} > sizeLog/{3}_{4}.log 2>&1 &'
+    os.system('nohup python dataInit.py {0} {1} {2} {3}_{4} > sizeLog/{3}_{4}.datalog 2>&1 &'
               .format(size,T_list,nums,name,i))
 
 

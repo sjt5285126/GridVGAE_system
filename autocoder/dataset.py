@@ -708,10 +708,14 @@ def init_Ising_diffpool(size, T_list, nums, name):
                     edge_attr_graph[i] = -1
                 else:
                     edge_attr_graph[i] = 1
+            '''
             # 生成邻接矩阵 并且 使用了权值
+
             adj = to_dense_adj(edge_index=edge_index, edge_attr=edge_attr_graph)
             adj = adj.reshape(size * size, size * size)
             data.append(Data(x=x, edge_index=edge_index, y=y, edge_attr=edge_attr_graph, adj=adj))
+            '''
+            data.append(Data(x=x, edge_index=edge_index, y=y, edge_attr=edge_attr_graph))
         print('存入温度{}'.format(T))
         count += 1
     # config_file.close()

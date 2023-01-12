@@ -27,7 +27,7 @@ from dataset import reshapeIsingHdf5,calculate
 # f['AvrE'] = AvrE
 # f.close()
 
-datafile = open('data/IsingGraph/data_32_T_3.pkl', 'rb')
+datafile = open('data/IsingXYGraph/dataIsing_IsingXYA0.32L16_0711.pkl', 'rb')
 data = pickle.load(datafile)
 datafile.close()
-print(data[0])
+print(data[0].x)

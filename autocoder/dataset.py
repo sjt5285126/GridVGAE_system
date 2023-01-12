@@ -352,14 +352,16 @@ def IsingXY_IsingInit(size, path, name):
     count = 0
     for canvans in Isings:
         x = torch.tensor(canvans, dtype=torch.float)
-        # edge_attr_graph = torch.ones((edge_nums, 1))
-        # for i in range(edge_nums):
-        #     edge_1 = edge_index[0][i]
-        #     edge_2 = edge_index[1][i]
-        #     edge_attr_graph[i] = (A + B * x[edge_1][0] * x[edge_2][0]) * np.cos(x[edge_1][1] - x[edge_2][1]) + C * \
-        #                          x[edge_1][0] * x[edge_2][0]
-        # data.append(Data(x=x, edge_index=edge_index, edge_attr=edge_attr_graph))
-        data.append(Data(x=x, edge_index=edge_index))
+        edge_attr_graph = torch.ones((edge_nums, 1))
+        for i in range(edge_nums):
+            edge_1 = edge_index[0][i]
+            edge_2 = edge_index[1][i]
+            if x[edge_1] == x[edge_2]:
+                edge_attr_graph[i] = -1
+            else:
+                edge_attr_graph[i] = 1
+        data.append(Data(x=x, edge_index=edge_index, edge_attr=edge_attr_graph))
+        # data.append(Data(x=x, edge_index=edge_index))
         if count % 100 == 0:
             print('已存入{}个Ising构型'.format(count))
         count += 1
@@ -370,9 +372,14 @@ def IsingXY_IsingInit(size, path, name):
     count = 0
     for canvans in XYs:
         x = torch.tensor(canvans, dtype=torch.float)
-        data.append(Data(x=x, edge_index=edge_index))
+        edge_attr_graph = torch.ones((edge_nums, 1))
+        for i in range(edge_nums):
+            edge_1 = edge_index[0][i]
+            edge_2 = edge_index[1][i]
+            edge_attr_graph[i] = -np.cos((x[edge_1] - x[edge_2]) * 2 * np.pi)
         if count % 100 == 0:
             print('已存入{}个XY构型'.format(count))
+        data.append(Data(x=x, edge_index=edge_index, edge_attr=edge_attr_graph))
         count += 1
     print('存入构型')
     file = open('data/IsingXYGraph/dataXY_{}.pkl'.format(name), 'wb')
@@ -384,6 +391,12 @@ def IsingXY_IsingInit(size, path, name):
 
 # data=>[x,2,8,8]
 # A = 0.32 B = 0.32 C = 0.38
+'''
+设计xy_Ising模型有两种思路,一种是将xy模型与Ising模型拆分开来,分别进行模拟,得出结果来最后将其拼装
+
+另一种则是采用异构体卷积的思想,将XY与Ising模型相互影响 但Ising模型的节点与XY模型的节点分属于不同的
+节点,同时XY与Ising模型相连的点为 异构边 以此为基础来设计 图神经网络
+'''
 def IsingXYInit(size, A, B, C, path, name):
     begin = time.time()
     data = []

@@ -12,6 +12,7 @@ from torch_geometric.nn import DenseSAGEConv, dense_diff_pool
 class GNN(torch.nn.Module):
     def __init__(self, in_channels, hidden_channels1, hidden_channels2, out_channels):
         super().__init__()
+
         self.conv1 = gnn.DenseGraphConv(in_channels, hidden_channels1)
         self.bn1 = gnn.BatchNorm(hidden_channels1)
         self.graphBN1 = gnn.GraphNorm(hidden_channels1)

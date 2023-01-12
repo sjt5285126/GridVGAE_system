@@ -11,7 +11,14 @@ class Net(nn.Module):
     def __init__(self, num_features, num_classes):
         super().__init__()
 
-        self.conv1 = GraphConv(num_features, 64)
+        self.pre_conv1 = GraphConv(num_features, 16)
+        self.pre_conv2 = GraphConv(16, 32)
+        self.pre_conv3 = GraphConv(32, 64)
+        self.bn1 = gnn.BatchNorm(16)
+        self.bn2 = gnn.BatchNorm(32)
+        self.bn3 = gnn.BatchNorm(64)
+
+        self.conv1 = GraphConv(64, 64)
         self.pool1 = TopKPooling(64, ratio=0.8)
         self.conv2 = GraphConv(64, 64)
         self.pool2 = TopKPooling(64, ratio=0.8)
@@ -28,24 +35,22 @@ class Net(nn.Module):
     def forward(self, data):
         x, edge_index, edge_attr, batch = data.x, data.edge_index, data.edge_attr, data.batch
         # print(x.shape)
+        x = self.relu(self.pre_conv1(x, edge_index, edge_attr))
+        x = self.bn1(x)
+        x = self.relu(self.pre_conv2(x, edge_index, edge_attr))
+        x = self.bn2(x)
+        x = self.relu(self.pre_conv3(x, edge_index, edge_attr))
+        x = self.bn3(x)
+
         x = self.relu(self.conv1(x, edge_index, edge_attr))
-        # print("conv1:{}".format(x.shape))
         x, edge_index, edge_attr, batch, _, _ = self.pool1(x, edge_index, edge_attr, batch)
-        # x1 = torch.cat([gmp(x,batch),gap(x,batch)],dim=1)
         x1 = torch.cat([gmp(x, batch), gap(x, batch)], dim=1)
-        # print("pool1:{}".format(x.shape))
         x = self.relu(self.conv2(x, edge_index))
-        # print("conv2:{}".format(x.shape))
         x, edge_index, edge_attr, batch, _, _ = self.pool2(x, edge_index, edge_attr, batch)
-        # x2 = torch.cat([gmp(x,batch),gap(x,batch)],dim=1)
-        # print("pool2:{}".format(x.shape))
         x2 = torch.cat([gmp(x, batch), gap(x, batch)], dim=1)
         x = self.relu(self.conv3(x, edge_index))
         x, edge_index, edge_attr, batch, _, _ = self.pool3(x, edge_index, edge_attr, batch)
-        # x3 = torch.cat([gmp(x,batch),gap(x,batch)],dim=1)
-        # print("conv3:{}".format(x.shape))
         x3 = torch.cat([gmp(x, batch), gap(x, batch)], dim=1)
-        # x = x1 + x2 + x3
         x = x1 + x2 + x3
         x = self.relu(self.lin1(x))
         # print("lin1:{}".format(x.shape))

@@ -26,4 +26,4 @@ def explore(dataPath):
     f.close()
 
 
-explore('data/Ising/16_T_PTPQuick.hdf5')
+explore('data/Ising/32_T_PTPQuick.hdf5')

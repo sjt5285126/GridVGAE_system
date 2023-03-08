@@ -44,7 +44,7 @@ def plot(S, ax):
     # ax.yaxis.grid(True, which='minor')
     # ax.xaxis.grid(True, which='minor')
     ax.axis("off")
-    Q = ax.quiver(X, Y, U, V, units='width', color='r', pivot='middle', scale=15)
+    Q = ax.quiver(X, Y, U, V, units='width', color='#4672C4', pivot='middle', scale=15)
     # new_Q = ax.quiver(X,Y,new_u,new_v,units='width',color='g',pivot='middle',scale=15)    #plt.pause(0.1)
 
     # qk = plt.quiverkey(Q, 0.3, 0.3, 1, r'$2 \frac{m}{s}$', labelpos='E',
@@ -55,7 +55,7 @@ def plot(S, ax):
     plt.scatter(idx_[0], idx_[1], marker='_', color='k')
     plt.title('Arrows scale with plot width, not view')
     '''
-
+    plt.savefig("xuan.svg")
 
 def MetropolisHastings(S, size, T, numsOfItera):
     deltamax = 0.5

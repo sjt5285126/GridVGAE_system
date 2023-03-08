@@ -27,7 +27,7 @@ datafile = open('data/IsingXYGraph/dataXY_IsingXYA0.32L8_XYattr.pkl', 'rb')
 data_XY = pickle.load(datafile)
 datafile.close()
 
-batch_size = 2000
+batch_size = 5000
 batchs_Ising = gloader.DataLoader(data_Ising, batch_size=batch_size, shuffle=True)
 optim_Ising = torch.optim.Adam(model_Ising.parameters(), lr=0.01, weight_decay=0.001)
 
@@ -38,8 +38,9 @@ for epoch in range(epochs):
     model_Ising.train()
     model_XY.train()
     print("epoch:{}".format(epoch))
-    for ising, xy in zip(data_Ising, data_XY):
+    for ising, xy in zip(batchs_Ising, batchs_XY):
         ising = ising.to(device1)
+        print(ising.x.shape)
         ising.x = ising.x.float()
         # print(ising.num_nodes)
         z_ising = model_Ising.encode(ising.x, ising.edge_index, ising.edge_attr, ising.batch)
@@ -50,9 +51,10 @@ for epoch in range(epochs):
         loss_Ising.backward()
         optim_Ising.step()
         xy = xy.to(device2)
+        print(xy.x.shape)
         z_xy = model_XY.encode(xy.x, xy.edge_index, xy.edge_attr, xy.batch)
         x_ = model_XY.decode(z_xy)
-        loss_xy = model_XY.recon_loss(xy.x, x_) + model_XY.kl_loss() / (16 * (xy.num_nodes / batch_size))
+        loss_xy = model_XY.recon_loss(xy.x, x_) + model_XY.kl_loss() / (64 * (xy.num_nodes / batch_size))
         print("XY_loss:{}".format(loss_xy))
         optim_XY.zero_grad()
         loss_xy.backward()
@@ -60,7 +62,7 @@ for epoch in range(epochs):
 
 Ising_mu, Ising_log = model_Ising.get_mu_logstd()
 
-XY_mu, XY_log = model_Ising.get_mu_logstd()
+XY_mu, XY_log = model_XY.get_mu_logstd()
 
 torch.save({'epoch': epochs, 'state_dict_ising': model_Ising.state_dict(), 'optim_ising': optim_Ising.state_dict(),
             'state_dict': model_XY.state_dict(), 'optim_xy': optim_XY.state_dict(), 'batch_size': batch_size,

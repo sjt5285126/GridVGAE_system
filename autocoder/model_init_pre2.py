@@ -15,7 +15,7 @@ name = argv[2]
 # 先对单温度单尺寸进行训练,多温度单尺寸进行训练
 
 # 定义设备
-device = torch.device('cuda:3' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 print(model)
 
@@ -24,17 +24,17 @@ datafile = open('data/IsingGraph/data_16_T_PTPQuick.pkl', 'rb')
 data = pickle.load(datafile)
 datafile.close()
 # # 读取数据文件2
-datafile2 = open('data/IsingGraph/data_32_T_PTPQuick.pkl', 'rb')
-data2 = pickle.load(datafile2)
-datafile2.close()
-data.extend(data2)
+# datafile2 = open('data/IsingGraph/data_32_T_PTPQuick.pkl', 'rb')
+# data2 = pickle.load(datafile2)
+# datafile2.close()
+# data.extend(data2)
 # # 读取数据文件3
 # datafile3 = open('data/IsingGraph/data_32_T_PTP.pkl','rb')
 # data3 = pickle.load(datafile3)
 # datafile3.close()
 # data.extend(data3[:2000])
 # 读取温度在2.25的构型
-batch_size = 500
+batch_size = 2000
 data_train_batchs = gloader.DataLoader(data, batch_size=batch_size, shuffle=True)
 optim = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=0.001)
 
@@ -48,7 +48,7 @@ for epoch in range(epochs):
         d.x = d.x.float()
         z = model.encode(d.x, d.edge_index, d.edge_attr, d.batch)
         x_ = model.decode(z)
-        loss = model.recon_loss(d.x, x_) + model.kl_loss() / (16 * (d.num_nodes / batch_size))
+        loss = model.recon_loss(d.x, x_) + model.kl_loss() / ((d.num_nodes / batch_size))
         lossMIN = lossMIN if loss > lossMIN else loss
         print('loss:{}'.format(loss))
         optim.zero_grad()

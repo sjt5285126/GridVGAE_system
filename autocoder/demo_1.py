@@ -3,7 +3,8 @@ import pickle
 import h5py
 import torch
 import numpy as np
-from dataset import reshapeIsingHdf5,calculate
+from dataset import reshapeIsingHdf5, calculate, cacculateIsingXY
+from InitIsingXY import genIsingXY
 
 #
 # batch_size = 5000
@@ -27,7 +28,22 @@ from dataset import reshapeIsingHdf5,calculate
 # f['AvrE'] = AvrE
 # f.close()
 
-datafile = open('data/IsingXYGraph/dataIsing_IsingXYA0.32L16_0711.pkl', 'rb')
-data = pickle.load(datafile)
-datafile.close()
-print(data[0].x)
+# datafile = open('data/IsingXYGraph/dataIsing_IsingXYA0.32L16_0711.pkl', 'rb')
+# data = pickle.load(datafile)
+# datafile.close()
+# print(data[0].x)
+
+path = 'data/gouxingTestA0.32_1.dat'
+size = 8
+
+configs = genIsingXY(path, size)
+print(configs.shape)
+
+M_Ising, M_XY = cacculateIsingXY(configs)
+
+file = h5py.File('lili/data/8sizeIsingXY_M.hdf5', 'w')
+
+file.create_dataset('T={}_AvrM'.format('Ising'), data=M_Ising)
+file.create_dataset('T={}_AvrM'.format('XY'), data=M_XY)
+
+file.close()

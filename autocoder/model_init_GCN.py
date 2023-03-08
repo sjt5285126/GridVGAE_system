@@ -20,7 +20,7 @@ model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 print(model)
 
 # 　读取数据文件1
-datafile = open('data/IsingGraph/data_32_T_PTP.pkl', 'rb')
+datafile = open('data/IsingGraph/data_32_T_PTPQuick.pkl', 'rb')
 data = pickle.load(datafile)
 datafile.close()
 # # 读取数据文件2
@@ -47,7 +47,7 @@ for epoch in range(epochs):
         d.x = d.x.float()
         z = model.encode(d.x, d.edge_index, d.batch)
         x_ = model.decode(z)
-        loss = model.recon_loss(d.x, x_) + model.kl_loss() / (4 * (d.num_nodes / batch_size))
+        loss = model.recon_loss(d.x, x_) + model.kl_loss() / (16 * (d.num_nodes / batch_size))
         lossMIN = lossMIN if loss > lossMIN else loss
         print('loss:{}'.format(loss))
         optim.zero_grad()
@@ -57,4 +57,4 @@ for epoch in range(epochs):
 # 保存模型
 mu, log = model.get_mu_logstd()
 torch.save({'epoch': epochs, 'state_dict': model.state_dict(), 'best_loss': lossMIN,
-            'optimizer': optim.state_dict(), 'batch_size': batch_size, 'mu': mu, 'datalog': log}, '{}.pkl'.format(name))
+            'optimizer': optim.state_dict(), 'batch_size': batch_size, 'mu': mu, 'datalog': log}, 'model/{}.pkl'.format(name))

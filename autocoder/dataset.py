@@ -397,6 +397,8 @@ def IsingXY_IsingInit(size, path, name):
 另一种则是采用异构体卷积的思想,将XY与Ising模型相互影响 但Ising模型的节点与XY模型的节点分属于不同的
 节点,同时XY与Ising模型相连的点为 异构边 以此为基础来设计 图神经网络
 '''
+
+
 def IsingXYInit(size, A, B, C, path, name):
     begin = time.time()
     data = []
@@ -595,6 +597,7 @@ def reshapeIsingXY(config, min, MaxsubMin, batch_size):
 def reshapeIsing_MSE(config, batch_size):
     config = torch.where(config > 0.5, 1, -1)  # 概率可以进行调整
     size = int(math.sqrt(config.shape[0] / batch_size))
+    print(size)
     config = config.reshape((batch_size, size, size))
     return config
 
@@ -607,16 +610,16 @@ def reshapeXY_MSE(config, batch_size):
 
 def cacculateIsingXY(configs):
     size = configs.shape[1]
-    M_Ising = torch.zeros([configs.shape[0], ])
-    M_XY = torch.zeros([configs.shape[0], ])
-    for i, config in enumerate(configs):
-        M_Ising[i] = torch.abs(config[:, :, 0].sum())
-        M_XY[i] = torch.abs(torch.cos(config[:, :, 1]).sum())
-
-    M_Ising = M_Ising / (size ** 2)
-    M_XY = M_XY / (size ** 2)
-
-    return M_Ising, M_XY, M_XY * (size ** 0.125)
+    M = np.abs(np.sum(configs, axis=1))
+    print(M[:,0])
+    print(M[:,1])
+    M_Ising = M[:, 0] / size
+    M_XY = np.abs(np.cos(M[:, 1] * 2 * np.pi)) / size
+    print(M[:,0])
+    print(M[:,1])
+    print(M_Ising.shape)
+    print(M_XY.shape)
+    return M_Ising, M_XY
 
 
 def calculateXY(configs):
@@ -739,7 +742,6 @@ def init_Ising_diffpool(size, T_list, nums, name):
     file.close()
     end = time.time()
     print(end - begin)
-
 
 # 测试数据
 # init_ising(32, [1,2,3], 32)

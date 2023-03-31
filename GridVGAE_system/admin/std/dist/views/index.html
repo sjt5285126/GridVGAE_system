@@ -109,11 +109,20 @@
                         </dl>-->
                     </li>
                     <li data-name="config" class="layui-nav-item">
-                        <a lay-href="config/generation.html" lay-tips="模拟" lay-direction="2">
-                            <i class="layui-icon layui-icon-home">
-                            <cite>构型</cite>
+                        <a href="javascripts:;" lay-tips="构型生成" lay-direction="2">
+                            <i class="layui-icon layui-icon-add-circle">
+                            <cite>构型生成</cite>
                             </i>
                         </a>
+                        <dl class="layui-nav-child">
+                            <dd data-name="config">
+                                <a lay-href="config/generation.html">构型生成</a>
+                            </dd>
+                            <!--该处的data-name有什么用-->
+                            <dd data-name="config">
+                                <a lay-href="config/diy_generation.html">自定义模型生成构型</a>
+                            </dd>
+                        </dl>
                     </li>
                     <li data-name="component" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="模型生成">

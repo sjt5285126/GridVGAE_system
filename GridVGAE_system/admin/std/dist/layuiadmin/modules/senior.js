@@ -1,4 +1,5 @@
 /** layuiAdmin.std-v1.2.1 LPPL License By http://www.layui.com/admin/ */
+/** 该文件描述了高级部分Echarts继承中的一些常用图表,酌情修改 */ 
 ;layui.define(function (e) {
     layui.use(["admin", "carousel"], function () {
         var e = layui.$, a = (layui.admin, layui.carousel), t = layui.element, i = layui.device();

@@ -12,59 +12,51 @@
   <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
 </head>
 <body>
-  <!-- 删除和添加键不需要，这部分内容与dataset部分信息相连-->
+
   <div class="layui-fluid">   
     <div class="layui-card">
+      <!--将这部分内容修改为搜索模型 
+        1. 数据集名称
+        2. 数据集类型
+        3. ?目前没想到 
+      -->
       <div class="layui-form layui-card-header layuiadmin-card-header-auto">
         <div class="layui-form-item">
           <div class="layui-inline">
-            <label class="layui-form-label">登录名</label>
+            <label class="layui-form-label">数据集名称</label>
             <div class="layui-input-block">
               <input type="text" name="loginname" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
           </div>
           <div class="layui-inline">
-            <label class="layui-form-label">手机</label>
-            <div class="layui-input-block">
-              <input type="text" name="telphone" placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-          </div>
-          <div class="layui-inline">
-            <label class="layui-form-label">邮箱</label>
-            <div class="layui-input-block">
-              <input type="text" name="email" placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-          </div>
-          <div class="layui-inline">
-            <label class="layui-form-label">角色</label>
+            <label class="layui-form-label">数据集类别</label>
             <div class="layui-input-block">
               <select name="role">
-                <option value="0">管理员</option>
-                <option value="1">超级管理员</option>
-                <option value="2">纠错员</option>
-                <option value="3">采购员</option>
-                <option value="4">推销员</option>
-                <option value="5">运营人员</option>
-                <option value="6">编辑</option>
+                <option value="0">Ising</option>
+                <option value="1">XY</option>
+                <option value="2">Potts</option>
+                <option value="3">Heisenberg</option>
+                <option value="4">Other</option>
               </select>
             </div>
           </div>
           <div class="layui-inline">
-            <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-user-back-search">
+            <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-user-Dataset-search">
               <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
             </button>
           </div>
         </div>
       </div>
-      
+      <!--表单界面大框架-->
       <div class="layui-card-body">
         <div style="padding-bottom: 10px;">
           <button class="layui-btn layuiadmin-btn-admin" data-type="batchdel">删除</button>
           <button class="layui-btn layuiadmin-btn-admin" data-type="add">添加</button>
         </div>
-        
-        <table id="LAY-user-back-manage" lay-filter="LAY-user-back-manage"></table>  
+        <!--表结构-->
+        <table id="LAY-user-Dataset-manage" lay-filter="LAY-user-Dataset-manage"></table>  
         <script type="text/html" id="buttonTpl">
+          <!--在该部分修改按钮内容 需要学习如何编写.可以删除-->
           {{#  if(d.check == true){ }}
             <button class="layui-btn layui-btn-xs">已审核</button>
           {{#  } else { }}
@@ -72,6 +64,7 @@
           {{#  } }}
         </script>
         <script type="text/html" id="table-useradmin-admin">
+          <!--编辑操作需要重写网页-->
           <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
           {{#  if(d.role == '超级管理员'){ }}
             <a class="layui-btn layui-btn-disabled layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a>
@@ -95,11 +88,11 @@
     ,table = layui.table;
     
     //监听搜索
-    form.on('submit(LAY-user-back-search)', function(data){
+    form.on('submit(LAY-user-Dataset-search)', function(data){
       var field = data.field;
       
       //执行重载
-      table.reload('LAY-user-back-manage', {
+      table.reload('LAY-user-Dataset-manage', {
         where: field
       });
     });
@@ -107,7 +100,7 @@
     //事件
     var active = {
       batchdel: function(){
-        var checkStatus = table.checkStatus('LAY-user-back-manage')
+        var checkStatus = table.checkStatus('LAY-user-Dataset-manage')
         ,checkData = checkStatus.data; //得到选中的数据
 
         if(checkData.length === 0){
@@ -129,7 +122,7 @@
               //,……
             });
             */
-            table.reload('LAY-user-back-manage');
+            table.reload('LAY-user-Dataset-manage');
             layer.msg('已删除');
           });
         }); 

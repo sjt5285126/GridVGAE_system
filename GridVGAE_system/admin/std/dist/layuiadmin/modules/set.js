@@ -1,4 +1,6 @@
 /** layuiAdmin.std-v1.2.1 LPPL License By http://www.layui.com/admin/ */
+/** Path: GridVGAE_system\admin\std\dist\layuiadmin\modules\set.js */ 
+/** 设置部分基本资料修改*/ 
 ;layui.define(["form", "upload"], function (t) {
     var i = layui.$, e = layui.layer, a = (layui.laytpl, layui.setter, layui.view, layui.admin), n = layui.form,
         s = layui.upload;

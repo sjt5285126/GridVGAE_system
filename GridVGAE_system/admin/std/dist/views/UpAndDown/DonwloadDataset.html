@@ -12,72 +12,34 @@
 </head>
 <body>
 <!--
-将其改造为模型生成 区别于普通生成构型，相当于是通过自己训练的模型生成构型，所以需要在这里添加模型的选择。
+上传数据集 
+1. 输入数据集名称
+2. 输入针对的模型？可有可无
+3. 上传按钮
+4. 备注信息
 -->
 <div class="layui-fluid">
     <div class="layui-card">
-        <div class="layui-card-header">构型生成</div>
+        <div class="layui-card-header">数据集上传</div>
         <div class="layui-card-body" style="padding: 15px;">
-            <form class="layui-form" action="" lay-filter="config-diy_generation">
+            <form class="layui-form" action="" lay-filter="UpAndDown-DownloadDataset">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">构型集名称</label>
+                    <label class="layui-form-label">数据集名称</label>
                     <div class="layui-input-block">
                         <input type="text" name="title" lay-verify="title" autocomplete="off"
-                               placeholder="请输入生成的构型数据集名称"
+                               placeholder="请输入数据集名称"
                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">构型选择</label>
+                    <label class="layui-form-label">数据集构型尺寸</label>
                     <div class="layui-input-block">
-                        <select name="interest" lay-filter="aihao">
-                            <option value=""></option>
-                            <option value="0" selected="">Ising</option>
-                            <option value="1">XY</option>
-                            <option value="2">Potts</option>
-                            <option value="3">Heisenberg</option>
-                            <option value="4">Other</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">生成构型尺寸</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="size" lay-verify="size" autocomplete="off"
-                               placeholder="请输入生成的构型尺寸"
+                        <input type="text" name="datasetSize" lay-verify="title" autocomplete="off"
+                               placeholder="请输入数据集尺寸"
                                class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">自定义模型选择</label>
-                    <div class="layui-input-inline">
-                        <select name="modules" lay-verify="required" lay-search="">
-                            <option value="">直接选择或搜索选择</option>
-                            <option value="1" selected="">select1</option>
-                            <option value="2">select2</option>
-                            <option value="3">select3</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">生成方式</label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="dataset" value="种子" title="种子" checked="">
-                        <input type="radio" name="dataset" value="默认数据集" title="默认数据集">
-                        <input type="radio" name="dataset" value="上传数据集" title="上传数据集">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">上传数据集选择</label>
-                    <div class="layui-input-inline">
-                        <select name="modules" lay-verify="required" lay-search="">
-                            <option value="" selected>使用种子或默认数据集</option>
-                            <option value="1">aaa</option>
-                            <option value="2">bbb</option>
-                            <option value="3">ccc</option>
-                        </select>
-                    </div>
-                </div>
+                <div 
                 <div class="layui-form-item layui-layout-admin">
                     <div class="layui-input-block">
                         <div class="layui-footer" style="left: 0;">

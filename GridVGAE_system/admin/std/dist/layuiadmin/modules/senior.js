@@ -1,5 +1,5 @@
 /** layuiAdmin.std-v1.2.1 LPPL License By http://www.layui.com/admin/ */
-/** 该文件描述了高级部分Echarts继承中的一些常用图表,酌情修改 */ 
+/** 该文件描述了高级部分Echarts继承中的一些常用图表,酌情修改 */
 ;layui.define(function (e) {
     layui.use(["admin", "carousel"], function () {
         var e = layui.$, a = (layui.admin, layui.carousel), t = layui.element, i = layui.device();
@@ -251,26 +251,27 @@
         }
     }), layui.use(["carousel", "echarts"], function () {
         var e = layui.$, a = (layui.carousel, layui.echarts), t = [], i = [{
-            title: {text: "某地区蒸发量和降水量", subtext: "纯属虚构"},
+            //title: {text: "能量分布图"},
             tooltip: {trigger: "axis"},
-            legend: {data: ["蒸发量", "降水量"]},
+            legend: {data: ["生成构型数据1", "蒙特卡罗方法"]},
             calculable: !0,
             xAxis: [{
                 type: "category",
-                data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+                data: ["-3.75", "-3.65", "-3.55", "-3.45", "-3.35", "-3.25", "-3.15", "-3.05", "-2.95", "-2.85", "-2.75", "-2.65", "-2.55", "-2.45", "-2.35", "-2.25", "-2.15", "-2.05", "-1.95", "-1.85", "-1.75", "-1.65"]
             }],
             yAxis: [{type: "value"}],
             series: [{
-                name: "蒸发量",
+                name: "生成构型数据1",
                 type: "bar",
-                data: [2, 4.9, 7, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20, 6.4, 3.3],
-                markPoint: {data: [{type: "max", name: "最大值"}, {type: "min", name: "最小值"}]},
-                markLine: {data: [{type: "average", name: "平均值"}]}
+                data: [4.0, 14.0, 34.0, 108.0, 116.0, 189.0, 216.0, 242.0, 330.0, 224.0, 240.0, 200.0, 165.0, 178.0, 96.0, 50.0, 41.0, 31.0, 15.0, 6.0, 1.0, 0.0],
+                /**markPoint: {data: [{type: "max", name: "最大值"}, {type: "min", name: "最小值"}]},
+                 markLine: {data: [{type: "average", name: "平均值"}]}**/
             }, {
-                name: "降水量",
+                name: "蒙特卡罗方法",
                 type: "bar",
-                data: [2.6, 5.9, 9, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6, 2.3],
-                markPoint: {
+                data: [8.0, 18.0, 38.0, 114.0, 147.0, 188.0, 204.0, 271.0, 345.0, 237.0, 200.0, 202.0, 164.0, 151.0, 82.0, 52.0, 30.0, 27.0, 15.0, 4.0, 2.0, 1.0]
+                ,
+                /**markPoint: {
                     data: [{name: "年最高", value: 182.2, xAxis: 7, yAxis: 183, symbolSize: 18}, {
                         name: "年最低",
                         value: 2.3,
@@ -278,7 +279,7 @@
                         yAxis: 3
                     }]
                 },
-                markLine: {data: [{type: "average", name: "平均值"}]}
+                 markLine: {data: [{type: "average", name: "平均值"}]}*/
             }]
         }], n = e("#LAY-index-normcol").children("div"), l = function (e) {
             t[e] = a.init(n[e], layui.echartsTheme), t[e].setOption(i[e]), window.onresize = t[e].resize
@@ -286,41 +287,37 @@
         if (n[0]) {
             l(0);
             var r = [], o = [{
-                tooltip: {trigger: "axis", axisPointer: {type: "shadow"}},
-                legend: {data: ["直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎", "百度", "谷歌", "必应", "其他"]},
+                tooltip: {trigger: "axis"},
+                legend: {data: ["生成构型数据1", "蒙特卡罗方法"]},
                 calculable: !0,
-                xAxis: [{type: "category", data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]}],
+                xAxis: [{
+                    type: "category",
+                    data: ['-0.025', '0.025', '0.075', '0.125', '0.175', '0.225', '0.275', '0.325', '0.375', '0.425', '0.475', '0.525', '0.575', '0.625', '0.675', '0.725', '0.775', '0.825', '0.875', '0.925', '0.975']
+
+                }],
                 yAxis: [{type: "value"}],
-                series: [{name: "直接访问", type: "bar", data: [320, 332, 301, 334, 390, 330, 320]}, {
-                    name: "邮件营销",
+                series: [{
+                    name: "生成构型数据1",
                     type: "bar",
-                    stack: "广告",
-                    data: [120, 132, 101, 134, 90, 230, 210]
-                }, {name: "联盟广告", type: "bar", stack: "广告", data: [220, 182, 191, 234, 290, 330, 310]}, {
-                    name: "视频广告",
-                    type: "bar",
-                    stack: "广告",
-                    data: [150, 232, 201, 154, 190, 330, 410]
+                    data: [0.0, 34.0, 15.0, 15.0, 12.0, 22.0, 23.0, 42.0, 49.0, 46.0, 57.0, 88.0, 105.0, 162.0, 220.0, 253.0, 403.0, 405.0, 397.0, 139.0, 13.0],
+
+                    /**markPoint: {data: [{type: "max", name: "最大值"}, {type: "min", name: "最小值"}]},
+                     markLine: {data: [{type: "average", name: "平均值"}]}**/
                 }, {
-                    name: "搜索引擎",
+                    name: "蒙特卡罗方法",
                     type: "bar",
-                    data: [862, 1018, 964, 1026, 1679, 1600, 1570],
-                    markLine: {
-                        itemStyle: {normal: {lineStyle: {type: "dashed"}}},
-                        data: [[{type: "min"}, {type: "max"}]]
-                    }
-                }, {
-                    name: "百度",
-                    type: "bar",
-                    barWidth: 5,
-                    stack: "搜索引擎",
-                    data: [620, 732, 701, 734, 1090, 1130, 1120]
-                }, {name: "谷歌", type: "bar", stack: "搜索引擎", data: [120, 132, 101, 134, 290, 230, 220]}, {
-                    name: "必应",
-                    type: "bar",
-                    stack: "搜索引擎",
-                    data: [60, 72, 71, 74, 190, 130, 110]
-                }, {name: "其他", type: "bar", stack: "搜索引擎", data: [62, 82, 91, 84, 109, 110, 120]}]
+                    data: [0.0, 20.0, 19.0, 28.0, 20.0, 22.0, 39.0, 31.0, 46.0, 42.0, 54.0, 97.0, 87.0, 165.0, 190.0, 268.0, 364.0, 427.0, 402.0, 163.0, 16.0]
+                    ,
+                    /**markPoint: {
+                    data: [{name: "年最高", value: 182.2, xAxis: 7, yAxis: 183, symbolSize: 18}, {
+                        name: "年最低",
+                        value: 2.3,
+                        xAxis: 11,
+                        yAxis: 3
+                    }]
+                },
+                     markLine: {data: [{type: "average", name: "平均值"}]}*/
+                }]
             }], m = e("#LAY-index-heapcol").children("div"), s = function (e) {
                 r[e] = a.init(m[e], layui.echartsTheme), r[e].setOption(o[e]), window.onresize = r[e].resize
             };

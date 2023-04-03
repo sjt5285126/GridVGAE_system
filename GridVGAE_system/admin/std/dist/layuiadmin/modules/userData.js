@@ -5,7 +5,7 @@ layui.define(["table", "form"], function (e) {
   layui.form;
   i.render({
     elem: "#LAY-user-Dataset-manage",
-    url: layui.setter.base + "json/useradmin/mangadmin.js",
+    url: layui.setter.base + "json/useradmin/mangaDataset.js",
     cols: [
       [
         { type: "checkbox", fixed: "left" },

@@ -18,19 +18,27 @@
       <div class="layui-form layui-card-header layuiadmin-card-header-auto">
         <div class="layui-form-item">
           <div class="layui-inline">
-            角色筛选
+            <label class="layui-form-label">数据集名称</label>
+            <div class="layui-input-block">
+              <input type="text" name="loginname" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
           </div>
           <div class="layui-inline">
-            <select name="rolename" lay-filter="LAY-user-adminrole-type">
-              <option value="-1">全部角色</option>
-              <option value="0">管理员</option>
-              <option value="1">超级管理员</option>
-              <option value="2">纠错员</option>
-              <option value="3">采购员</option>
-              <option value="4">推销员</option>
-              <option value="5">运营人员</option>
-              <option value="6">编辑</option>
-            </select>
+            <label class="layui-form-label">数据集类别</label>
+            <div class="layui-input-block">
+              <select name="role">
+                <option value="0">Ising</option>
+                <option value="1">XY</option>
+                <option value="2">Potts</option>
+                <option value="3">Heisenberg</option>
+                <option value="4">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="layui-inline">
+            <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-user-back-search">
+              <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -43,13 +51,13 @@
         <table id="LAY-user-back-role" lay-filter="LAY-user-back-role"></table>  
         <script type="text/html" id="buttonTpl">
           {{#  if(d.check == true){ }}
-            <button class="layui-btn layui-btn-xs">已审核</button>
+            <button class="layui-btn layui-btn-xs">已读</button>
           {{#  } else { }}
-            <button class="layui-btn layui-btn-primary layui-btn-xs">未审核</button>
+            <button class="layui-btn layui-btn-primary layui-btn-xs">未读</button>
           {{#  } }}
         </script>
         <script type="text/html" id="table-useradmin-admin">
-          <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+          <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>下载</a>
           <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
         </script>
       </div>

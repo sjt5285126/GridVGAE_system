@@ -1,5 +1,5 @@
 import torch
-from VGAE_spin_origin2 import EncoderSpin, DecoderSpin, SVGAE
+from VGAE_spin_GAT import EncoderSpin, DecoderSpin, SVGAE
 import dataset
 from dataset import calculate, acc_loss
 from dataset import reshapeIsing_MSE, reshapeIsingHdf5, reshapeIsing
@@ -43,7 +43,7 @@ def load_checkpoint(model, checkpoint_PATH, optimizer):
 device = torch.device('cuda:3' if torch.cuda.is_available() else 'cpu')
 model = SVGAE(EncoderSpin(), DecoderSpin()).to(device)
 optim = torch.optim.Adam(model.parameters(), lr=0.01)
-PATH = 'model/model_16_PTPQuick_alpha_1.pkl'
+PATH = 'model/modelGAT_32_T_PTP.pkl'
 name = PATH.split('/')[-1][:-4]
 
 checkpoint = torch.load(PATH, map_location=device)
